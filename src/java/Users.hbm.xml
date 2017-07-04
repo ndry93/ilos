@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+ <class name="model.Users" table="users" catalog="oneoms" optimistic-lock="version">
+      <id name="userName" type="string">
+            <column name="user_name" length="50" />
+            <generator class="assigned" />
+      </id>
+ <property name="userEmail" column="user_email" type="string" length="100" not-null="true"/>
+ <property name="userPassword" column="password" type="string" length="100" not-null="false"/>
+ <property name="createdBy" column="created_by" type="string" length="50" not-null="false"/>
+ <property name="createdDate" column="created_date" type="string" length="32" not-null="false"/>
+ <property name="updatedBy" column="updated_by" type="string" length="50" not-null="false"/>
+ <property name="updatedDate" column="updated_date" type="string" length="32" not-null="false"/>
+ <property name="userEnabled" column="enabled" type="string" length="1" not-null="false"/>
+ </class>
+</hibernate-mapping>
