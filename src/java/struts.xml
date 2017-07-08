@@ -5,9 +5,9 @@
  
 <struts>
     <package name="default" extends="struts-default">
-        <action name="login" class="action.loginAction">
-            <result name="success">jsp/home.jsp</result>
-            <result name="input">jsp/error.jsp</result>
+        <action name="login" class="controller.loginAction">
+            <result name="success">home.jsp</result>
+            <result name="input">error.jsp</result>
         </action>
     </package>
 </struts>

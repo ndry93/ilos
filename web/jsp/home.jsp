@@ -1,20 +1,14 @@
-<%-- 
-    Document   : login.jsp
-    Created on : Jul 3, 2017, 12:07:18 PM
-    Author     : S
---%>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="h" uri="/struts-tags" %>
-<!DOCTYPE html>
+ pageEncoding="ISO-8859-1"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-       
-    </body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>login Success</title>
+</head>
+<body>
+<h2> Login was successful</h2>
+<b>Welcome,<s:property value="users.userName"/></b>
+</body>
 </html>
-
