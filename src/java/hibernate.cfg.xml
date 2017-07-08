@@ -52,4 +52,3 @@ Contributor(s):
     <mapping resource="Users.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
-
