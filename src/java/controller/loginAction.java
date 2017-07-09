@@ -39,7 +39,7 @@ public class loginAction extends ActionSupport {
                 this.addFieldError("users.userName", "Name is required");
             }
             if (getUsers().getPassword().length() == (0)) {
-                this.addFieldError("users.userPassword", "Password is required");
+                this.addFieldError("users.password", "Password is required");
             }
         }
     }

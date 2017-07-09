@@ -16,7 +16,7 @@
     <body>
         <h:form action="login" method="post"> 
             <h:textfield name="users.userName" label="Enter User Name" /><br>
-            <h:password name="users.userPassword" label="Enter Password" /><br>
+            <h:password name="users.password" label="Enter Password" /><br>
             <h:submit value="Login" align="center" />
         </h:form>
     </body>
