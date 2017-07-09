@@ -38,7 +38,7 @@ public class loginAction extends ActionSupport {
             if (getUsers().getUserName().length() == (0)) {
                 this.addFieldError("users.userName", "Name is required");
             }
-            if (getUsers().getUserPassword().length() == (0)) {
+            if (getUsers().getPassword().length() == (0)) {
                 this.addFieldError("users.userPassword", "Password is required");
             }
         }
@@ -46,7 +46,7 @@ public class loginAction extends ActionSupport {
 
     @Override
     public String execute() {
-        if (dao.find(getUsers().getUserName(), getUsers().getUserPassword())) {
+        if (dao.find(getUsers().getUserName(), getUsers().getPassword())) {
             return SUCCESS;
         } else {
             this.addActionError("Invalid username and password");

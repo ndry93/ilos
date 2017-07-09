@@ -5,17 +5,22 @@
  */
 package dao;
 
+import utils.HibernateUtil;
 import java.util.List;
 import model.Users;
 import org.hibernate.Query;
 import org.hibernate.Session;
  
 public class usersDAO {
+    
+    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+    
     public boolean find(String name, String password) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Session session = HibernateUtil.getSessionFactory().openSession();
         //session.beginTransaction();
 
-        String sql = "Select userName, userEnabled from Users u where u.userName=:name and u.userPassword=:pass";
+        String sql = "Select userName, enabled from Users u where u.userName=:name and u.password=:pass";
+        session.beginTransaction();
         Query query = session.createQuery(sql);
         query.setParameter("name", name);
         query.setParameter("pass", password);
@@ -25,5 +30,10 @@ public class usersDAO {
         }
 
         return false;
+    }
+    
+    public static void main(String[] args){
+        usersDAO d = new usersDAO();
+        System.out.println(d.find("hendry", "123"));
     }
 }

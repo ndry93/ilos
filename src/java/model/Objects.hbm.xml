@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2017 10:35:17 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Objects" table="objects" catalog="oneoms" optimistic-lock="version">
+        <id name="objectId" type="java.lang.Integer">
+            <column name="object_id" />
+            <generator class="identity" />
+        </id>
+        <property name="objectName" type="string">
+            <column name="object_name" length="50" />
+        </property>
+        <property name="objectDesc" type="string">
+            <column name="object_desc" length="150" />
+        </property>
+        <property name="objectType" type="string">
+            <column name="object_type" length="45" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="created_by" length="50" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="created_date" length="19" />
+        </property>
+        <property name="updatedBy" type="string">
+            <column name="updated_by" length="50" />
+        </property>
+        <property name="updatedDate" type="timestamp">
+            <column name="updated_date" length="19" />
+        </property>
+        <property name="enabled" type="string">
+            <column name="enabled" length="1" />
+        </property>
+        <set name="userRolesObjectses" table="user_roles_objects" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="object_id" not-null="true" />
+            </key>
+            <one-to-many class="model.UserRolesObjects" />
+        </set>
+    </class>
+</hibernate-mapping>
