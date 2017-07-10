@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC '-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN' 'http://tiles.apache.org/dtds/tiles-config_2_0.dtd'>
+<tiles-definitions>
+    <definition name="index.def" template="/jsp/template.jsp">
+        <put-attribute name="title" value="My First Struts Tiles Program"/>
+        <put-attribute name="header" value="/jsp/header.jsp"/>
+        <put-attribute name="body" value="/jsp/body.jsp"/>
+        <put-attribute name="footer" value="/jsp/footer.jsp"/>
+    </definition>
+    <definition name="error.def" extends="index.def">
+        <put-attribute name="body" value="/jsp/error.jsp"/>
+    </definition><!--
+    <definition name="contact.def" extends="index.def">
+        <put-attribute name="body" value="/jsp/contact.jsp"/>
+    </definition>-->
+    
+</tiles-definitions>

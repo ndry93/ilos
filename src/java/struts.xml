@@ -4,10 +4,13 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
  
 <struts>
-    <package name="default" extends="struts-default">
+     <include file="example.xml"/>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="tiles-default">
+ 
         <action name="login" class="controller.loginAction">
-            <result name="success">home.jsp</result>
-            <result name="input">error.jsp</result>
+            <result name="success" type="tiles">index.def</result>
+            <result name="input" type="tiles">error.def</result>
         </action>
     </package>
 </struts>
