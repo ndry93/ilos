@@ -7,7 +7,9 @@ package dao;
 
 import utils.HibernateUtil;
 import java.util.List;
+import model.Customers;
 import model.DrHeaders;
+import model.Users;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -26,6 +28,7 @@ public class DrHeaderDAO {
     public void saveOrUpdateDrHeader(DrHeaders drHeader) {
         try {
             session.saveOrUpdate(drHeader);
+            transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
             e.printStackTrace();
@@ -39,6 +42,7 @@ public class DrHeaderDAO {
         try {
             DrHeaders drHeader = (DrHeaders) session.get(DrHeaders.class, drHeaderNo);
             session.delete(drHeader);
+            transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
             e.printStackTrace();
@@ -72,10 +76,23 @@ public class DrHeaderDAO {
         return drHeader;
     }
     
+    /**
+     * Excample for SaveOrUpdate
+     * User and Customer must exist in database
+     * @param args 
+     */
     public static void main(String[] args){
         DrHeaderDAO d = new DrHeaderDAO();
         for(DrHeaders dr: d.listDrHeader()){
             System.out.println(dr.getDrHeaderId());
         }
+        
+        Customers cust = new Customers();
+        cust.setCustomerId(1);
+        cust.setCustomerName("Midi");
+        Users user = new Users();
+        user.setUserName("ndry93");
+        DrHeaders dr = new DrHeaders("DR/MIDI/001",cust,user);
+        d.saveOrUpdateDrHeader(dr);
     }
 }
