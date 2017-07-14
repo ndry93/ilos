@@ -4,13 +4,16 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
  
 <struts>
-     <include file="example.xml"/>
+    <include file="example.xml"/>
     <!-- Configuration for the default package. -->
-    <package name="default" extends="tiles-default">
- 
+    <constant name="struts.ui.theme" value="simple" />
+    <package name="default" extends="tiles-default">    
         <action name="login" class="controller.loginAction">
             <result name="success" type="tiles">index.def</result>
             <result name="input" type="tiles">error.def</result>
-        </action>
+        </action>   
+        <action name="logout" class="controller.loginAction" method="logout">  
+            <result name="success">login.jsp</result>  
+        </action> 
     </package>
 </struts>
