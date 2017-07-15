@@ -10,10 +10,10 @@
     <package name="default" extends="tiles-default">    
         <action name="login" class="controller.loginAction">
             <result name="success" type="tiles">index.def</result>
-            <result name="input" type="tiles">error.def</result>
+            <result name="input">login.jsp</result>
         </action>   
         <action name="logout" class="controller.loginAction" method="logout">  
-            <result name="success">login.jsp</result>  
+            <result name="success">login.jsp</result>
         </action> 
     </package>
 </struts>

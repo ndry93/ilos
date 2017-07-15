@@ -20,7 +20,7 @@ import org.hibernate.Transaction;
 public class DrHeaderDAO {
 
     Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-    Transaction transaction = session.beginTransaction();;
+    Transaction transaction = session.beginTransaction();
 
     /**
      * Used to save or update a user.

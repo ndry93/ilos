@@ -5,7 +5,7 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="t" %>
-<%@ taglib prefix="h" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <!DOCTYPE html>
 <html>
@@ -39,19 +39,20 @@
                             <h3 class="panel-title">Please Sign In</h3>
                         </div>
                         <div class="panel-body">
-                            <h:form action="login" method="post"> 
+                            <s:form action="login" method="post" validate="true"> 
                                 <div class="form-group input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i>
                                     </span>
-                                    <h:textfield name="users.userName" label="Enter User Name" cssClass="form-control" placeholder="Username" />
+                                    <s:textfield name="users.userName" label="Enter User Name" cssClass="form-control" placeholder="Username" />
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="input-group-addon"><i class="fa fa-lock"></i>
                                     </span>
-                                    <h:password name="users.password" label="Enter Password" cssClass="form-control" placeholder="Password" />
+                                    <s:password name="users.password" label="Enter Password" cssClass="form-control" placeholder="Password" />
                                 </div>
-                                <h:submit value="Login" align="center" cssClass="btn btn-lg btn-primary btn-block" />
-                            </h:form>
+                                <s:actionerror cssClass="alert alert-warning"/>
+                                <s:submit validate="true" value="Login" align="center" cssClass="btn btn-lg btn-primary btn-block"  />
+                            </s:form>
                         </div>
                     </div>
                 </div>

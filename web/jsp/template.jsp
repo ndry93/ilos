@@ -5,6 +5,9 @@
 --%>
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="t" %>
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="t" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <!DOCTYPE html>
 <html>
     <head>

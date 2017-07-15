@@ -10,12 +10,22 @@ import dao.usersDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import static com.opensymphony.xwork2.Action.INPUT;
 import static com.opensymphony.xwork2.Action.SUCCESS;
+import java.util.Map;
+import org.apache.struts2.dispatcher.SessionMap;
+import org.apache.struts2.interceptor.SessionAware;
 
-public class loginAction extends ActionSupport {
+public class loginAction extends ActionSupport implements SessionAware {
 
     private static final long serialVersionUID = 1L;
+    SessionMap<String, String> sessionmap;
     usersDAO dao = new usersDAO();
     private Users users;
+
+    @Override
+    public void setSession(Map<String, Object> map) {
+        sessionmap = (SessionMap) map;
+        sessionmap.put("login", "true");
+    }
 
     /**
      * @return the users
@@ -33,15 +43,15 @@ public class loginAction extends ActionSupport {
 
     @Override
     public void validate() {
-        System.out.println("username " + getUsers().getUserName());
-        if (getUsers().getUserName() != null) {
-            if (getUsers().getUserName().length() == (0)) {
-                this.addFieldError("users.userName", "Name is required");
-            }
-            if (getUsers().getPassword().length() == (0)) {
-                this.addFieldError("users.password", "Password is required");
-            }
-        }
+//        if (getUsers().getUserName() == null || getUsers().getUserName().length() == 0) {
+//            this.addFieldError("users.userName", "Name is required");
+//         System.out.println("masuk username err ");
+//        }
+//        if (getUsers().getPassword() == null || getUsers().getPassword().length() == 0) 
+//        {
+//            this.addFieldError("users.password", "Password is required");
+//         System.out.println("masuk pass err ");
+//        }   
     }
 
     @Override
@@ -55,6 +65,8 @@ public class loginAction extends ActionSupport {
     }
 
     public String logout() {
-        return "success";
+        sessionmap.invalidate();
+        return SUCCESS;
     }
+
 }
