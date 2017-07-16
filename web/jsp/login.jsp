@@ -43,12 +43,12 @@
                                 <div class="form-group input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i>
                                     </span>
-                                    <s:textfield name="users.userName" label="Enter User Name" cssClass="form-control" placeholder="Username" />
+                                    <s:textfield name="users.userName" label="Enter User Name" cssClass="form-control" placeholder="Username" required="true" />
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="input-group-addon"><i class="fa fa-lock"></i>
                                     </span>
-                                    <s:password name="users.password" label="Enter Password" cssClass="form-control" placeholder="Password" />
+                                    <s:password name="users.password" label="Enter Password" cssClass="form-control" placeholder="Password" required="true" />
                                 </div>
                                 <s:actionerror cssClass="alert alert-warning"/>
                                 <s:submit validate="true" value="Login" align="center" cssClass="btn btn-lg btn-primary btn-block"  />

@@ -37,7 +37,7 @@
                     <a href="index.html"><i class="fa fa-home fa-fw"></i> Home</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-truck fa-fw"></i> Delivery Request</a>
+                    <a href="<s:url action="drHeader"/>"><i class="fa fa-truck fa-fw"></i> Delivery Request</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-gear fa-fw"></i> System<span class="fa arrow"></span></a>

@@ -2,13 +2,16 @@
 <!DOCTYPE tiles-definitions PUBLIC '-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN' 'http://tiles.apache.org/dtds/tiles-config_2_0.dtd'>
 <tiles-definitions>
     <definition name="index.def" template="/jsp/template.jsp">
-        <put-attribute name="title" value="My First Struts Tiles Program"/>
+        <put-attribute name="title" value="ILoS"/>
         <put-attribute name="header" value="/jsp/header.jsp"/>
         <put-attribute name="body" value="/jsp/home.jsp"/>
         <put-attribute name="footer" value="/jsp/footer.jsp"/>
     </definition>
-    <definition name="error.def" extends="index.def">
-        <put-attribute name="body" value="/jsp/error.jsp"/>
+    <definition name="drHeader.def" extends="index.def">
+        <put-attribute name="title" value="Delivery Request Transactions"/>
+        <put-attribute name="header" value="/jsp/header.jsp"/>
+        <put-attribute name="body" value="/jsp/DeliveryRequest/drHeader.jsp"/>
+        <put-attribute name="footer" value="/jsp/footer.jsp"/>
     </definition><!--
     <definition name="contact.def" extends="index.def">
         <put-attribute name="body" value="/jsp/contact.jsp"/>

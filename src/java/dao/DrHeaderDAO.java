@@ -57,6 +57,8 @@ public class DrHeaderDAO {
         List<DrHeaders> drHeaders = null;
         try {
             drHeaders = session.createQuery("from DrHeaders").list();
+            System.out.println("Masuk DrHeader DAO"
+                    + drHeaders.size());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -85,7 +87,7 @@ public class DrHeaderDAO {
         DrHeaderDAO d = new DrHeaderDAO();
         for(DrHeaders dr: d.listDrHeader()){
             System.out.println(dr.getDrHeaderId());
-        }
+        }   
         
         Customers cust = new Customers();
         cust.setCustomerId(1);

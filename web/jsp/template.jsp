@@ -1,8 +1,3 @@
-<%-- 
-    Document   : template
-    Created on : Sep 8, 2012, 8:41:43 PM
-    Author     : Sudhanshu
---%>
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="t" %>
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="t" %>
@@ -32,6 +27,32 @@
         <!-- Custom Fonts -->
         <link href="${pageContext.request.contextPath}/theme/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+        <!-- DataTables CSS -->
+        <link href="${pageContext.request.contextPath}/theme/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+        <!-- DataTables Responsive CSS -->
+        <link href="${pageContext.request.contextPath}/theme/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+        <!-- jQuery -->
+        <script src="${pageContext.request.contextPath}/theme/vendor/jquery/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="${pageContext.request.contextPath}/theme/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="${pageContext.request.contextPath}/theme/vendor/metisMenu/metisMenu.min.js"></script>
+
+        <!-- Morris Charts JavaScript -->
+        <script src="${pageContext.request.contextPath}/theme/vendor/raphael/raphael.min.js"></script>
+        <script src="${pageContext.request.contextPath}/theme/vendor/morrisjs/morris.min.js"></script>
+        <script src="${pageContext.request.contextPath}/theme/data/morris-data.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="${pageContext.request.contextPath}/theme/dist/js/sb-admin-2.js"></script>
+
+        <!-- DataTables JavaScript -->
+        <script src="${pageContext.request.contextPath}/theme/vendor/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="${pageContext.request.contextPath}/theme/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/theme/vendor/datatables-responsive/dataTables.responsive.js"></script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -49,23 +70,7 @@
             <!-- Body -->
             <t:insertAttribute name="body"/>
             <!-- Footer -->
-             <t:insertAttribute name="footer"/>
+            <%--<t:insertAttribute name="footer"/>--%>
         </div>
-        <!-- jQuery -->
-        <script src="${pageContext.request.contextPath}/theme/vendor/jquery/jquery.min.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="${pageContext.request.contextPath}/theme/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="${pageContext.request.contextPath}/theme/vendor/metisMenu/metisMenu.min.js"></script>
-
-        <!-- Morris Charts JavaScript -->
-        <script src="${pageContext.request.contextPath}/theme/vendor/raphael/raphael.min.js"></script>
-        <script src="${pageContext.request.contextPath}/theme/vendor/morrisjs/morris.min.js"></script>
-        <script src="${pageContext.request.contextPath}/theme/data/morris-data.js"></script>
-
-        <!-- Custom Theme JavaScript -->
-        <script src="${pageContext.request.contextPath}/theme/dist/js/sb-admin-2.js"></script>
     </body>
 </html>

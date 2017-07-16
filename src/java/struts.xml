@@ -15,5 +15,8 @@
         <action name="logout" class="controller.loginAction" method="logout">  
             <result name="success">login.jsp</result>
         </action> 
+         <action name="drHeader" class="controller.DrHeaderAction" >  
+            <result name="success" type="tiles">drHeader.def</result>
+        </action> 
     </package>
 </struts>

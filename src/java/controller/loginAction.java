@@ -18,7 +18,7 @@ public class loginAction extends ActionSupport implements SessionAware {
 
     private static final long serialVersionUID = 1L;
     SessionMap<String, String> sessionmap;
-    usersDAO dao = new usersDAO();
+    public usersDAO dao = new usersDAO();
     private Users users;
 
     @Override
