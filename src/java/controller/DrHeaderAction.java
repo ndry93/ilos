@@ -28,7 +28,6 @@ public class DrHeaderAction extends ActionSupport {
         System.out.println("1controller.DrHeaderAction.execute()");
         try {
            DrHeaderList = drheader_dao.listDrHeader();
-            System.out.println("sdadsadadsadasd"+ this.DrHeaderList.size());
         } catch (Exception e) {
             e.printStackTrace();
         }

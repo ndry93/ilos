@@ -1,7 +1,7 @@
 <%-- 
     Document   : drTransaction
     Created on : Jul 15, 2017, 4:25:41 PM
-    Author     : S
+    Author     : Hana
 --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="t" %>
@@ -21,29 +21,50 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Action
+                    <a href="#" class="btn-sm btn-primary" ><i class="fa fa-pencil"></i> <strong>Add</strong></a>
+                    <!--<a href="#" class="btn-sm btn-primary" id="addRow"><i class="fa fa-pencil"></i> <strong>Add</strong></a>-->
+                    <!--<a href="#" class="btn-sm btn-primary" id="saveRow"><i class="fa fa-save"></i> <strong>Save</strong></a>-->
+                    <!--<a href="#" class="btn-sm btn-primary"><i class="fa fa-align-justify"></i> <strong>List</strong></a>-->
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-drHeader">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Transaction ID</th>
                                 <th>Customer ID</th>
+                                <th>Customer Name</th>
                                 <th>Status</th>
+                                <th>Created Date</th>
+                                <th>Last Update</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <s:iterator value="DrHeaderList">
                                 <tr>
-                                    <td>
+                                    <td id="drHeaderId">
                                         <s:property value="drHeaderId" />
                                     </td>
                                     <td>
-                                        <s:property value="customers" />
+                                        <s:property value="customers.customerId" />
+                                    </td>
+                                    <td>
+                                        <s:property value="customers.customerName" />
                                     </td>
                                     <td>
                                         <s:property value="drStatus" />
+                                    </td>
+                                    <td>
+                                        <s:property value="createdDate" />
+                                    </td>
+                                    <td>
+                                        <s:property value="updatedDate" />
+                                    </td>
+                                    <td class="text-center"><s:property value="id"/>
+                                        <a href="<s:url action="drLine" ><s:param name="DrHeaderNo"><s:property value="drHeaderId" /></s:param></s:url>" id="btnView" class="btn-sm btn-info"><i class="fa fa-eye"></i> <strong>View</strong></a>
+                                        <a href="#" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
+                                        <a href="#" id="btnDelete" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
                                     </td>
                                 </tr>
                             </s:iterator>
@@ -61,11 +82,24 @@
 </div>
 <!-- /#page-wrapper -->
 <script>
+
     $(document).ready(function () {
-        $('#dataTables-drHeader').DataTable({
+        var table = $('#dataTables-drHeader').DataTable({
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            },
             responsive: true
         });
+//        $("#btnView").click(function () {
+//            var row = $(this).closest("tr");    // Find the row
+//            var drHeaderId = row.find("#drHeaderId").text(); // Find the text
+//            $.post("<s:url action="Home"/>", {n: "203000"}, function (data) {
+//               
+//            });
+//            
+//        });
     });
+
 </script>
 
 

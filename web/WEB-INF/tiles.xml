@@ -12,7 +12,15 @@
         <put-attribute name="header" value="/jsp/header.jsp"/>
         <put-attribute name="body" value="/jsp/DeliveryRequest/drHeader.jsp"/>
         <put-attribute name="footer" value="/jsp/footer.jsp"/>
-    </definition><!--
+    </definition>
+     <definition name="drLine.def" extends="index.def">
+        <put-attribute name="title" value="Delivery Request Transactions"/>
+        <put-attribute name="header" value="/jsp/header.jsp"/>
+        <put-attribute name="body" value="/jsp/DeliveryRequest/drLine.jsp"/>
+        <put-attribute name="footer" value="/jsp/footer.jsp"/>
+    </definition>
+    
+    <!--
     <definition name="contact.def" extends="index.def">
         <put-attribute name="body" value="/jsp/contact.jsp"/>
     </definition>-->

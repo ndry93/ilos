@@ -34,7 +34,7 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="index.html"><i class="fa fa-home fa-fw"></i> Home</a>
+                    <a href="<s:url action="Home"/>"><i class="fa fa-home fa-fw"></i> Home</a>
                 </li>
                 <li>
                     <a href="<s:url action="drHeader"/>"><i class="fa fa-truck fa-fw"></i> Delivery Request</a>

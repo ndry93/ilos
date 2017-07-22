@@ -57,9 +57,8 @@ public class DrHeaderDAO {
         List<DrHeaders> drHeaders = null;
         try {
             drHeaders = session.createQuery("from DrHeaders").list();
-            System.out.println("Masuk DrHeader DAO"
-                    + drHeaders.size());
         } catch (Exception e) {
+            transaction.rollback();
             e.printStackTrace();
         }
         return drHeaders;
@@ -73,6 +72,7 @@ public class DrHeaderDAO {
         try {
             drHeader = (DrHeaders) session.get(DrHeaders.class, drHeaderNo);
         } catch (Exception e) {
+            transaction.rollback();
             e.printStackTrace();
         }
         return drHeader;
