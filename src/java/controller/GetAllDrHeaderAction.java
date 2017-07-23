@@ -14,13 +14,13 @@ import java.util.List;
  *
  * @author S
  */
-public class DrHeaderAction extends ActionSupport {
+public class GetAllDrHeaderAction extends ActionSupport {
 
     private static final long serialVersionUID = 2L;
     private List<DrHeaders> DrHeaderList = null;
-    public DrHeaderDAO drheader_dao = new DrHeaderDAO();
+    private final DrHeaderDAO drheader_dao = new DrHeaderDAO();
 
-    public DrHeaderAction() {
+    public GetAllDrHeaderAction() {
     }
 
     @Override

@@ -19,6 +19,8 @@
         <global-results>
             <result name="login" type="redirect">/home.action</result>
         </global-results>
+        
+        <!-- Authentication -->
         <action name="login" class="controller.loginAction">
             <result name="success" type="tiles">index.def</result>
             <result name="input">login.jsp</result>
@@ -31,12 +33,20 @@
             <result type="tiles">index.def</result>
             <result name="input">login.jsp</result>
         </action> 
-         <action name="drHeader" class="controller.DrHeaderAction" >  
+        <!-- End of Authentication -->
+        
+        <!-- Delivery Request Module -->
+        <action name="drHeader" class="controller.GetAllDrHeaderAction" >  
             <result name="success" type="tiles">drHeader.def</result>
-        </action> 
-         <action name="drLine" class="controller.DrLineAction" >  
+        </action>
+         <action name="drLinesByDrNo" class="controller.GetAllDrLinesByDrNoAction" >  
             <result name="success" type="tiles">drLine.def</result>
-        </action> 
+        </action>
+        <action name="createDrHeader" class="controller.CreateDrHeaderAction" >  
+            <result name="success" type="tiles">drLine.def</result>
+        </action>
+        
+        <!-- End of Delivery Request Module -->
     </package>
     
 </struts>

@@ -7,13 +7,9 @@ package dao;
 
 import utils.HibernateUtil;
 import java.util.List;
-import model.Customers;
-import model.DrHeaders;
 import model.DrLines;
-import model.Users;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.Query;
 
 /**
  *

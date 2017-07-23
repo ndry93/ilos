@@ -8,7 +8,6 @@ package controller;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import model.DrLines;
 import dao.DrLineDAO;
-import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
 import model.DrHeaders;
 
@@ -16,33 +15,20 @@ import model.DrHeaders;
  *
  * @author S
  */
-public class DrLineAction {
-
-    /**
-     * @return the selectedDrHeader
-     */
-    public DrHeaders getSelectedDrHeader() {
-        return selectedDrHeader;
-    }
-
-    /**
-     * @param selectedDrHeader the selectedDrHeader to set
-     */
-    public void setSelectedDrHeader(DrHeaders selectedDrHeader) {
-        this.selectedDrHeader = selectedDrHeader;
-    }
+public class GetAllDrLinesByDrNoAction {
 
     private static final long serialVersionUID = 3L;
     private List<DrLines> DrLineList = null;
     private String DrHeaderNo;
     private DrHeaders selectedDrHeader;
-    public DrLineDAO drlilne_dao = new DrLineDAO();
+    private final DrLineDAO drlilne_dao = new DrLineDAO();
 
-    public DrLineAction() {
+    public GetAllDrLinesByDrNoAction() {
     }
 
     public String execute() throws Exception {
         try {
+            System.out.println("--- drLine is executed");
             setDrLineList(drlilne_dao.listDrLineByDrHeaderNo(getDrHeaderNo()));
             if(DrLineList.size()>0)
             {
@@ -80,6 +66,21 @@ public class DrLineAction {
      */
     public void setDrHeaderNo(String DrHeaderNo) {
         this.DrHeaderNo = DrHeaderNo;
+    }
+    
+    
+    /**
+     * @return the selectedDrHeader
+     */
+    public DrHeaders getSelectedDrHeader() {
+        return selectedDrHeader;
+    }
+
+    /**
+     * @param selectedDrHeader the selectedDrHeader to set
+     */
+    public void setSelectedDrHeader(DrHeaders selectedDrHeader) {
+        this.selectedDrHeader = selectedDrHeader;
     }
 
 }
