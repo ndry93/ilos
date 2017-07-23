@@ -5,8 +5,10 @@
  */
 package controller;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DrHeaderDAO;
+import java.util.Map;
 import model.Customers;
 import model.DrHeaders;
 import model.Users;
@@ -16,35 +18,37 @@ import model.Users;
  * @author ndry93
  */
 public class CreateDrHeaderAction extends ActionSupport {
+
     private static final long serialVersionUID = 5L;
     private final DrHeaderDAO drheader_dao = new DrHeaderDAO();
     private Users users;
-    
+    private DrHeaders selectedDrHeader;
+
     public CreateDrHeaderAction() {
     }
 
     @Override
     public String execute() throws Exception {
-        System.out.println("1controller.DrHeaderAction.execute()");
+        System.out.println("controller.CreateDrHeaderAction.execute()");
         try {
-            //when creating new dr, dr number should be automatically generated
-            
-            //currently user object is null, we need to get from dao (*re-query), else we have to save in session variable
-            System.out.println("---get user "+this.getUsers().getUserName());
-            DrHeaders drHeader = new DrHeaders();
+            Map session = ActionContext.getContext().getSession();
+            System.out.println("Id DrHeader " + getSelectedDrHeader().getDrHeaderId());
+            System.out.println("Cust Name" + getSelectedDrHeader().getCustomers().getCustomerName());
+            getSelectedDrHeader().setDrStatus(getSelectedDrHeader().getDrStatus());
+            System.out.println("Get status------"+getSelectedDrHeader().getDrStatus());
             Customers cust = new Customers();
-            cust.setCustomerId(1);
-            cust.setCustomerName("Midi");
+            cust.setCustomerId(getSelectedDrHeader().getCustomers().getCustomerId());
+            cust.setCustomerName(getSelectedDrHeader().getCustomers().getCustomerName());
             Users user = new Users();
-            user.setUserName("ndry93");
-            DrHeaders dr = new DrHeaders("DR/MIDI/001",cust,user);
-            drheader_dao.saveOrUpdateDrHeader(drHeader);
+            user.setUserName(session.get("username").toString());
+            DrHeaders dr = new DrHeaders(getSelectedDrHeader(), cust, user);
+            drheader_dao.saveOrUpdateDrHeader(dr);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return SUCCESS;
     }
-    
+
     /**
      * @return the users
      */
@@ -58,5 +62,19 @@ public class CreateDrHeaderAction extends ActionSupport {
     public void setUsers(Users users) {
         this.users = users;
     }
-    
+
+    /**
+     * @return the selectedDrHeader
+     */
+    public DrHeaders getSelectedDrHeader() {
+        return selectedDrHeader;
+    }
+
+    /**
+     * @param selectedDrHeader the selectedDrHeader to set
+     */
+    public void setSelectedDrHeader(DrHeaders selectedDrHeader) {
+        this.selectedDrHeader = selectedDrHeader;
+    }
+
 }

@@ -8,8 +8,10 @@ package controller;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import model.DrLines;
 import dao.DrLineDAO;
+import dao.CustomerDAO;
 import java.util.List;
 import model.DrHeaders;
+import model.Customers;
 
 /**
  *
@@ -20,20 +22,24 @@ public class GetAllDrLinesByDrNoAction {
     private static final long serialVersionUID = 3L;
     private List<DrLines> DrLineList = null;
     private String DrHeaderNo;
+    private List<Customers> listCustomer;
     private DrHeaders selectedDrHeader;
-    private final DrLineDAO drlilne_dao = new DrLineDAO();
+    private final DrLineDAO drline_dao = new DrLineDAO();
+    private final CustomerDAO customer_dao = new CustomerDAO();
+    private String actionName;
 
     public GetAllDrLinesByDrNoAction() {
+
     }
 
     public String execute() throws Exception {
         try {
             System.out.println("--- drLine is executed");
-            setDrLineList(drlilne_dao.listDrLineByDrHeaderNo(getDrHeaderNo()));
-            if(DrLineList.size()>0)
-            {
+            setDrLineList(drline_dao.listDrLineByDrHeaderNo(getDrHeaderNo()));
+            if (DrLineList.size() > 0) {
                 setSelectedDrHeader(DrLineList.get(0).getDrHeaders());
             }
+            setListCustomer(customer_dao.getAllCustomerList());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,8 +73,7 @@ public class GetAllDrLinesByDrNoAction {
     public void setDrHeaderNo(String DrHeaderNo) {
         this.DrHeaderNo = DrHeaderNo;
     }
-    
-    
+
     /**
      * @return the selectedDrHeader
      */
@@ -81,6 +86,34 @@ public class GetAllDrLinesByDrNoAction {
      */
     public void setSelectedDrHeader(DrHeaders selectedDrHeader) {
         this.selectedDrHeader = selectedDrHeader;
+    }
+
+    /**
+     * @return the actionName
+     */
+    public String getActionName() {
+        return actionName;
+    }
+
+    /**
+     * @param actionName the actionName to set
+     */
+    public void setActionName(String actionName) {
+        this.actionName = actionName;
+    }
+
+    /**
+     * @return the listCustomer
+     */
+    public List<Customers> getListCustomer() {
+        return listCustomer;
+    }
+
+    /**
+     * @param listCustomer the listCustomer to set
+     */
+    public void setListCustomer(List<Customers> listCustomer) {
+        this.listCustomer = listCustomer;
     }
 
 }

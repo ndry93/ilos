@@ -22,46 +22,54 @@
             <div class="panel panel-default">
                 <!-- Default panel contents -->
                 <div class="panel-heading">
-                    <h3 class="panel-title">Details</h3>
+                    &nbsp;
+                    <div class="pull-left">
+                        <h3 class="panel-title" id="actionTitle">Transaction Details</h3>
+                    </div>
+                    <div class="pull-right">
+                        <a href="#" id="btnDeleteDrHeader" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
+                        <a href="#" id="btnEditDrHeader" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
+                        <a href="#" id="btnSaveDrHeader" class="btn-sm btn-primary"><i class="fa fa-save"></i> <strong>Save</strong></a>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <s:form action="" method="post" validate="true"> 
+                        <s:hidden name="actionName" id="actionName" value="%{actionName}" />
+                        <s:form id="FormDrHeader" action="" method="post" validate="true"> 
                             <div class="col-lg-6">
                                 <s:actionerror cssClass="alert alert-warning"/>
                                 <div class="form-group">
                                     <%--<s:label class="control-label" for="DrLineList.drHeaders" >Transaction ID</s:label>--%>
                                     <label class="control-label" for="selectedDrHeader.drHeaderId">Transaction ID</label>
-                                    <s:textfield name="selectedDrHeader.drHeaderId" cssClass="form-control" value="%{selectedDrHeader.drHeaderId}" required="true" />
+                                    <s:textfield id="drHeaderId" name="selectedDrHeader.drHeaderId" cssClass="form-control" value="%{selectedDrHeader.drHeaderId}" required="true"/>
                                 </div>
                                 <div class="form-group">
-                                    <%--<s:label class="control-label" for="DrLineList.drHeaders" >Transaction ID</s:label>--%>
                                     <label class="control-label" for="selectedDrHeader.customers.customerId">Customer ID</label>
-                                    <s:textfield name="selectedDrHeader.customers.customerId" cssClass="form-control" value="%{selectedDrHeader.customers.customerId}" required="true" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="selectedDrHeader.customers.customerName">Customer Name</label>
-                                    <s:textfield name="selectedDrHeader.customers.customerName" cssClass="form-control" value="%{selectedDrHeader.customers.customerName}" required="true" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="selectedDrHeader.drStatus">Status</label>
-                                    <s:textfield name="selectedDrHeader.drStatus" cssClass="form-control" value="%{selectedDrHeader.drStatus}" required="true" />
+                                    <s:select id="selectCustId" name="selectedDrHeader.customers.customerId" cssClass="form-control" value="%{selectedDrHeader.customers.customerId}" list="listCustomer" listKey="customerId" listValue="customerId" headerKey="-1" headerValue="Select Customer Id"></s:select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="selectedDrHeader.customers.customerName">Customer Name</label>
+                                    <s:select id="selectCustName" name="selectedDrHeader.customers.customerName" cssClass="form-control" value="%{selectedDrHeader.customers.customerId}" list="listCustomer" listKey="customerId" listValue="customerName" headerKey="-1" headerValue="Select Customer Name"></s:select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="selectedDrHeader.drStatus">Status</label>
+                                    <s:textfield id="drStatus" name="selectedDrHeader.drStatus" cssClass="form-control" value="%{selectedDrHeader.drStatus}" required="true" />
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="control-label" for="selectedDrHeader.createdDate">Created Date</label>
-                                    <s:textfield name="selectedDrHeader.createdDate" cssClass="form-control" value="%{selectedDrHeader.createdDate}" required="true" />
+                                    <s:textfield id="drHeaderCreatedDate" name="selectedDrHeader.createdDate" cssClass="form-control" value="%{selectedDrHeader.createdDate}" disabled="true"/>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="selectedDrHeader.updatedDate">Updated Date</label>
-                                    <s:textfield name="selectedDrHeader.updatedDate" cssClass="form-control" value="%{selectedDrHeader.updatedDate}" required="true" />
+                                    <s:textfield name="selectedDrHeader.updatedDate" cssClass="form-control" value="%{selectedDrHeader.updatedDate}" disabled="true" />
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="selectedDrHeader.updatedBy">Updated By</label>
-                                    <s:textfield name="selectedDrHeader.updatedBy" cssClass="form-control" value="%{selectedDrHeader.updatedBy}" required="true" />
+                                    <s:textfield name="selectedDrHeader.updatedBy" cssClass="form-control" value="%{selectedDrHeader.updatedBy}"  disabled="true" />
                                 </div>
-                                <%--<s:submit validate="true" value="Login" align="center" cssClass="btn btn-lg btn-primary btn-block"  />--%>
+                                    <%--<s:submit id="submitDrHeaderForm" validate="true" value="Login" align="center" cssClass="btn btn-lg btn-primary btn-block" disabled="true" />--%>
                             </div>
                         </s:form>
                     </div>
@@ -69,13 +77,15 @@
                 </div>
                 <!-- /.panelsummary -->
             </div>
-            <div class="panel panel-default">
+            <div id="Summary" class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="#" class="btn-sm btn-primary" ><i class="fa fa-pencil"></i> <strong>Add</strong></a>
-                    <!--<a href="#" class="btn-sm btn-primary" id="addRow"><i class="fa fa-pencil"></i> <strong>Add</strong></a>-->
-                    <!--<a href="#" class="btn-sm btn-primary" id="saveRow"><i class="fa fa-save"></i> <strong>Save</strong></a>-->
-                    <!--<a href="#" class="btn-sm btn-primary"><i class="fa fa-align-justify"></i> <strong>List</strong></a>-->
-
+                    Summary
+                    <div class="pull-right">
+                        <a href="#" class="btn-sm btn-primary" ><i class="fa fa-pencil"></i> <strong>Add</strong></a>
+                        <!--<a href="#" class="btn-sm btn-primary" id="addRow"><i class="fa fa-pencil"></i> <strong>Add</strong></a>-->
+                        <!--<a href="#" class="btn-sm btn-primary" id="saveRow"><i class="fa fa-save"></i> <strong>Save</strong></a>-->
+                        <!--<a href="#" class="btn-sm btn-primary"><i class="fa fa-align-justify"></i> <strong>List</strong></a>-->
+                    </div>
                 </div>
                 <!-- Table -->
                 <div class="panel-body">
@@ -126,10 +136,69 @@
     <script>
 
         $(document).ready(function () {
-        var table = $('#dataTables-drLine').DataTable({
-        rowReorder: {
-        selector: 'td:nth-child(5)'
-        },
+            var table = $('#dataTables-drLine').DataTable({
+                rowReorder: {
+                    selector: 'td:nth-child(5)'
+                },
                 responsive: true
+            });
+            if ($('#actionName').val() == "createDrHeader")
+            {
+                $('#actionTitle').text("New Delivery Request");
+                $('#btnDeleteDrHeader').hide();
+                $('#Summary').hide();
+                var today = new Date();
+                var uid = today.getDate().toString()+(today.getMonth() + 1).toString()+ today.getFullYear().toString()+Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5).toUpperCase();
+                $('#drHeaderId').val(uid);
+                $('#FormDrHeader').attr('action','createDrHeader');
+//                $('#drHeaderCreatedDate').val(new Date().toISOString().slice(0, 19).replace('T', ' '));
+                enableDrHeaderForm();
+            } else
+            {
+                disableDrHeaderForm();
+            }
+            
+            //Event Handler
+            
+            //select customer
+            $('#selectCustId').on('change', function () {
+                var a = $('#selectCustId').val();
+                $('#selectCustName').val(a);
+            });
+            $('#selectCustName').on('change', function () {
+                var a = $('#selectCustName').val();
+                $('#selectCustId').val(a);
+            });
+            
+            //enable form for editing
+            $('#btnEditDrHeader').on('click', function () {
+                enableDrHeaderForm();
+            });
+            
+            //onclick save button
+            $('#btnSaveDrHeader').on('click', function () {
+                $( "#FormDrHeader" ).submit();
+            });
+
+            //function
+            function enableDrHeaderForm() {
+
+                $('#selectCustId').removeAttr('disabled');
+                $('#selectCustName').removeAttr('disabled');
+                $('#drStatus').removeAttr('disabled');
+                $('#btnEditDrHeader').hide();
+                $('#btnSaveDrHeader').show();
+
+            }
+            function disableDrHeaderForm() {
+
+                $('#selectCustId').attr('disabled', 'disabled');
+                $('#selectCustName').attr('disabled', 'disabled');
+                $('#drStatus').attr('disabled', 'disabled');
+                $('#btnSaveDrHeader').hide();
+                $('#btnEditDrHeader').show();
+
+            }
         });
+
     </script>

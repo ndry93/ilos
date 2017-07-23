@@ -25,7 +25,7 @@ public class GetAllDrHeaderAction extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
-        System.out.println("1controller.DrHeaderAction.execute()");
+        System.out.println("controller.GetAllDrHeaderAction.execute()");
         try {
            DrHeaderList = drheader_dao.listDrHeader();
         } catch (Exception e) {

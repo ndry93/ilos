@@ -26,8 +26,9 @@ public class DrHeaders  implements java.io.Serializable {
     }
 
 	
-    public DrHeaders(String drHeaderId, Customers customers, Users users) {
-        this.drHeaderId = drHeaderId;
+    public DrHeaders(DrHeaders drHeaders, Customers customers, Users users) {
+        this.drHeaderId = drHeaders.getDrHeaderId();
+        this.drStatus = drHeaders.getDrStatus();
         this.customers = customers;
         this.users = users;
     }

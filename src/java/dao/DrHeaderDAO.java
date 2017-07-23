@@ -91,13 +91,15 @@ public class DrHeaderDAO {
         for(DrHeaders dr: d.listDrHeader()){
             System.out.println(dr.getDrHeaderId());
         }   
-        
         Customers cust = new Customers();
         cust.setCustomerId(1);
         cust.setCustomerName("Midi");
         Users user = new Users();
         user.setUserName("ndry93");
-        DrHeaders dr = new DrHeaders("DR/MIDI/001",cust,user);
+         DrHeaders dro = new DrHeaders();
+         dro.setDrHeaderId("sfdsdfsdf");
+         dro.setDrStatus("asdsda");
+        DrHeaders dr = new DrHeaders(dro,cust,user);
         d.saveOrUpdateDrHeader(dr);
     }
 }

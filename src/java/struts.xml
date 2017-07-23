@@ -43,7 +43,7 @@
             <result name="success" type="tiles">drLine.def</result>
         </action>
         <action name="createDrHeader" class="controller.CreateDrHeaderAction" >  
-            <result name="success" type="tiles">drLine.def</result>
+            <result name="success" type="tiles">drHeader.def</result>
         </action>
         
         <!-- End of Delivery Request Module -->
