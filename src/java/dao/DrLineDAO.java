@@ -22,12 +22,12 @@ import org.hibernate.Query;
 public class DrLineDAO {
 
     Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-    Transaction transaction = session.beginTransaction();
 
     /**
      * Used to save or update a drLines.
      */
     public void saveOrUpdateDrLines(DrLines drLines) {
+        Transaction transaction = session.beginTransaction();
         try {
             session.saveOrUpdate(drLines);
             transaction.commit();
@@ -41,6 +41,7 @@ public class DrLineDAO {
      * Used to delete a DrLine.
      */
     public void deleteDrLine(String drLineNo) {
+        Transaction transaction = session.beginTransaction();
         try {
             DrLines drLine = (DrLines) session.get(DrLines.class, drLineNo);
             session.delete(drLine);
@@ -55,6 +56,7 @@ public class DrLineDAO {
      * Used to list a single user by Id.
      */
     public List<DrLines> listDrLineByDrHeaderNo(String drHeaderNo) {
+        Transaction transaction = session.beginTransaction();
         List<DrLines> drLine = null;
         System.out.println(drHeaderNo);
         try {

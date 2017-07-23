@@ -20,12 +20,12 @@ import org.hibernate.Transaction;
 public class DrHeaderDAO {
 
     Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-    Transaction transaction = session.beginTransaction();
 
     /**
      * Used to save or update a user.
      */
     public void saveOrUpdateDrHeader(DrHeaders drHeader) {
+        Transaction transaction = session.beginTransaction();
         try {
             session.saveOrUpdate(drHeader);
             transaction.commit();
@@ -39,6 +39,7 @@ public class DrHeaderDAO {
      * Used to delete a DrHeader.
      */
     public void deleteDrHeader(String drHeaderNo) {
+        Transaction transaction = session.beginTransaction();
         try {
             DrHeaders drHeader = (DrHeaders) session.get(DrHeaders.class, drHeaderNo);
             session.delete(drHeader);
@@ -55,6 +56,7 @@ public class DrHeaderDAO {
     @SuppressWarnings("unchecked")
     public List<DrHeaders> listDrHeader() {
         List<DrHeaders> drHeaders = null;
+        Transaction transaction = session.beginTransaction();
         try {
             drHeaders = session.createQuery("from DrHeaders").list();
         } catch (Exception e) {
@@ -69,6 +71,7 @@ public class DrHeaderDAO {
      */
     public DrHeaders listDrHeaderByDrHeaderNo(String drHeaderNo) {
         DrHeaders drHeader = null;
+        Transaction transaction = session.beginTransaction();
         try {
             drHeader = (DrHeaders) session.get(DrHeaders.class, drHeaderNo);
         } catch (Exception e) {
