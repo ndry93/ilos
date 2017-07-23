@@ -14,7 +14,7 @@
         <!-- /.dropdown -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i> <b><s:property value="users.userName"/> </b> <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i> <b><s:property value="#session.username"/> </b> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -34,7 +34,7 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="<s:url action="Home"/>"><i class="fa fa-home fa-fw"></i> Home</a>
+                    <a href="<s:url action="home"/>"><i class="fa fa-home fa-fw"></i> Home</a>
                 </li>
                 <li>
                     <a href="<s:url action="drHeader"/>"><i class="fa fa-truck fa-fw"></i> Delivery Request</a>

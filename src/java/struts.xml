@@ -4,19 +4,32 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
  
 <struts>
-    <include file="example.xml"/>
     <!-- Configuration for the default package. -->
     <constant name="struts.ui.theme" value="simple" />
-    <package name="default" extends="tiles-default">    
+    <package name="default" extends="tiles-default" >    
+        <interceptors>
+            <interceptor class="utils.LoginInterceptor" name="loginInterceptor">
+            </interceptor>
+            <interceptor-stack name="loginStack">
+                    <interceptor-ref name="loginInterceptor" />
+                    <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="loginStack"></default-interceptor-ref>
+        <global-results>
+            <result name="login" type="redirect">/home.action</result>
+        </global-results>
         <action name="login" class="controller.loginAction">
             <result name="success" type="tiles">index.def</result>
             <result name="input">login.jsp</result>
         </action>   
         <action name="logout" class="controller.loginAction" method="logout">  
+            <interceptor-ref name="defaultStack"/>
             <result name="success">login.jsp</result>
         </action> 
-        <action name="Home" >  
+        <action name="home">
             <result type="tiles">index.def</result>
+            <result name="input">login.jsp</result>
         </action> 
          <action name="drHeader" class="controller.DrHeaderAction" >  
             <result name="success" type="tiles">drHeader.def</result>
@@ -25,4 +38,5 @@
             <result name="success" type="tiles">drLine.def</result>
         </action> 
     </package>
+    
 </struts>

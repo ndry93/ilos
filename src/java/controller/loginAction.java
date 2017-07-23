@@ -24,7 +24,6 @@ public class loginAction extends ActionSupport implements SessionAware {
     @Override
     public void setSession(Map<String, Object> map) {
         sessionmap = (SessionMap) map;
-        sessionmap.put("login", "true");
     }
 
     /**
@@ -56,16 +55,24 @@ public class loginAction extends ActionSupport implements SessionAware {
 
     @Override
     public String execute() {
-        if (dao.find(getUsers().getUserName(), getUsers().getPassword())) {
-            return SUCCESS;
-        } else {
-            this.addActionError("Invalid username and password");
+        if(getUsers()!=null){
+            System.out.println("---getUsers().getUserName() "+getUsers().getUserName());
+            System.out.println("---getUsers().getPassword() "+getUsers().getPassword());
+            if (dao.find(getUsers().getUserName(), getUsers().getPassword())) {
+                System.out.println("---masuk login execute");
+                sessionmap.put("login", "true");
+                sessionmap.put("username",getUsers().getUserName());
+                return SUCCESS;
+            } else {
+                this.addActionError("Invalid username and password");
+            }
         }
         return INPUT;
     }
 
     public String logout() {
-        sessionmap.invalidate();
+        System.out.println("---logging out"+sessionmap );
+        if(sessionmap!=null) sessionmap.invalidate();
         return SUCCESS;
     }
 

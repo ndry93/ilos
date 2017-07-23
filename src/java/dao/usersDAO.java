@@ -13,6 +13,7 @@ import org.hibernate.Session;
 
 public class usersDAO {
 
+    
     Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
     public boolean find(String name, String password) {
