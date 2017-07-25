@@ -57,6 +57,7 @@ public class DrLineDAO {
         System.out.println(drHeaderNo);
         try {
             drLine = session.createQuery("from DrLines where drHeaders='"+drHeaderNo+"'").list();
+            transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
             e.printStackTrace();

@@ -59,6 +59,7 @@ public class DrHeaderDAO {
         Transaction transaction = session.beginTransaction();
         try {
             drHeaders = session.createQuery("from DrHeaders").list();
+            transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
             e.printStackTrace();
@@ -70,6 +71,7 @@ public class DrHeaderDAO {
         Transaction transaction = session.getTransaction();
         try {
             drHeaders = (DrHeaders) session.createQuery("from DrHeaders where drHeaderId='"+drHeaderNo+"'").uniqueResult();
+            transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
             e.printStackTrace();
@@ -84,6 +86,7 @@ public class DrHeaderDAO {
         Transaction transaction = session.beginTransaction();
         try {
             drHeader = (DrHeaders) session.get(DrHeaders.class, drHeaderNo);
+            transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
             e.printStackTrace();
@@ -98,8 +101,8 @@ public class DrHeaderDAO {
      */
     public static void main(String[] args){
         DrHeaderDAO d = new DrHeaderDAO();
-       DrHeaders gg = new DrHeaders();
-       gg = d.getDrHeader("2372017EUODR");
+        DrHeaders gg = new DrHeaders();
+        gg = d.getDrHeader("2372017EUODR");
         System.out.println(gg.getDrHeaderId());
     }
 }

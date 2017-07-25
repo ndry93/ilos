@@ -10,6 +10,7 @@ import java.util.List;
 import model.Users;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 public class usersDAO {
 
@@ -19,9 +20,9 @@ public class usersDAO {
     public boolean find(String name, String password) {
 //        Session session = HibernateUtil.getSessionFactory().openSession();
         //session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         try {
             String sql = "Select userName, enabled from Users u where u.userName=:name and u.password=:pass";
-            session.beginTransaction();
             Query query = session.createQuery(sql);
             query.setParameter("name", name);
             query.setParameter("pass", password);
@@ -29,7 +30,9 @@ public class usersDAO {
             if (list.size() > 0) {
                 return true;
             }
+            transaction.commit();
         } catch (Exception e) {
+            transaction.rollback();
             e.printStackTrace();
         }
         return false;

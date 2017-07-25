@@ -29,6 +29,7 @@ public class CustomerDAO {
         Transaction transaction = session.getTransaction();
         try {
             listCustomer = session.createQuery("from Customers").list();
+            transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
         }
