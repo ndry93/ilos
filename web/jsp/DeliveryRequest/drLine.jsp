@@ -41,7 +41,7 @@
                                 <div class="form-group">
                                     <%--<s:label class="control-label" for="DrLineList.drHeaders" >Transaction ID</s:label>--%>
                                     <label class="control-label" for="selectedDrHeader.drHeaderId">Transaction ID</label>
-                                    <s:textfield id="drHeaderId" name="selectedDrHeader.drHeaderId" cssClass="form-control" value="%{selectedDrHeader.drHeaderId}" required="true"/>
+                                    <s:textfield id="drHeaderId" name="selectedDrHeader.drHeaderId" cssClass="form-control" value="%{selectedDrHeader.drHeaderId}" required="true"  readonly="true"/>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="selectedDrHeader.customers.customerId">Customer ID</label>
@@ -69,7 +69,7 @@
                                     <label class="control-label" for="selectedDrHeader.updatedBy">Updated By</label>
                                     <s:textfield name="selectedDrHeader.updatedBy" cssClass="form-control" value="%{selectedDrHeader.updatedBy}"  disabled="true" />
                                 </div>
-                                    <%--<s:submit id="submitDrHeaderForm" validate="true" value="Login" align="center" cssClass="btn btn-lg btn-primary btn-block" disabled="true" />--%>
+                                <%--<s:submit id="submitDrHeaderForm" validate="true" value="Login" align="center" cssClass="btn btn-lg btn-primary btn-block" disabled="true" />--%>
                             </div>
                         </s:form>
                     </div>
@@ -101,30 +101,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <s:iterator value="DrLineList">
-                                <tr>
-                                    <td>
-                                        <s:property value="drLineId" />
-                                    </td>
-                                    <td>
-                                        <s:property value="driverName" />
-                                    </td>
-                                    <td>
-                                        <s:property value="policeNo" />
-                                    </td>
-                                    <td>
-                                        <s:property value="createdDate" />
-                                    </td>
-                                    <td>
-                                        <s:property value="updatedDate" />
-                                    </td>
-                                    <td class="text-center"><s:property value="id"/>
-                                        <a href="<s:url action="drLine" ><s:param name="DrHeaderNo"><s:property value="drHeaderId" /></s:param></s:url>" id="btnView" class="btn-sm btn-info"><i class="fa fa-eye"></i> <strong>View</strong></a>
-                                                <a href="#" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
-                                                <a href="#" id="btnDelete" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
-                                            </td>
-                                        </tr>
-                            </s:iterator>
+                                <s:iterator value="DrLineList">
+                                    <tr>
+                                        <td>
+                                            <s:property value="drLineId" />
+                                        </td>
+                                        <td>
+                                            <s:property value="driverName" />
+                                        </td>
+                                        <td>
+                                            <s:property value="policeNo" />
+                                        </td>
+                                        <td>
+                                            <s:property value="createdDate" />
+                                        </td>
+                                        <td>
+                                            <s:property value="updatedDate" />
+                                        </td>
+                                        <td class="text-center"><s:property value="id"/>
+                                            <a href="<s:url action="drLine" ><s:param name="DrHeaderNo"><s:property value="drHeaderId" /></s:param></s:url>" id="btnView" class="btn-sm btn-info"><i class="fa fa-eye"></i> <strong>View</strong></a>
+                                                    <a href="#" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
+                                                    <a href="#" id="btnDelete" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
+                                                </td>
+                                            </tr>
+                                </s:iterator>
                         </tbody>
                     </table>
                 </div>
@@ -142,6 +142,7 @@
                 },
                 responsive: true
             });
+           
             if ($('#actionName').val() == "createDrHeader")
             {
                 $('#actionTitle').text("New Delivery Request");
@@ -157,9 +158,9 @@
             {
                 disableDrHeaderForm();
             }
-            
+
             //Event Handler
-            
+
             //select customer
             $('#selectCustId').on('change', function () {
                 var a = $('#selectCustId').val();
@@ -169,12 +170,12 @@
                 var a = $('#selectCustName').val();
                 $('#selectCustId').val(a);
             });
-            
+
             //enable form for editing
             $('#btnEditDrHeader').on('click', function () {
                 enableDrHeaderForm();
             });
-            
+
             //onclick save button
             $('#btnSaveDrHeader').on('click', function () {
                 $( "#FormDrHeader" ).submit();
@@ -183,18 +184,18 @@
             //function
             function enableDrHeaderForm() {
 
-                $('#selectCustId').removeAttr('disabled');
-                $('#selectCustName').removeAttr('disabled');
-                $('#drStatus').removeAttr('disabled');
+                $('#selectCustId').removeAttr('readonly');
+                $('#selectCustName').removeAttr('readonly');
+                $('#drStatus').removeAttr('readonly');
                 $('#btnEditDrHeader').hide();
                 $('#btnSaveDrHeader').show();
 
             }
             function disableDrHeaderForm() {
 
-                $('#selectCustId').attr('disabled', 'disabled');
-                $('#selectCustName').attr('disabled', 'disabled');
-                $('#drStatus').attr('disabled', 'disabled');
+                $('#selectCustId').attr('readonly', 'true');
+                $('#selectCustName').attr('readonly', 'true');
+                $('#drStatus').attr('readonly', 'true');
                 $('#btnSaveDrHeader').hide();
                 $('#btnEditDrHeader').show();
 

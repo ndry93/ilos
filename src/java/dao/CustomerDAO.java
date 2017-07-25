@@ -21,6 +21,7 @@ public class CustomerDAO {
 
     /**
      * Used to list all the users.
+     * @return 
      */
     @SuppressWarnings("unchecked")
     public List<Customers> getAllCustomerList() {
@@ -30,7 +31,6 @@ public class CustomerDAO {
             listCustomer = session.createQuery("from Customers").list();
         } catch (Exception e) {
             transaction.rollback();
-            e.printStackTrace();
         }
         return listCustomer;
     }

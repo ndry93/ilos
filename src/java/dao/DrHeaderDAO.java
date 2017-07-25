@@ -65,7 +65,17 @@ public class DrHeaderDAO {
         }
         return drHeaders;
     }
-
+    public DrHeaders getDrHeader(String drHeaderNo) {
+        DrHeaders drHeaders = null;
+        Transaction transaction = session.getTransaction();
+        try {
+            drHeaders = (DrHeaders) session.createQuery("from DrHeaders where drHeaderId='"+drHeaderNo+"'").uniqueResult();
+        } catch (Exception e) {
+            transaction.rollback();
+            e.printStackTrace();
+        }
+        return drHeaders;
+    }
     /**
      * Used to list a single user by Id.
      */
@@ -88,18 +98,8 @@ public class DrHeaderDAO {
      */
     public static void main(String[] args){
         DrHeaderDAO d = new DrHeaderDAO();
-        for(DrHeaders dr: d.listDrHeader()){
-            System.out.println(dr.getDrHeaderId());
-        }   
-        Customers cust = new Customers();
-        cust.setCustomerId(1);
-        cust.setCustomerName("Midi");
-        Users user = new Users();
-        user.setUserName("ndry93");
-         DrHeaders dro = new DrHeaders();
-         dro.setDrHeaderId("sfdsdfsdf");
-         dro.setDrStatus("asdsda");
-        DrHeaders dr = new DrHeaders(dro,cust,user);
-        d.saveOrUpdateDrHeader(dr);
+       DrHeaders gg = new DrHeaders();
+       gg = d.getDrHeader("2372017EUODR");
+        System.out.println(gg.getDrHeaderId());
     }
 }

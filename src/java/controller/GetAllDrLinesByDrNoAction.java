@@ -9,6 +9,7 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import model.DrLines;
 import dao.DrLineDAO;
 import dao.CustomerDAO;
+import dao.DrHeaderDAO;
 import java.util.List;
 import model.DrHeaders;
 import model.Customers;
@@ -26,6 +27,7 @@ public class GetAllDrLinesByDrNoAction {
     private DrHeaders selectedDrHeader;
     private final DrLineDAO drline_dao = new DrLineDAO();
     private final CustomerDAO customer_dao = new CustomerDAO();
+    private final DrHeaderDAO drheader_dao = new DrHeaderDAO();
     private String actionName;
 
     public GetAllDrLinesByDrNoAction() {
@@ -34,12 +36,12 @@ public class GetAllDrLinesByDrNoAction {
 
     public String execute() throws Exception {
         try {
-            System.out.println("--- drLine is executed");
+            System.out.println("--- a drLine is executed");
             setDrLineList(drline_dao.listDrLineByDrHeaderNo(getDrHeaderNo()));
-            if (DrLineList.size() > 0) {
-                setSelectedDrHeader(DrLineList.get(0).getDrHeaders());
-            }
-            setListCustomer(customer_dao.getAllCustomerList());
+            System.out.println("--- b drLine is executed");
+            setSelectedDrHeader(drheader_dao.getDrHeader(getDrHeaderNo()));
+            System.out.println("--- c drLine is executed");
+            setListCustomer(customer_dao.getAllCustomerList()); 
         } catch (Exception e) {
             e.printStackTrace();
         }
