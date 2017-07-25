@@ -52,14 +52,18 @@ public class DrLineDAO {
      * Used to list a single user by Id.
      */
     public List<DrLines> listDrLineByDrHeaderNo(String drHeaderNo) {
-        Transaction transaction = session.beginTransaction();
         List<DrLines> drLine = null;
-        System.out.println(drHeaderNo);
+        System.out.println("---selected drHeaderNo "+drHeaderNo);
+        
+        //we must check whether the transaction is created or not. 
+        //in case this method is called directly, it will create transaction
+        if(session.getTransaction().isActive()){
+            session.beginTransaction();
+        }
         try {
             drLine = session.createQuery("from DrLines where drHeaders='"+drHeaderNo+"'").list();
-            transaction.commit();
+            System.out.println("---executing commit");
         } catch (Exception e) {
-            transaction.rollback();
             e.printStackTrace();
         }
         return drLine;

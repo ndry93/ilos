@@ -53,13 +53,11 @@ public class DrHeaderDAO {
     /**
      * Used to list all the users.
      */
-    @SuppressWarnings("unchecked")
     public List<DrHeaders> listDrHeader() {
         List<DrHeaders> drHeaders = null;
         Transaction transaction = session.beginTransaction();
         try {
             drHeaders = session.createQuery("from DrHeaders").list();
-            transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
             e.printStackTrace();
@@ -68,12 +66,14 @@ public class DrHeaderDAO {
     }
     public DrHeaders getDrHeader(String drHeaderNo) {
         DrHeaders drHeaders = null;
-        Transaction transaction = session.getTransaction();
+        //we must check whether the transaction is created or not. 
+        //in case this method is called directly, it will create transaction
+        if(session.getTransaction().isActive()){
+            session.beginTransaction();
+        }
         try {
             drHeaders = (DrHeaders) session.createQuery("from DrHeaders where drHeaderId='"+drHeaderNo+"'").uniqueResult();
-            transaction.commit();
         } catch (Exception e) {
-            transaction.rollback();
             e.printStackTrace();
         }
         return drHeaders;
@@ -83,12 +83,9 @@ public class DrHeaderDAO {
      */
     public DrHeaders listDrHeaderByDrHeaderNo(String drHeaderNo) {
         DrHeaders drHeader = null;
-        Transaction transaction = session.beginTransaction();
         try {
             drHeader = (DrHeaders) session.get(DrHeaders.class, drHeaderNo);
-            transaction.commit();
         } catch (Exception e) {
-            transaction.rollback();
             e.printStackTrace();
         }
         return drHeader;

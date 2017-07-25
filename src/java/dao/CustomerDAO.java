@@ -16,22 +16,24 @@ import org.hibernate.Transaction;
  * @author user
  */
 public class CustomerDAO {
-
+    
     Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
+    
     /**
-     * Used to list all the users.
-     * @return 
+     * To get list of customers
+     * @return List<Customers>
      */
-    @SuppressWarnings("unchecked")
     public List<Customers> getAllCustomerList() {
         List<Customers> listCustomer = null;
-        Transaction transaction = session.getTransaction();
+        //we must check whether the transaction is created or not. 
+        //in case this method is called directly, it will create transaction
+        if(session.getTransaction().isActive()){
+            session.beginTransaction();
+        }
         try {
             listCustomer = session.createQuery("from Customers").list();
-            transaction.commit();
         } catch (Exception e) {
-            transaction.rollback();
+            e.printStackTrace();
         }
         return listCustomer;
     }

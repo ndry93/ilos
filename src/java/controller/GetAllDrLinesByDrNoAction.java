@@ -13,6 +13,9 @@ import dao.DrHeaderDAO;
 import java.util.List;
 import model.DrHeaders;
 import model.Customers;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import utils.HibernateUtil;
 
 /**
  *
@@ -35,16 +38,28 @@ public class GetAllDrLinesByDrNoAction {
     }
 
     public String execute() throws Exception {
+        Session session = null;
+        Transaction tx = null;
         try {
+            //this contains multiple action, and thus should only use one transaction
+            //first method will call beginTransaction, the rest will use getTransaction
+            session =  HibernateUtil.getSessionFactory().getCurrentSession();
+            System.out.println("---how is the transaction obj before creation "+session.getTransaction().isActive());
+            tx = session.beginTransaction();
             System.out.println("--- a drLine is executed");
-            setDrLineList(drline_dao.listDrLineByDrHeaderNo(getDrHeaderNo()));
-            System.out.println("--- b drLine is executed");
             setSelectedDrHeader(drheader_dao.getDrHeader(getDrHeaderNo()));
+            System.out.println("--- b drLine is executed ");
+            setDrLineList(drline_dao.listDrLineByDrHeaderNo(getDrHeaderNo()));
             System.out.println("--- c drLine is executed");
             setListCustomer(customer_dao.getAllCustomerList()); 
+            
+            
         } catch (Exception e) {
+            if(tx!=null){
+                tx.rollback();
+            }
             e.printStackTrace();
-        }
+        } 
         return SUCCESS;
     }
 

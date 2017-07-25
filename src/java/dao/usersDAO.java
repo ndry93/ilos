@@ -5,6 +5,7 @@
  */
 package dao;
 
+import java.util.ArrayList;
 import utils.HibernateUtil;
 import java.util.List;
 import model.Users;
@@ -14,29 +15,27 @@ import org.hibernate.Transaction;
 
 public class usersDAO {
 
-    
-    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+    Session session = HibernateUtil.getSessionFactory().openSession();
 
     public boolean find(String name, String password) {
-//        Session session = HibernateUtil.getSessionFactory().openSession();
-        //session.beginTransaction();
         Transaction transaction = session.beginTransaction();
+        List<Users> list = new ArrayList<Users>();
         try {
             String sql = "Select userName, enabled from Users u where u.userName=:name and u.password=:pass";
             Query query = session.createQuery(sql);
             query.setParameter("name", name);
             query.setParameter("pass", password);
-            List<Users> list = query.list();
-            if (list.size() > 0) {
-                return true;
-            }
+            list = query.list();
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
             e.printStackTrace();
         }
+        
+        if (list.size() > 0) {
+            return true;
+        }
         return false;
-
     }
 
     public static void main(String[] args) {
