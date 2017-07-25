@@ -27,7 +27,7 @@ public class CustomerDAO {
         List<Customers> listCustomer = null;
         //we must check whether the transaction is created or not. 
         //in case this method is called directly, it will create transaction
-        if(session.getTransaction().isActive()){
+        if(!session.getTransaction().isActive()){
             session.beginTransaction();
         }
         try {
