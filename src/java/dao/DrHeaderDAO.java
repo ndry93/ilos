@@ -13,7 +13,7 @@ import java.util.Map;
 import model.Customers;
 import model.DrHeaders;
 import model.Users;
-import org.hibernate.Session;
+import org.hibernate.Session;   
 import org.hibernate.Transaction;
 
 /**
@@ -63,12 +63,13 @@ public class DrHeaderDAO {
      */
     public List<DrHeaders> listDrHeader() {
         List<DrHeaders> drHeaders = null;
-        Transaction transaction = session.beginTransaction();
+         if(!session.getTransaction().isActive()){
+            session.beginTransaction();
+        }
         try {
             drHeaders = session.createQuery("from DrHeaders where enabled is null").list();
             
         } catch (Exception e) {
-            transaction.rollback();
             e.printStackTrace();
         }
         return drHeaders;

@@ -84,6 +84,24 @@
     <!-- /.row -->
 </div>
 <!-- /#page-wrapper -->
+<!--modal-->
+<div class="modal fade bs-example-modal-sm" id="DeleteDrHeaderModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Delete Delivery Request</h4>
+            </div>
+            <div class="modal-body">
+                Deleting transaction will also delete all of its data. Are you sure you want to delete it?
+            </div>
+            <div class="modal-footer">
+                <a href="" id="btnYesDelete" class="btn btn-danger">Yes</a>
+                <a href="#" class="btn btn-default" data-dismiss="modal">No</a>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
 
     $(document).ready(function () {
@@ -92,6 +110,12 @@
                 selector: 'td:nth-child(2)'
             },
             responsive: true
+        });
+        $('#dataTables-drHeader').on('click', '#btnDelete', function () {
+//            var DrHeaderId = table.row($(this).parents('tr')).data()[0];
+            $('#DeleteDrHeaderModal').modal('show'); 
+    //            $('#btnYesDelete').attr('href',url);
+    
         });
     });
 
