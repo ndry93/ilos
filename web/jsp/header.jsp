@@ -40,6 +40,10 @@
                     <a href="<s:url action="drHeader"/>"><i class="fa fa-truck fa-fw"></i> Delivery Request</a>
                 </li>
                 <li>
+                    <a href="javascript:showReport('<s:property value="123"/>')"><i class="fa fa-truck fa-fw"></i> Generate Delivery Report</a>
+                    
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-gear fa-fw"></i> System<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
@@ -65,3 +69,9 @@
     </div>
     <!-- /.navbar-static-side -->
 </nav>
+<script>
+function showReport(value){
+  var url="createDeliveryReport?someVariable="+value;
+  window.open(url,"_blank","directories=no, status=no,width=840, height=580,top=0,left=0");
+}
+</script>

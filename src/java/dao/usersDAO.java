@@ -15,7 +15,7 @@ import org.hibernate.Transaction;
 
 public class usersDAO {
 
-    Session session = HibernateUtil.getSessionFactory().openSession();
+    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
     public boolean find(String name, String password) {
         Transaction transaction = session.beginTransaction();
@@ -26,7 +26,6 @@ public class usersDAO {
             query.setParameter("name", name);
             query.setParameter("pass", password);
             list = query.list();
-            transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
             e.printStackTrace();
