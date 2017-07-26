@@ -24,26 +24,26 @@
                     &nbsp;
                     <div class="pull-right">
                         <a href="<s:url action="drLinesByDrNo"><s:param name="actionName">createDrHeader</s:param></s:url>" class="btn-sm btn-primary" ><i class="fa fa-pencil"></i> <strong>Add</strong></a>
-                    <!--<a href="#" class="btn-sm btn-primary" id="addRow"><i class="fa fa-pencil"></i> <strong>Add</strong></a>-->
-                    <!--<a href="#" class="btn-sm btn-primary" id="saveRow"><i class="fa fa-save"></i> <strong>Save</strong></a>-->
-                    <!--<a href="#" class="btn-sm btn-primary"><i class="fa fa-align-justify"></i> <strong>List</strong></a>-->
-                    </div>
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-drHeader">
-                        <thead>
-                            <tr>
-                                <th>Transaction ID</th>
-                                <th>Customer ID</th>
-                                <th>Customer Name</th>
-                                <th>Status</th>
-                                <th>Created Date</th>
-                                <th>Last Update</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                                <!--<a href="#" class="btn-sm btn-primary" id="addRow"><i class="fa fa-pencil"></i> <strong>Add</strong></a>-->
+                                <!--<a href="#" class="btn-sm btn-primary" id="saveRow"><i class="fa fa-save"></i> <strong>Save</strong></a>-->
+                                <!--<a href="#" class="btn-sm btn-primary"><i class="fa fa-align-justify"></i> <strong>List</strong></a>-->
+                            </div>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-drHeader">
+                                <thead>
+                                    <tr>
+                                        <th>Transaction ID</th>
+                                        <th>Customer ID</th>
+                                        <th>Customer Name</th>
+                                        <th>Status</th>
+                                        <th>Created Date</th>
+                                        <th>Last Update</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                             <s:iterator value="DrHeaderList">
                                 <tr>
                                     <td id="drHeaderId">
@@ -65,11 +65,11 @@
                                         <s:property value="updatedDate" />
                                     </td>
                                     <td class="text-center"><s:property value="id"/>
-                                        <a href="<s:url action="drLinesByDrNo" ><s:param name="DrHeaderNo"><s:property value="drHeaderId" /></s:param><s:param name="actionName">editDrHeader</s:param></s:url>" id="btnView" class="btn-sm btn-info"><i class="fa fa-eye"></i> <strong>View</strong></a>
-                                        <a href="#" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
-                                        <a href="#" id="btnDelete" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
-                                    </td>
-                                </tr>
+                                        <a href="<s:url action="drLinesByDrNo" ><s:param name="DrHeaderNo"><s:property value="drHeaderId" /></s:param><s:param name="actionName">viewDrHeader</s:param></s:url>" id="btnView" class="btn-sm btn-info"><strong>View</strong></a>
+                                        <a href="<s:url action="drLinesByDrNo" ><s:param name="DrHeaderNo"><s:property value="drHeaderId" /></s:param><s:param name="actionName">editDrHeader</s:param></s:url>" id="btnEdit" class="btn-sm btn-success"><strong>Edit</strong></a>
+                                                <!--<a href="" id="btnDelete" class="btn-sm btn-danger" ><strong>Delete</strong></a>-->
+                                            </td>
+                                        </tr>
                             </s:iterator>
                         </tbody>
                     </table>
@@ -93,14 +93,6 @@
             },
             responsive: true
         });
-//        $("#btnView").click(function () {
-//            var row = $(this).closest("tr");    // Find the row
-//            var drHeaderId = row.find("#drHeaderId").text(); // Find the text
-//            $.post("<s:url action="Home"/>", {n: "203000"}, function (data) {
-//               
-//            });
-//            
-//        });
     });
 
 </script>

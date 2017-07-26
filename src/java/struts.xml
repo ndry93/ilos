@@ -43,10 +43,14 @@
             <result name="success" type="tiles">drLine.def</result>
         </action>
         <action name="createDrHeader" class="controller.CreateDrHeaderAction" >  
-            <result name="success" type="tiles">drHeader.def</result>
+            <result name="success" type="redirectAction">drHeader</result>
+        </action>
+        <action name="deleteDrHeader" class="controller.UpdateDrHeaderAction" method="deleteDrHeader" >  
+            <result name="success" type="redirectAction">drHeader</result>
         </action>
         
         <!-- End of Delivery Request Module -->
     </package>
     
 </struts>
+ 

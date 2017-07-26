@@ -21,7 +21,7 @@ public class usersDAO {
         Transaction transaction = session.beginTransaction();
         List<Users> list = new ArrayList<Users>();
         try {
-            String sql = "Select userName, enabled from Users u where u.userName=:name and u.password=:pass";
+            String sql = "Select userName, enabled from Users u where u.userName=:name and u.password=:pass and enabled is null";
             Query query = session.createQuery(sql);
             query.setParameter("name", name);
             query.setParameter("pass", password);

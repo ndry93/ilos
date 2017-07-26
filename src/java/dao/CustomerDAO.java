@@ -31,7 +31,7 @@ public class CustomerDAO {
             session.beginTransaction();
         }
         try {
-            listCustomer = session.createQuery("from Customers").list();
+            listCustomer = session.createQuery("from Customers where enabled is null").list();
         } catch (Exception e) {
             e.printStackTrace();
         }

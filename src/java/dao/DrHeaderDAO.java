@@ -5,8 +5,11 @@
  */
 package dao;
 
+import com.opensymphony.xwork2.ActionContext;
+import java.util.Date;
 import utils.HibernateUtil;
 import java.util.List;
+import java.util.Map;
 import model.Customers;
 import model.DrHeaders;
 import model.Users;
@@ -20,13 +23,15 @@ import org.hibernate.Transaction;
 public class DrHeaderDAO {
 
     Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
+    Map LoginSession = ActionContext.getContext().getSession();
     /**
      * Used to save or update a user.
      */
     public void saveOrUpdateDrHeader(DrHeaders drHeader) {
         Transaction transaction = session.beginTransaction();
         try {
+            drHeader.setUpdatedBy(LoginSession.get("username").toString());
+            drHeader.setUpdatedDate(new Date());
             session.saveOrUpdate(drHeader);
             transaction.commit();
         } catch (Exception e) {
@@ -42,7 +47,10 @@ public class DrHeaderDAO {
         Transaction transaction = session.beginTransaction();
         try {
             DrHeaders drHeader = (DrHeaders) session.get(DrHeaders.class, drHeaderNo);
-            session.delete(drHeader);
+            drHeader.setUpdatedBy(LoginSession.get("username").toString());
+            drHeader.setUpdatedDate(new Date());
+            drHeader.setEnabled("N");
+            session.saveOrUpdate(drHeader);
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
@@ -57,7 +65,8 @@ public class DrHeaderDAO {
         List<DrHeaders> drHeaders = null;
         Transaction transaction = session.beginTransaction();
         try {
-            drHeaders = session.createQuery("from DrHeaders").list();
+            drHeaders = session.createQuery("from DrHeaders where enabled is null").list();
+            
         } catch (Exception e) {
             transaction.rollback();
             e.printStackTrace();
@@ -72,7 +81,7 @@ public class DrHeaderDAO {
             session.beginTransaction();
         }
         try {
-            drHeaders = (DrHeaders) session.createQuery("from DrHeaders where drHeaderId='"+drHeaderNo+"'").uniqueResult();
+            drHeaders = (DrHeaders) session.createQuery("from DrHeaders where drHeaderId='"+drHeaderNo+"' and enabled is null").uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -98,8 +107,7 @@ public class DrHeaderDAO {
      */
     public static void main(String[] args){
         DrHeaderDAO d = new DrHeaderDAO();
-        DrHeaders gg = new DrHeaders();
-        gg = d.getDrHeader("2372017EUODR");
-        System.out.println(gg.getDrHeaderId());
+        d.deleteDrHeader("fgh345");
+        System.out.println("asdadds");
     }
 }

@@ -27,7 +27,7 @@
                         <h3 class="panel-title" id="actionTitle">Transaction Details</h3>
                     </div>
                     <div class="pull-right">
-                        <a href="#" id="btnDeleteDrHeader" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
+                        <a href="#" id="btnDeleteDrHeader" class="btn-sm btn-danger"><i class="fa fa-trash" data-toggle="modal" data-target="#DeleteDrHeaderModal"></i> <strong>Delete</strong></a>
                         <a href="#" id="btnEditDrHeader" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
                         <a href="#" id="btnSaveDrHeader" class="btn-sm btn-primary"><i class="fa fa-save"></i> <strong>Save</strong></a>
                     </div>
@@ -133,6 +133,25 @@
         <!-- /.row -->
     </div>
     <!-- /#page-wrapper -->
+    <!--modal-->
+    <div class="modal fade bs-example-modal-sm" id="DeleteDrHeaderModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Delete Delivery Request</h4>
+                        </div>
+                        <div class="modal-body">
+                            Deleting transaction will also delete all of its data. Are you sure you want to delete it?
+                        </div>
+                        <div class="modal-footer">
+                            <a href="<s:url action="deleteDrHeader" ><s:param name="selectedDrHeader.drHeaderId"><s:property value="%{selectedDrHeader.drHeaderId}" /></s:param></s:url>" id="btnYesDelete" class="btn btn-danger">Yes</a>
+                            <a href="#" class="btn btn-default" data-dismiss="modal">No</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!--end modal-->
     <script>
 
         $(document).ready(function () {
@@ -142,19 +161,21 @@
                 },
                 responsive: true
             });
-           
-            if ($('#actionName').val() == "createDrHeader")
+           //initial state for create / edit drheader. actionName is parameter from drHeader.jsp
+            if ($('#actionName').val() === "createDrHeader")
             {
                 $('#actionTitle').text("New Delivery Request");
-                $('#btnDeleteDrHeader').hide();
                 $('#Summary').hide();
                 var today = new Date();
-                var uid = today.getDate().toString()+(today.getMonth() + 1).toString()+ today.getFullYear().toString()+Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5).toUpperCase();
+                var uid = ("0" + today.getDate()).slice(-2)+("0" + (today.getMonth() + 1)).slice(-2)+ today.getFullYear().toString()+Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5).toUpperCase();
                 $('#drHeaderId').val(uid);
                 $('#FormDrHeader').attr('action','createDrHeader');
 //                $('#drHeaderCreatedDate').val(new Date().toISOString().slice(0, 19).replace('T', ' '));
                 enableDrHeaderForm();
-            } else
+            } else if($('#actionName').val() === "editDrHeader")
+            {
+                enableDrHeaderForm();
+            }else
             {
                 disableDrHeaderForm();
             }
@@ -174,11 +195,16 @@
             //enable form for editing
             $('#btnEditDrHeader').on('click', function () {
                 enableDrHeaderForm();
+                $('#actionName').val('editDrHeader');
             });
 
             //onclick save button
             $('#btnSaveDrHeader').on('click', function () {
                 $( "#FormDrHeader" ).submit();
+            });
+            
+            $('#btnDeleteDrHeader').on('click', function () {
+               $('#DeleteDrHeaderModal').modal('show'); 
             });
 
             //function
@@ -189,6 +215,7 @@
                 $('#drStatus').removeAttr('readonly');
                 $('#btnEditDrHeader').hide();
                 $('#btnSaveDrHeader').show();
+//                $('#btnDeleteDrHeader').hide();
 
             }
             function disableDrHeaderForm() {
@@ -198,8 +225,9 @@
                 $('#drStatus').attr('readonly', 'true');
                 $('#btnSaveDrHeader').hide();
                 $('#btnEditDrHeader').show();
+//                $('#btnDeleteDrHeader').show();
 
             }
         });
-
+        
     </script>

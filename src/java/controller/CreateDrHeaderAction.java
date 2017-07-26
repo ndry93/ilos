@@ -8,6 +8,7 @@ package controller;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DrHeaderDAO;
+import java.util.Date;
 import java.util.Map;
 import model.Customers;
 import model.DrHeaders;
@@ -32,23 +33,20 @@ public class CreateDrHeaderAction extends ActionSupport {
         System.out.println("controller.CreateDrHeaderAction.execute()");
         try {
             Map session = ActionContext.getContext().getSession();
-            System.out.println("Id DrHeader " + getSelectedDrHeader().getDrHeaderId());
-            System.out.println("Cust Name" + getSelectedDrHeader().getCustomers().getCustomerName());
-            getSelectedDrHeader().setDrStatus(getSelectedDrHeader().getDrStatus());
-            System.out.println("Get status------"+getSelectedDrHeader().getDrStatus());
             Customers cust = new Customers();
             cust.setCustomerId(getSelectedDrHeader().getCustomers().getCustomerId());
             cust.setCustomerName(getSelectedDrHeader().getCustomers().getCustomerName());
             Users user = new Users();
             user.setUserName(session.get("username").toString());
-            DrHeaders dr = new DrHeaders(getSelectedDrHeader(), cust, user);
+            DrHeaders dr = new DrHeaders( this.selectedDrHeader, cust, user);
+            dr.setCreatedDate(new Date());
             drheader_dao.saveOrUpdateDrHeader(dr);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return SUCCESS;
     }
-
+    
     /**
      * @return the users
      */
