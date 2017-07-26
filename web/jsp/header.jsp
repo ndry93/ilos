@@ -40,7 +40,7 @@
                     <a href="<s:url action="drHeader"/>"><i class="fa fa-truck fa-fw"></i> Delivery Request</a>
                 </li>
                 <li>
-                    <a href="javascript:showReport('<s:property value="123"/>')"><i class="fa fa-truck fa-fw"></i> Generate Delivery Report</a>
+                    <a href="javascript:showReport('<s:property value="123"/>')"><i class="fa fa-truck fa-fw"></i> Generate Delivery Report (dummy btn)</a>
                     
                 </li>
                 <li>
