@@ -23,19 +23,26 @@ import org.hibernate.Transaction;
 public class DrHeaderDAO {
 
     Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-    Map LoginSession = ActionContext.getContext().getSession();
+//    Map LoginSession = ActionContext.getContext().getSession();
     /**
      * Used to save or update a user.
      */
     public void saveOrUpdateDrHeader(DrHeaders drHeader) {
-        Transaction transaction = session.beginTransaction();
+        Transaction transaction = null;
         try {
-            drHeader.setUpdatedBy(LoginSession.get("username").toString());
+            if(!session.getTransaction().isActive()){
+                System.out.println("---new trans ");
+                transaction = session.beginTransaction();
+            }else{
+                transaction = session.getTransaction();
+            }
+//            drHeader.setUpdatedBy(LoginSession.get("username").toString());
             drHeader.setUpdatedDate(new Date());
+            System.out.println("-----get drheaderid "+drHeader.getDrHeaderId());
             session.saveOrUpdate(drHeader);
             transaction.commit();
         } catch (Exception e) {
-            transaction.rollback();
+            if(transaction!=null) transaction.rollback();
             e.printStackTrace();
         }
     }
@@ -47,7 +54,7 @@ public class DrHeaderDAO {
         Transaction transaction = session.beginTransaction();
         try {
             DrHeaders drHeader = (DrHeaders) session.get(DrHeaders.class, drHeaderNo);
-            drHeader.setUpdatedBy(LoginSession.get("username").toString());
+//            drHeader.setUpdatedBy(LoginSession.get("username").toString());
             drHeader.setUpdatedDate(new Date());
             drHeader.setEnabled("N");
             session.saveOrUpdate(drHeader);
@@ -63,7 +70,7 @@ public class DrHeaderDAO {
      */
     public List<DrHeaders> listDrHeader() {
         List<DrHeaders> drHeaders = null;
-         if(!session.getTransaction().isActive()){
+        if(!session.getTransaction().isActive()){
             session.beginTransaction();
         }
         try {
@@ -107,8 +114,16 @@ public class DrHeaderDAO {
      * @param args 
      */
     public static void main(String[] args){
+        DrHeaders dr = new DrHeaders();
+        dr.setDrHeaderId("12312");
+        Customers c = new Customers();
+        c.setCustomerId(1);
+        dr.setCustomers(c);
+        Users u = new Users();
+        u.setUserName("ndry93");
+        dr.setUsers(u);
         DrHeaderDAO d = new DrHeaderDAO();
-        d.deleteDrHeader("fgh345");
+        d.saveOrUpdateDrHeader(dr);
         System.out.println("asdadds");
     }
 }

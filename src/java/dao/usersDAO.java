@@ -8,6 +8,7 @@ package dao;
 import java.util.ArrayList;
 import utils.HibernateUtil;
 import java.util.List;
+import model.People;
 import model.Users;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -36,9 +37,32 @@ public class usersDAO {
         }
         return false;
     }
+    
+    public void saveOrUpdateUser(Users user) {
+        Transaction transaction = null;
+        try {
+            if(!session.getTransaction().isActive()){
+                System.out.println("---new trans ");
+                transaction = session.beginTransaction();
+            }else{
+                transaction = session.getTransaction();
+            }
+            session.saveOrUpdate(user);
+            transaction.commit();
+        } catch (Exception e) {
+            if(transaction!=null) transaction.rollback();
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         usersDAO d = new usersDAO();
-        System.out.println(d.find("hendry", "123"));
+        Users user= new Users();
+        user.setUserName("ndry93");
+        People people = new People();
+        people.setEmail("ndry93@yahoo.co.id");
+        user.setPeople(people);
+        user.setPassword("welcome1");
+        d.saveOrUpdateUser(user);
     }
 }

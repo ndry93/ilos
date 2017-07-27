@@ -37,14 +37,35 @@ public class CustomerDAO {
         }
         return listCustomer;
     }
+    
+    public void saveOrUpdateCustomers(Customers customers) {
+        Transaction transaction = null;
+        try {
+            if(!session.getTransaction().isActive()){
+                System.out.println("---new trans ");
+                transaction = session.beginTransaction();
+            }else{
+                transaction = session.getTransaction();
+            }
+            session.saveOrUpdate(customers);
+            transaction.commit();
+        } catch (Exception e) {
+            if(transaction!=null) transaction.rollback();
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
-        List<Customers> LC = null;
-        CustomerDAO d = new CustomerDAO();
-        LC = d.getAllCustomerList();
-        for (Customers c : LC) {
-            System.out.println(c.getCustomerName());
-        }
+        CustomerDAO c = new CustomerDAO();
+        Customers customers = new Customers();
+        customers.setCustomerName("PT. ALFA MIDI");
+        c.saveOrUpdateCustomers(customers);
+//        List<Customers> LC = null;
+//        CustomerDAO d = new CustomerDAO();
+//        LC = d.getAllCustomerList();
+//        for (Customers c : LC) {
+//            System.out.println(c.getCustomerName());
+//        }
     }
   
 }
