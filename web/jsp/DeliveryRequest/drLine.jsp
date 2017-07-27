@@ -35,34 +35,31 @@
                 <div class="panel-body">
                     <div class="row">
                         <s:hidden name="actionName" id="actionName" value="%{actionName}" />
-                        <s:form id="FormDrHeader" action="" method="post" validate="true" cssClass="form-inline"> 
-                            <div class="col-lg-6">
+                        <s:form id="FormDrHeader" action="" method="post" validate="true" cssClass="form-inline" > 
+                            <div class="col-lg-12">
                                 <s:actionerror cssClass="alert alert-warning"/>
                                 <div class="form-group">
-                                    <label class="control-label col-md-6" for="selectedDrHeader.drHeaderId">Transaction ID</label>
-                                    <div class="col-md-6">
+                                    <label class="control-label col-md-4" for="selectedDrHeader.drHeaderId">Transaction ID</label>
+                                    <div class="col-md-4">
                                         <s:textfield id="drHeaderId" name="selectedDrHeader.drHeaderId" cssClass="form-control " value="%{selectedDrHeader.drHeaderId}" required="true"  readonly="true"/>
                                     </div>
                                 </div>
-                                
+                                <div class="form-group" >
+                                    <label class="control-label col-md-4" for="selectedDrHeader.customers.customerId">Customer ID</label>
+                                    <div class="col-md-4">
+                                        <s:select id="selectCustId" name="selectedDrHeader.customers.customerId" cssClass="form-control" value="%{selectedDrHeader.customers.customerId}" list="listCustomer" listKey="customerId" listValue="customerId" headerKey="-1" headerValue="Select Customer Id"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4" for="selectedDrHeader.customers.customerName">Customer Name</label>
+                                    <div class="col-md-4">
+                                        <s:select id="selectCustName" name="selectedDrHeader.customers.customerName" cssClass="form-control" value="%{selectedDrHeader.customers.customerId}" list="listCustomer" listKey="customerId" listValue="customerName" headerKey="-1" headerValue="Select Customer Name"></s:select>
+                                    </div>
+                                </div>
 <!--                                <div class="form-group" >
                                         <label class="control-label" for="selectedDrHeader.drStatus">Status</label>
                                     <--s:textfield id="drStatus" name="selectedDrHeader.drStatus" cssClass="form-control" value="%{selectedDrHeader.drStatus}" required="true" />
                                 </div>-->
-                            </div>
-                            <div class="col-lg-5 col-lg-offset-1">
-<!--                                <div class="form-group" >
-                                    <label class="control-label col-md-6" for="selectedDrHeader.customers.customerId">Customer ID</label>
-                                    <div class="col-md-6">
-                                        <--s:select id="selectCustId" name="selectedDrHeader.customers.customerId" cssClass="form-control" value="%{selectedDrHeader.customers.customerId}" list="listCustomer" listKey="customerId" listValue="customerId" headerKey="-1" headerValue="Select Customer Id"/>
-                                    </div>
-                                </div>-->
-                                <div class="form-group">
-                                    <label class="control-label col-md-6" for="selectedDrHeader.customers.customerName">Customer Name</label>
-                                    <div class="col-md-6">
-                                        <s:select id="selectCustName" name="selectedDrHeader.customers.customerName" cssClass="form-control" value="%{selectedDrHeader.customers.customerId}" list="listCustomer" listKey="customerId" listValue="customerName" headerKey="-1" headerValue="Select Customer Name"></s:select>
-                                    </div>
-                                </div>
                             </div>
 <!--                            <div class="col-lg-6" >
                                 <div class="form-group" >
