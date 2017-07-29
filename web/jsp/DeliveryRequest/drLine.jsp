@@ -179,6 +179,7 @@
                 enableDrHeaderForm();
             } else if($('#actionName').val() === "editDrHeader")
             {
+                $('#FormDrHeader').attr('action','editDrHeader');
                 enableDrHeaderForm();
             }else
             {
@@ -200,7 +201,7 @@
             //enable form for editing
             $('#btnEditDrHeader').on('click', function () {
                 enableDrHeaderForm();
-                $('#actionName').val('editDrHeader');
+                $('#FormDrHeader').attr('action','editDrHeader');
             });
 
             //onclick save button
@@ -216,7 +217,7 @@
             function enableDrHeaderForm() {
 
                 $('#selectCustId').removeAttr('readonly');
-                $('#selectCustName').removeAttr('readonly');
+                $('#selectCustName').removeAttr('disabled');
                 $('#drStatus').removeAttr('readonly');
                 $('#btnEditDrHeader').hide();
                 $('#btnSaveDrHeader').show();
@@ -226,7 +227,7 @@
             function disableDrHeaderForm() {
 
                 $('#selectCustId').attr('readonly', 'true');
-                $('#selectCustName').attr('readonly', 'true');
+                $('#selectCustName').attr('disabled', 'true');
                 $('#drStatus').attr('readonly', 'true');
                 $('#btnSaveDrHeader').hide();
                 $('#btnEditDrHeader').show();

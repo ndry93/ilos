@@ -48,7 +48,9 @@
         <action name="deleteDrHeader" class="controller.UpdateDrHeaderAction" method="deleteDrHeader" >  
             <result name="success" type="redirectAction">drHeader</result>
         </action>
-        
+        <action name="editDrHeader" class="controller.UpdateDrHeaderAction">
+        <result name="success" type="redirectAction">drHeader</result>
+        </action>
         <!-- End of Delivery Request Module -->
         
         <!-- Reporting -->

@@ -40,6 +40,7 @@ public class CreateDrHeaderAction extends ActionSupport {
             user.setUserName(session.get("username").toString());
             DrHeaders dr = new DrHeaders( this.selectedDrHeader, cust, user);
             dr.setCreatedDate(new Date());
+            dr.setDrStatus("Draft");
             drheader_dao.saveOrUpdateDrHeader(dr);
         } catch (Exception e) {
             e.printStackTrace();

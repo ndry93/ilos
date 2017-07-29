@@ -29,6 +29,7 @@ public class DrHeaderDAO {
      */
     public void saveOrUpdateDrHeader(DrHeaders drHeader) {
         Transaction transaction = null;
+         Map LoginSession = ActionContext.getContext().getSession();
         try {
             if(!session.getTransaction().isActive()){
                 System.out.println("---new trans ");
@@ -36,8 +37,8 @@ public class DrHeaderDAO {
             }else{
                 transaction = session.getTransaction();
             }
-//            drHeader.setUpdatedBy(LoginSession.get("username").toString());
             drHeader.setUpdatedDate(new Date());
+            drHeader.setUpdatedBy(LoginSession.get("username").toString());
             System.out.println("-----get drheaderid "+drHeader.getDrHeaderId());
             session.saveOrUpdate(drHeader);
             transaction.commit();
@@ -115,9 +116,9 @@ public class DrHeaderDAO {
      */
     public static void main(String[] args){
         DrHeaders dr = new DrHeaders();
-        dr.setDrHeaderId("12312");
+        dr.setDrHeaderId("29072017SUPFV");
         Customers c = new Customers();
-        c.setCustomerId(1);
+        c.setCustomerId(22222);
         dr.setCustomers(c);
         Users u = new Users();
         u.setUserName("ndry93");

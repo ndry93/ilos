@@ -9,8 +9,10 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DrHeaderDAO;
 import java.util.Map;
+import model.Customers;
 import model.DrHeaders;
 import model.Users;
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 
 /**
  *
@@ -29,7 +31,9 @@ public class UpdateDrHeaderAction extends ActionSupport {
     public String execute() throws Exception {
         try {
             System.out.println("controller.UpdateDrHeaderAction.execute()");
-            drheader_dao.saveOrUpdateDrHeader(selectedDrHeader);
+            DrHeaders drHeader = drheader_dao.getDrHeader(getSelectedDrHeader().getDrHeaderId());
+            drHeader.setCustomers(getSelectedDrHeader().getCustomers());
+            drheader_dao.saveOrUpdateDrHeader(drHeader);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -72,4 +76,5 @@ public class UpdateDrHeaderAction extends ActionSupport {
     public void setSelectedDrHeader(DrHeaders selectedDrHeader) {
         this.selectedDrHeader = selectedDrHeader;
     }
+    
 }
