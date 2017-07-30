@@ -35,7 +35,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <s:hidden name="actionName" id="actionName" value="%{actionName}" />
-                        <s:form id="FormDrHeader" action="" method="post" validate="true" cssClass="form-inline" > 
+                        <s:form id="FormDrHeader" action="" method="post" validate="true" cssClass="form-inline"> 
                             <div class="col-lg-12">
                                 <s:actionerror cssClass="alert alert-warning"/>
                                 <div class="form-group">
@@ -86,7 +86,7 @@
                 <div class="panel-heading">
                     Summary
                     <div class="pull-right">
-                        <a href="#" class="btn-sm btn-primary" ><i class="fa fa-pencil"></i> <strong>Add</strong></a>
+                        <a href="<s:url action="drLineDestByNo"><s:param name="DrHeaderNo" value="%{selectedDrHeader.drHeaderId}"/></s:url>" class="btn-sm btn-primary" ><i class="fa fa-pencil"></i> <strong>Add</strong></a>
                         <!--<a href="#" class="btn-sm btn-primary" id="addRow"><i class="fa fa-pencil"></i> <strong>Add</strong></a>-->
                         <!--<a href="#" class="btn-sm btn-primary" id="saveRow"><i class="fa fa-save"></i> <strong>Save</strong></a>-->
                         <!--<a href="#" class="btn-sm btn-primary"><i class="fa fa-align-justify"></i> <strong>List</strong></a>-->

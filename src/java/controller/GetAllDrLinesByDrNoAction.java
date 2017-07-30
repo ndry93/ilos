@@ -6,6 +6,7 @@
 package controller;
 
 import static com.opensymphony.xwork2.Action.SUCCESS;
+import com.opensymphony.xwork2.ActionSupport;
 import model.DrLines;
 import dao.DrLineDAO;
 import dao.CustomerDAO;
@@ -21,7 +22,7 @@ import utils.HibernateUtil;
  *
  * @author S
  */
-public class GetAllDrLinesByDrNoAction {
+public class GetAllDrLinesByDrNoAction extends ActionSupport{
 
     private static final long serialVersionUID = 3L;
     private List<DrLines> DrLineList = null;
@@ -47,6 +48,7 @@ public class GetAllDrLinesByDrNoAction {
             setDrLineList(drline_dao.listDrLineByDrHeaderNo(getDrHeaderNo()));
             System.out.println("--- c drLine is executed");
             setListCustomer(customer_dao.getAllCustomerList()); 
+            System.out.println("--- d end drline");
         } catch (Exception e) {
             e.printStackTrace();
         } 

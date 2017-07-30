@@ -5,8 +5,12 @@
  */
 package dao;
 
+import com.opensymphony.xwork2.ActionContext;
+import java.util.Date;
 import utils.HibernateUtil;
 import java.util.List;
+import java.util.Map;
+import model.DrHeaders;
 import model.DrLines;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -23,8 +27,17 @@ public class DrLineDAO {
      * Used to save or update a drLines.
      */
     public void saveOrUpdateDrLines(DrLines drLines) {
-        Transaction transaction = session.beginTransaction();
+        Transaction transaction = null;
+        //Map LoginSession = ActionContext.getContext().getSession();
         try {
+             if (!session.getTransaction().isActive()) {
+                System.out.println("---new trans ");
+                transaction = session.beginTransaction();
+            } else {
+                transaction = session.getTransaction();
+            }
+           // drLines.setUpdatedDate(new Date());
+          //  drLines.setUpdatedBy(LoginSession.get("username").toString());
             session.saveOrUpdate(drLines);
             transaction.commit();
         } catch (Exception e) {
@@ -37,8 +50,15 @@ public class DrLineDAO {
      * Used to delete a DrLine.
      */
     public void deleteDrLine(String drLineNo) {
-        Transaction transaction = session.beginTransaction();
+        Transaction transaction = null;
+        //Map LoginSession = ActionContext.getContext().getSession();
         try {
+             if (!session.getTransaction().isActive()) {
+                System.out.println("---new trans ");
+                transaction = session.beginTransaction();
+            } else {
+                transaction = session.getTransaction();
+            }
             DrLines drLine = (DrLines) session.get(DrLines.class, drLineNo);
             session.delete(drLine);
             transaction.commit();
@@ -47,7 +67,28 @@ public class DrLineDAO {
             e.printStackTrace();
         }
     }
-
+     public void addDrLine(DrLines drLines) {
+        Transaction transaction = null;
+        Map LoginSession = ActionContext.getContext().getSession();
+        try {
+             if (!session.getTransaction().isActive()) {
+                System.out.println("---new trans ");
+                transaction = session.beginTransaction();
+            } else {
+                transaction = session.getTransaction();
+            }
+            drLines.setCreatedDate(new Date());
+            drLines.setCreatedBy(LoginSession.get("username").toString());
+            drLines.setUpdatedDate(new Date());
+            drLines.setUpdatedBy(LoginSession.get("username").toString());
+            session.save(drLines);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * Used to list a single user by Id.
      */
@@ -76,9 +117,13 @@ public class DrLineDAO {
      */
     public static void main(String[] args){
         DrLineDAO d = new DrLineDAO();
-        for(DrLines dr: d.listDrLineByDrHeaderNo("header123")){
-            System.out.println(dr.getDrLineId().toString());
-            System.out.println(dr.getDrHeaders().getDrStatus().toString());
-        }   
+        DrHeaderDAO dhdao = new DrHeaderDAO();
+        DrLines  dd = new DrLines();
+        DrHeaders dh = dhdao.getDrHeader("header123");
+        dd.setDrHeaders(dh);
+        dd.setDrLineId(123123123);
+        dd.setDriverName("Tino");
+        dd.setPoliceNo("B2234K");
+        d.addDrLine(dd);
     }
 }
