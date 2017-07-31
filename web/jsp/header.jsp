@@ -40,6 +40,15 @@
                     <a href="<s:url action="drHeader"/>"><i class="fa fa-truck fa-fw"></i> Delivery Request</a>
                 </li>
                 <li>
+                    <a href="<s:url action="#"/>"><i class="fa fa-truck fa-fw"></i> Master Destination</a>
+                </li>
+                <li>
+                    <a href="<s:url action="#"/>"><i class="fa fa-truck fa-fw"></i> Master Driver</a>
+                </li>
+                <li>
+                    <a href="<s:url action="#"/>"><i class="fa fa-truck fa-fw"></i> Driver Kasbon</a>
+                </li>
+                <li>
                     <a href="javascript:showReport('<s:property value="123"/>')"><i class="fa fa-truck fa-fw"></i> Generate Delivery Report (dummy btn)</a>
                     
                 </li>

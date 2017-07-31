@@ -5,14 +5,10 @@
  */
 package controller;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DrHeaderDAO;
-import java.util.Map;
-import model.Customers;
 import model.DrHeaders;
 import model.Users;
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 
 /**
  *
