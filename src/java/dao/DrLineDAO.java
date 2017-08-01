@@ -109,6 +109,25 @@ public class DrLineDAO {
         }
         return drLine;
     }
+    
+    public List<DrLines> listDrLineToday(String status) {
+        List<DrLines> drLine = null;
+        System.out.println("---selected status "+status);
+        
+        //we must check whether the transaction is created or not. 
+        //in case this method is called directly, it will create transaction
+        if(!session.getTransaction().isActive()){
+            session.beginTransaction();
+        }
+        try {
+            //where deliveryStatus = 
+            drLine = session.createQuery("from DrLines").list();
+            System.out.println("---executing commit");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return drLine;
+    }
      
     /**
      * Excample for SaveOrUpdate

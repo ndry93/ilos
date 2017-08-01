@@ -16,9 +16,9 @@
             </interceptor-stack>
         </interceptors>
         <default-interceptor-ref name="loginStack"></default-interceptor-ref>
-        <global-results>
+<!--        <global-results>
             <result name="login" type="redirect">/home.action</result>
-        </global-results>
+        </global-results>-->
         
         <!-- Authentication -->
         <action name="login" class="controller.loginAction">
@@ -29,8 +29,8 @@
             <interceptor-ref name="defaultStack"/>
             <result name="success">login.jsp</result>
         </action> 
-        <action name="home">
-            <result type="tiles">index.def</result>
+        <action name="home" class="controller.GetDashboardAction" >
+            <result name="success" type="tiles">index.def</result>
             <result name="input">login.jsp</result>
         </action> 
         <!-- End of Authentication -->

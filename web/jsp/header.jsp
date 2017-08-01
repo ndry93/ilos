@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">ILoS</a>
+        <a class="navbar-brand" href="index.html">ILoS - Integrated Logistics System</a>
     </div>
     <!-- /.navbar-header -->
     <ul class="nav navbar-top-links navbar-right">
@@ -34,13 +34,16 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
+                    <a>PT. BERDIKARI JASA LOGISTICS</a>
+                </li>
+                <li>
                     <a href="<s:url action="home"/>"><i class="fa fa-home fa-fw"></i> Home</a>
                 </li>
                 <li>
                     <a href="<s:url action="drHeader"/>"><i class="fa fa-truck fa-fw"></i> Delivery Request</a>
                 </li>
                 <li>
-                    <a href="<s:url action="#"/>"><i class="fa fa-truck fa-fw"></i> Master Destination</a>
+                    <a href="<s:url action="#"/>"><i class="fa fa-map-marker fa-fw"></i> Master Destination</a>
                 </li>
                 <li>
                     <a href="<s:url action="#"/>"><i class="fa fa-truck fa-fw"></i> Master Driver</a>

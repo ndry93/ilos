@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
@@ -12,11 +13,11 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-comments fa-5x"></i>
+                            <i class="fa fa-truck fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">26</div>
-                            <div>New Comments!</div>
+                            <div class="huge"><s:property value="totalDrToday"/></div>
+                            <div>Delivery Request Today</div>
                         </div>
                     </div>
                 </div>
@@ -34,11 +35,11 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-tasks fa-5x"></i>
+                            <i class="fa fa-check fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">12</div>
-                            <div>New Tasks!</div>
+                            <div class="huge"><s:property value="totalDrSuccessToday"/></div>
+                            <div>Success Delivery Today</div>
                         </div>
                     </div>
                 </div>
@@ -56,11 +57,11 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-shopping-cart fa-5x"></i>
+                            <i class="fa fa-money fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">124</div>
-                            <div>New Orders!</div>
+                            <div class="huge"><s:property value="totalDrAmtToday"/></div>
+                            <div>Delivery Amount Today</div>
                         </div>
                     </div>
                 </div>
@@ -81,8 +82,8 @@
                             <i class="fa fa-support fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">13</div>
-                            <div>Support Tickets!</div>
+                            <div class="huge"><s:property value="totalDrPendingToday"/></div>
+                            <div>Pending Delivery Today</div>
                         </div>
                     </div>
                 </div>
