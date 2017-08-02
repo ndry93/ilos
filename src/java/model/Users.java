@@ -1,5 +1,5 @@
 package model;
-// Generated Jul 9, 2017 10:35:16 AM by Hibernate Tools 4.3.1
+// Generated Aug 2, 2017 11:44:35 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -20,7 +20,7 @@ public class Users  implements java.io.Serializable {
      private String updatedBy;
      private Date updatedDate;
      private String enabled;
-     private Set drHeaderses = new HashSet(0);
+     private String isDeleted;
      private Set userRolesObjectses = new HashSet(0);
 
     public Users() {
@@ -31,7 +31,7 @@ public class Users  implements java.io.Serializable {
         this.userName = userName;
         this.people = people;
     }
-    public Users(String userName, People people, String password, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, Set drHeaderses, Set userRolesObjectses) {
+    public Users(String userName, People people, String password, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, String isDeleted, Set userRolesObjectses) {
        this.userName = userName;
        this.people = people;
        this.password = password;
@@ -40,7 +40,7 @@ public class Users  implements java.io.Serializable {
        this.updatedBy = updatedBy;
        this.updatedDate = updatedDate;
        this.enabled = enabled;
-       this.drHeaderses = drHeaderses;
+       this.isDeleted = isDeleted;
        this.userRolesObjectses = userRolesObjectses;
     }
    
@@ -100,12 +100,12 @@ public class Users  implements java.io.Serializable {
     public void setEnabled(String enabled) {
         this.enabled = enabled;
     }
-    public Set getDrHeaderses() {
-        return this.drHeaderses;
+    public String getIsDeleted() {
+        return this.isDeleted;
     }
     
-    public void setDrHeaderses(Set drHeaderses) {
-        this.drHeaderses = drHeaderses;
+    public void setIsDeleted(String isDeleted) {
+        this.isDeleted = isDeleted;
     }
     public Set getUserRolesObjectses() {
         return this.userRolesObjectses;

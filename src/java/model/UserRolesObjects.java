@@ -1,5 +1,5 @@
 package model;
-// Generated Jul 9, 2017 10:35:16 AM by Hibernate Tools 4.3.1
+// Generated Aug 2, 2017 11:44:35 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -19,6 +19,7 @@ public class UserRolesObjects  implements java.io.Serializable {
      private String updatedBy;
      private Date updatedDate;
      private String enabled;
+     private String isDeleted;
 
     public UserRolesObjects() {
     }
@@ -30,7 +31,7 @@ public class UserRolesObjects  implements java.io.Serializable {
         this.roles = roles;
         this.users = users;
     }
-    public UserRolesObjects(UserRolesObjectsId id, Objects objects, Roles roles, Users users, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled) {
+    public UserRolesObjects(UserRolesObjectsId id, Objects objects, Roles roles, Users users, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, String isDeleted) {
        this.id = id;
        this.objects = objects;
        this.roles = roles;
@@ -40,6 +41,7 @@ public class UserRolesObjects  implements java.io.Serializable {
        this.updatedBy = updatedBy;
        this.updatedDate = updatedDate;
        this.enabled = enabled;
+       this.isDeleted = isDeleted;
     }
    
     public UserRolesObjectsId getId() {
@@ -104,6 +106,13 @@ public class UserRolesObjects  implements java.io.Serializable {
     
     public void setEnabled(String enabled) {
         this.enabled = enabled;
+    }
+    public String getIsDeleted() {
+        return this.isDeleted;
+    }
+    
+    public void setIsDeleted(String isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
 

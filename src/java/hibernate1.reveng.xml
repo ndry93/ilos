@@ -41,24 +41,22 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="oneoms"/>
-  <!--<table-filter match-name="audit_objects"/>-->
-  <!--<table-filter match-name="audit_customers"/>-->
-  <!--<table-filter match-name="audit_users"/>-->
-  <table-filter match-name="customers"/>
-  <!--<table-filter match-name="audit_dr_lines"/>-->
-  <!--<table-filter match-name="audit_roles"/>-->
-  <table-filter match-name="people"/>
-  <!--<table-filter match-name="audit_dr_headers"/>-->
-  <!--<table-filter match-name="audit_destinations"/>-->
+  <table-filter match-name="destinations"/>
+  <table-filter match-name="audit_customers"/>
+  <table-filter match-name="audit_dr_headers"/>
+  <table-filter match-name="objects"/>
   <table-filter match-name="dr_headers"/>
   <table-filter match-name="dr_lines"/>
-  <table-filter match-name="objects"/>
-  <!--<table-filter match-name="audit_dr_line_dest"/>-->
-  <table-filter match-name="destinations"/>
-  <!--<table-filter match-name="audit_user_roles_objects"/>-->
-  <table-filter match-name="roles"/>
-  <!--<table-filter match-name="audit_people"/>-->
-  <table-filter match-name="dr_line_dest"/>
+  <table-filter match-name="audit_roles"/>
+  <table-filter match-name="audit_destinations"/>
   <table-filter match-name="users"/>
+  <table-filter match-name="audit_users"/>
+  <table-filter match-name="audit_user_roles_objects"/>
+  <table-filter match-name="people"/>
   <table-filter match-name="user_roles_objects"/>
+  <table-filter match-name="audit_objects"/>
+  <table-filter match-name="audit_people"/>
+  <table-filter match-name="customers"/>
+  <table-filter match-name="roles"/>
+  <table-filter match-name="audit_dr_lines"/>
 </hibernate-reverse-engineering>

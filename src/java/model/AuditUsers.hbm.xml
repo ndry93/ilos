@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 2, 2017 11:44:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.AuditUsers" table="audit_users" catalog="oneoms" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="action" type="string">
+            <column name="action" length="45" />
+        </property>
+        <property name="userName" type="string">
+            <column name="user_name" length="50" not-null="true" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="created_by" length="50" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="created_date" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

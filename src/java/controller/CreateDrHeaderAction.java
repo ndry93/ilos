@@ -38,7 +38,8 @@ public class CreateDrHeaderAction extends ActionSupport {
             cust.setCustomerName(getSelectedDrHeader().getCustomers().getCustomerName());
             Users user = new Users();
             user.setUserName(session.get("username").toString());
-            DrHeaders dr = new DrHeaders( this.selectedDrHeader, cust, user);
+//            DrHeaders dr = new DrHeaders( this.selectedDrHeader, cust, user);
+            DrHeaders dr = new DrHeaders();
             dr.setCreatedDate(new Date());
             dr.setDrStatus("Draft");
             drheader_dao.saveOrUpdateDrHeader(dr);

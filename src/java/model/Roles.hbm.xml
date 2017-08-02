@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jul 9, 2017 10:35:17 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Aug 2, 2017 11:44:37 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.Roles" table="roles" catalog="oneoms" optimistic-lock="version">
         <id name="roleId" type="java.lang.Integer">
@@ -28,6 +28,9 @@
         </property>
         <property name="enabled" type="string">
             <column name="enabled" length="1" />
+        </property>
+        <property name="isDeleted" type="string">
+            <column name="is_deleted" length="1" />
         </property>
         <set name="userRolesObjectses" table="user_roles_objects" inverse="true" lazy="true" fetch="select">
             <key>

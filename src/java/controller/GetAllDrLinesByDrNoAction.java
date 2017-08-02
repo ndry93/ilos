@@ -26,7 +26,7 @@ public class GetAllDrLinesByDrNoAction extends ActionSupport{
 
     private static final long serialVersionUID = 3L;
     private List<DrLines> DrLineList = null;
-    private String DrHeaderNo;
+    private int DrHeaderNo;
     private List<Customers> listCustomer;
     private DrHeaders selectedDrHeader;
     private final DrLineDAO drline_dao = new DrLineDAO();
@@ -72,14 +72,14 @@ public class GetAllDrLinesByDrNoAction extends ActionSupport{
     /**
      * @return the DrHeaderNo
      */
-    public String getDrHeaderNo() {
+    public int getDrHeaderNo() {
         return DrHeaderNo;
     }
 
     /**
      * @param DrHeaderNo the DrHeaderNo to set
      */
-    public void setDrHeaderNo(String DrHeaderNo) {
+    public void setDrHeaderNo(int DrHeaderNo) {
         this.DrHeaderNo = DrHeaderNo;
     }
 

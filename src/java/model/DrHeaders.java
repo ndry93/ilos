@@ -1,5 +1,5 @@
 package model;
-// Generated Jul 9, 2017 10:35:16 AM by Hibernate Tools 4.3.1
+// Generated Aug 2, 2017 11:44:35 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,43 +12,50 @@ import java.util.Set;
 public class DrHeaders  implements java.io.Serializable {
 
 
-     private String drHeaderId;
+     private Integer drHeaderId;
      private Customers customers;
-     private Users users;
+     private String transactionNum;
      private String drStatus;
+     private String driverName;
+     private String policeNo;
+     private Integer rit;
+     private String createdBy;
      private Date createdDate;
      private String updatedBy;
      private Date updatedDate;
      private String enabled;
+     private String isDeleted;
      private Set drLineses = new HashSet(0);
 
     public DrHeaders() {
     }
 
 	
-    public DrHeaders(DrHeaders drHeaders, Customers customers, Users users) {
-        this.drHeaderId = drHeaders.getDrHeaderId();
-        this.drStatus = drHeaders.getDrStatus();
+    public DrHeaders(Customers customers, String transactionNum) {
         this.customers = customers;
-        this.users = users;
+        this.transactionNum = transactionNum;
     }
-    public DrHeaders(String drHeaderId, Customers customers, Users users, String drStatus, Date createdDate, String updatedBy, Date updatedDate, String enabled, Set drLineses) {
-       this.drHeaderId = drHeaderId;
+    public DrHeaders(Customers customers, String transactionNum, String drStatus, String driverName, String policeNo, Integer rit, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, String isDeleted, Set drLineses) {
        this.customers = customers;
-       this.users = users;
+       this.transactionNum = transactionNum;
        this.drStatus = drStatus;
+       this.driverName = driverName;
+       this.policeNo = policeNo;
+       this.rit = rit;
+       this.createdBy = createdBy;
        this.createdDate = createdDate;
        this.updatedBy = updatedBy;
        this.updatedDate = updatedDate;
        this.enabled = enabled;
+       this.isDeleted = isDeleted;
        this.drLineses = drLineses;
     }
    
-    public String getDrHeaderId() {
+    public Integer getDrHeaderId() {
         return this.drHeaderId;
     }
     
-    public void setDrHeaderId(String drHeaderId) {
+    public void setDrHeaderId(Integer drHeaderId) {
         this.drHeaderId = drHeaderId;
     }
     public Customers getCustomers() {
@@ -58,12 +65,12 @@ public class DrHeaders  implements java.io.Serializable {
     public void setCustomers(Customers customers) {
         this.customers = customers;
     }
-    public Users getUsers() {
-        return this.users;
+    public String getTransactionNum() {
+        return this.transactionNum;
     }
     
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setTransactionNum(String transactionNum) {
+        this.transactionNum = transactionNum;
     }
     public String getDrStatus() {
         return this.drStatus;
@@ -71,6 +78,34 @@ public class DrHeaders  implements java.io.Serializable {
     
     public void setDrStatus(String drStatus) {
         this.drStatus = drStatus;
+    }
+    public String getDriverName() {
+        return this.driverName;
+    }
+    
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
+    }
+    public String getPoliceNo() {
+        return this.policeNo;
+    }
+    
+    public void setPoliceNo(String policeNo) {
+        this.policeNo = policeNo;
+    }
+    public Integer getRit() {
+        return this.rit;
+    }
+    
+    public void setRit(Integer rit) {
+        this.rit = rit;
+    }
+    public String getCreatedBy() {
+        return this.createdBy;
+    }
+    
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
     public Date getCreatedDate() {
         return this.createdDate;
@@ -99,6 +134,13 @@ public class DrHeaders  implements java.io.Serializable {
     
     public void setEnabled(String enabled) {
         this.enabled = enabled;
+    }
+    public String getIsDeleted() {
+        return this.isDeleted;
+    }
+    
+    public void setIsDeleted(String isDeleted) {
+        this.isDeleted = isDeleted;
     }
     public Set getDrLineses() {
         return this.drLineses;

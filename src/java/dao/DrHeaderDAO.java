@@ -55,7 +55,7 @@ public class DrHeaderDAO {
     /**
      * Used to delete a DrHeader.
      */
-    public void deleteDrHeader(String drHeaderNo) {
+    public void deleteDrHeader(int drHeaderNo) {
          Transaction transaction = null;
          if (!session.getTransaction().isActive()) {
                 System.out.println("---new trans ");
@@ -93,7 +93,7 @@ public class DrHeaderDAO {
         return drHeaders;
     }
 
-    public DrHeaders getDrHeader(String drHeaderNo) {
+    public DrHeaders getDrHeader(int drHeaderNo) {
         DrHeaders drHeaders = null;
         //we must check whether the transaction is created or not. 
         //in case this method is called directly, it will create transaction
@@ -111,7 +111,7 @@ public class DrHeaderDAO {
     /**
      * Used to list a single user by Id.
      */
-    public DrHeaders listDrHeaderByDrHeaderNo(String drHeaderNo) {
+    public DrHeaders listDrHeaderByDrHeaderNo(int drHeaderNo) {
         DrHeaders drHeader = null;
         try {
             drHeader = (DrHeaders) session.get(DrHeaders.class, drHeaderNo);

@@ -5,13 +5,9 @@
  */
 package controller;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DrHeaderDAO;
 import dao.DrLineDAO;
-import java.util.Date;
-import java.util.Map;
-import model.Customers;
 import model.DrLines;
 import model.Users;
 
@@ -26,7 +22,7 @@ public class CreateDrLineAction extends ActionSupport {
     private final DrHeaderDAO drheader_dao = new DrHeaderDAO();
     private Users users;
     private DrLines selectedDrLine;
-    private String DrHeaderNo;
+    private int DrHeaderNo;
     
 
     public CreateDrLineAction() {
@@ -77,14 +73,14 @@ public class CreateDrLineAction extends ActionSupport {
     /**
      * @return the DrHeaderNo
      */
-    public String getDrHeaderNo() {
+    public int getDrHeaderNo() {
         return DrHeaderNo;
     }
 
     /**
      * @param DrHeaderNo the DrHeaderNo to set
      */
-    public void setDrHeaderNo(String DrHeaderNo) {
+    public void setDrHeaderNo(int DrHeaderNo) {
         this.DrHeaderNo = DrHeaderNo;
     }
 

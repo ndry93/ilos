@@ -1,5 +1,5 @@
 package model;
-// Generated Jul 9, 2017 10:35:16 AM by Hibernate Tools 4.3.1
+// Generated Aug 2, 2017 11:44:35 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,28 +16,30 @@ public class Destinations  implements java.io.Serializable {
      private String destName;
      private String destAddr;
      private String destType;
-     private String destinationscol;
+     private Integer areaId;
      private String createdBy;
      private Date createdDate;
      private String updatedBy;
      private Date updatedDate;
      private String enabled;
-     private Set drLineDests = new HashSet(0);
+     private String isDeleted;
+     private Set drLineses = new HashSet(0);
 
     public Destinations() {
     }
 
-    public Destinations(String destName, String destAddr, String destType, String destinationscol, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, Set drLineDests) {
+    public Destinations(String destName, String destAddr, String destType, Integer areaId, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, String isDeleted, Set drLineses) {
        this.destName = destName;
        this.destAddr = destAddr;
        this.destType = destType;
-       this.destinationscol = destinationscol;
+       this.areaId = areaId;
        this.createdBy = createdBy;
        this.createdDate = createdDate;
        this.updatedBy = updatedBy;
        this.updatedDate = updatedDate;
        this.enabled = enabled;
-       this.drLineDests = drLineDests;
+       this.isDeleted = isDeleted;
+       this.drLineses = drLineses;
     }
    
     public Integer getDestId() {
@@ -68,12 +70,12 @@ public class Destinations  implements java.io.Serializable {
     public void setDestType(String destType) {
         this.destType = destType;
     }
-    public String getDestinationscol() {
-        return this.destinationscol;
+    public Integer getAreaId() {
+        return this.areaId;
     }
     
-    public void setDestinationscol(String destinationscol) {
-        this.destinationscol = destinationscol;
+    public void setAreaId(Integer areaId) {
+        this.areaId = areaId;
     }
     public String getCreatedBy() {
         return this.createdBy;
@@ -110,12 +112,19 @@ public class Destinations  implements java.io.Serializable {
     public void setEnabled(String enabled) {
         this.enabled = enabled;
     }
-    public Set getDrLineDests() {
-        return this.drLineDests;
+    public String getIsDeleted() {
+        return this.isDeleted;
     }
     
-    public void setDrLineDests(Set drLineDests) {
-        this.drLineDests = drLineDests;
+    public void setIsDeleted(String isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+    public Set getDrLineses() {
+        return this.drLineses;
+    }
+    
+    public void setDrLineses(Set drLineses) {
+        this.drLineses = drLineses;
     }
 
 

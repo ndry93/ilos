@@ -53,11 +53,19 @@ Contributor(s):
     <mapping resource="model/Destinations.hbm.xml"/>
     <mapping resource="model/UserRolesObjects.hbm.xml"/>
     <mapping resource="model/Roles.hbm.xml"/>
+    <mapping resource="model/AuditUserRolesObjects.hbm.xml"/>
     <mapping resource="model/Users.hbm.xml"/>
-    <mapping resource="model/DrLineDest.hbm.xml"/>
+    <mapping resource="model/AuditDestinations.hbm.xml"/>
     <mapping resource="model/People.hbm.xml"/>
-    <mapping resource="model/DrLines.hbm.xml"/>
+    <mapping resource="model/AuditPeople.hbm.xml"/>
+    <mapping resource="model/AuditUsers.hbm.xml"/>
     <mapping resource="model/Objects.hbm.xml"/>
+    <mapping resource="model/AuditRoles.hbm.xml"/>
+    <mapping resource="model/AuditObjects.hbm.xml"/>
+    <mapping resource="model/DrLines.hbm.xml"/>
+    <mapping resource="model/AuditCustomers.hbm.xml"/>
+    <mapping resource="model/AuditDrLines.hbm.xml"/>
+    <mapping resource="model/AuditDrHeaders.hbm.xml"/>
     <mapping resource="model/Customers.hbm.xml"/>
     <mapping resource="model/DrHeaders.hbm.xml"/>
   </session-factory>

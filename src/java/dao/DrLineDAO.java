@@ -92,7 +92,7 @@ public class DrLineDAO {
     /**
      * Used to list a single user by Id.
      */
-    public List<DrLines> listDrLineByDrHeaderNo(String drHeaderNo) {
+    public List<DrLines> listDrLineByDrHeaderNo(int drHeaderNo) {
         List<DrLines> drLine = null;
         System.out.println("---selected drHeaderNo "+drHeaderNo);
         
@@ -138,11 +138,9 @@ public class DrLineDAO {
         DrLineDAO d = new DrLineDAO();
         DrHeaderDAO dhdao = new DrHeaderDAO();
         DrLines  dd = new DrLines();
-        DrHeaders dh = dhdao.getDrHeader("header123");
+        DrHeaders dh = dhdao.getDrHeader(1);
         dd.setDrHeaders(dh);
         dd.setDrLineId(123123123);
-        dd.setDriverName("Tino");
-        dd.setPoliceNo("B2234K");
         d.addDrLine(dd);
     }
 }

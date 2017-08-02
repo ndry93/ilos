@@ -1,5 +1,5 @@
 package model;
-// Generated Jul 9, 2017 10:35:16 AM by Hibernate Tools 4.3.1
+// Generated Aug 2, 2017 11:44:35 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -21,12 +21,13 @@ public class Customers  implements java.io.Serializable {
      private String updatedBy;
      private Date updatedDate;
      private String enabled;
+     private String isDeleted;
      private Set drHeaderses = new HashSet(0);
 
     public Customers() {
     }
 
-    public Customers(String customerName, String customerAddr, String customerPhone, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, Set drHeaderses) {
+    public Customers(String customerName, String customerAddr, String customerPhone, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, String isDeleted, Set drHeaderses) {
        this.customerName = customerName;
        this.customerAddr = customerAddr;
        this.customerPhone = customerPhone;
@@ -35,6 +36,7 @@ public class Customers  implements java.io.Serializable {
        this.updatedBy = updatedBy;
        this.updatedDate = updatedDate;
        this.enabled = enabled;
+       this.isDeleted = isDeleted;
        this.drHeaderses = drHeaderses;
     }
    
@@ -100,6 +102,13 @@ public class Customers  implements java.io.Serializable {
     
     public void setEnabled(String enabled) {
         this.enabled = enabled;
+    }
+    public String getIsDeleted() {
+        return this.isDeleted;
+    }
+    
+    public void setIsDeleted(String isDeleted) {
+        this.isDeleted = isDeleted;
     }
     public Set getDrHeaderses() {
         return this.drHeaderses;

@@ -1,21 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jul 9, 2017 10:35:17 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Aug 2, 2017 11:44:37 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.DrLines" table="dr_lines" catalog="oneoms" optimistic-lock="version">
         <id name="drLineId" type="java.lang.Integer">
             <column name="dr_line_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="drHeaders" class="model.DrHeaders" fetch="select">
-            <column name="dr_header_id" length="45" not-null="true" />
+        <many-to-one name="destinations" class="model.Destinations" fetch="select">
+            <column name="dest_id" />
         </many-to-one>
-        <property name="driverName" type="string">
-            <column name="driver_name" length="45" />
+        <many-to-one name="drHeaders" class="model.DrHeaders" fetch="select">
+            <column name="dr_header_id" not-null="true" />
+        </many-to-one>
+        <property name="deliveryStatus" type="string">
+            <column name="delivery_status" length="45" />
         </property>
-        <property name="policeNo" type="string">
-            <column name="police_no" length="45" />
+        <property name="amount" type="java.lang.Double">
+            <column name="amount" precision="22" scale="0" />
         </property>
         <property name="createdBy" type="string">
             <column name="created_by" length="50" />
@@ -29,11 +32,11 @@
         <property name="updatedDate" type="timestamp">
             <column name="updated_date" length="19" />
         </property>
-        <set name="drLineDests" table="dr_line_dest" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="dr_line_id" not-null="true" />
-            </key>
-            <one-to-many class="model.DrLineDest" />
-        </set>
+        <property name="enabled" type="string">
+            <column name="enabled" length="1" />
+        </property>
+        <property name="isDeleted" type="string">
+            <column name="is_deleted" length="1" />
+        </property>
     </class>
 </hibernate-mapping>
