@@ -26,6 +26,7 @@
 
         <!-- Custom CSS -->
         <link href="${pageContext.request.contextPath}/theme/dist/css/sb-admin-2.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/theme/css/logintemplate.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
         <link href="${pageContext.request.contextPath}/theme/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -36,7 +37,8 @@
                 <div class="col-md-4 col-md-offset-4">
                     <div class="login-panel panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Please Sign In</h3>
+                           <img class="img-responsive center-block" id="companylogo" src="${pageContext.request.contextPath}/theme/images/logo.png" alt="Logo">
+<!--                            <h3 class="panel-title">Please Sign In</h3>-->
                         </div>
                         <div class="panel-body">
                             <s:form action="login" method="post" validate="true"> 
