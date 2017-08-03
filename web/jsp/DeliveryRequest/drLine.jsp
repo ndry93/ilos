@@ -41,7 +41,8 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="selectedDrHeader.drHeaderId">Transaction ID</label>
                                     <div class="col-md-4">
-                                        <s:textfield id="drHeaderId" name="selectedDrHeader.drHeaderId" cssClass="form-control " value="%{selectedDrHeader.drHeaderId}" required="true"  readonly="true"/>
+                                        <s:hidden id="drHeaderId" name="selectedDrHeader.drHeaderId" cssClass="form-control " value="%{selectedDrHeader.drHeaderId}"/>
+                                        <s:textfield id="transactionNum" name="selectedDrHeader.transactionNum" cssClass="form-control " value="%{selectedDrHeader.transactionNum}" required="true"  readonly="true"/>
                                     </div>
                                 </div>
                                 <div class="form-group" >
@@ -94,7 +95,7 @@
                 </div>
                 <!-- Table -->
                 <div class="panel-body">
-                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-drLine">
+                    <table width="100%" class="table table-striped table-bordered table-hover small" id="dataTables-drLine">
                         <thead>
                             <tr>
                                 <th>Summary ID</th>
@@ -173,7 +174,7 @@
                 $('#Summary').hide();
                 var today = new Date();
                 var uid = ("0" + today.getDate()).slice(-2)+("0" + (today.getMonth() + 1)).slice(-2)+ today.getFullYear().toString()+Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5).toUpperCase();
-                $('#drHeaderId').val(uid);
+                $('#transactionNum').val(uid);
                 $('#FormDrHeader').attr('action','createDrHeader');
 //                $('#drHeaderCreatedDate').val(new Date().toISOString().slice(0, 19).replace('T', ' '));
                 enableDrHeaderForm();

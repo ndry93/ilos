@@ -54,9 +54,9 @@
         <action name="editDrHeader" class="controller.UpdateDrHeaderAction">
             <result name="success" type="redirectAction">drHeader</result>
         </action>
-        <action name="drLineDestByNo" class="controller.GetAllDrLineDestByNoAction">
+<!--        <action name="drLineDestByNo" class="controller.GetAllDrLineDestByNoAction">
             <result name="success" type="tiles">drLineDest.def</result>
-        </action>
+        </action>-->
          <action name="createDrLine" class="controller.CreateDrLineAction" > 
           <result name="success" type="redirectAction">drHeader</result>
         </action>

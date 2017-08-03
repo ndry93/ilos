@@ -31,29 +31,41 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-drHeader">
+                            <table width="100%" class="table table-striped table-bordered table-hover small" id="dataTables-drHeader">
                                 <thead>
                                     <tr>
-                                        <th>Transaction ID</th>
+                                        <th>Transaction No</th>
                                         <th>Customer ID</th>
                                         <th>Customer Name</th>
+                                        <th>Driver Name</th>
+                                        <th>Police No</th>
+                                        <th>Ritase</th>
                                         <th>Status</th>
                                         <th>Created Date</th>
-                                        <th>Last Update</th>
+                                        <th>Updated Date</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                             <s:iterator value="DrHeaderList">
                                 <tr>
-                                    <td id="drHeaderId">
-                                        <s:property value="drHeaderId" />
+                                    <td id="transactionNum">
+                                        <s:property value="transactionNum" />
                                     </td>
                                     <td>
                                         <s:property value="customers.customerId" />
                                     </td>
                                     <td>
                                         <s:property value="customers.customerName" />
+                                    </td>
+                                    <td>
+                                        <s:property value="driverName" />
+                                    </td>
+                                    <td>
+                                        <s:property value="policeNo" />
+                                    </td>
+                                    <td>
+                                        <s:property value="rit" />
                                     </td>
                                     <td>
                                         <s:property value="drStatus" />
@@ -64,10 +76,9 @@
                                     <td>
                                         <s:property value="updatedDate" />
                                     </td>
-                                    <td class="text-center"><s:property value="id"/>
-                                        <a href="<s:url action="drLinesByDrNo" ><s:param name="DrHeaderNo"><s:property value="drHeaderId" /></s:param><s:param name="actionName">viewDrHeader</s:param></s:url>" id="btnView" class="btn-sm btn-info"><strong>View</strong></a>
-                                        <a href="<s:url action="drLinesByDrNo" ><s:param name="DrHeaderNo"><s:property value="drHeaderId" /></s:param><s:param name="actionName">editDrHeader</s:param></s:url>" id="btnEdit" class="btn-sm btn-success"><strong>Edit</strong></a>
-                                                <!--<a href="" id="btnDelete" class="btn-sm btn-danger" ><strong>Delete</strong></a>-->
+                                    <td class="text-center" style="min-width: 100px;"><s:property value="id"/>
+                                            <a href="<s:url action="drLinesByDrNo"><s:param name="DrHeaderNo"><s:property value="drHeaderId" /></s:param><s:param name="actionName">viewDrHeader</s:param></s:url>" id="btnView" class="btn-sm btn-info"><strong>View</strong></a>
+                                            <a href="<s:url action="drLinesByDrNo" ><s:param name="DrHeaderNo"><s:property value="drHeaderId" /></s:param><s:param name="actionName">editDrHeader</s:param></s:url>" id="btnEdit" class="btn-sm btn-success"><strong>Edit</strong></a>     
                                             </td>
                                         </tr>
                             </s:iterator>
@@ -113,9 +124,9 @@
         });
         $('#dataTables-drHeader').on('click', '#btnDelete', function () {
 //            var DrHeaderId = table.row($(this).parents('tr')).data()[0];
-            $('#DeleteDrHeaderModal').modal('show'); 
-    //            $('#btnYesDelete').attr('href',url);
-    
+            $('#DeleteDrHeaderModal').modal('show');
+            //            $('#btnYesDelete').attr('href',url);
+
         });
     });
 
