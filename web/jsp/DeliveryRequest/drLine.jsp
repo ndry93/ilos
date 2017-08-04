@@ -87,7 +87,7 @@
                 <div class="panel-heading">
                     Summary
                     <div class="pull-right">
-                        <a href="<s:url action="drLineDestByNo"><s:param name="DrHeaderNo" value="%{selectedDrHeader.drHeaderId}"/></s:url>" class="btn-sm btn-primary" ><i class="fa fa-pencil"></i> <strong>Add</strong></a>
+                        <a href="#" class="btn-sm btn-primary" ><i class="fa fa-pencil"></i> <strong>Add</strong></a>
                         <!--<a href="#" class="btn-sm btn-primary" id="addRow"><i class="fa fa-pencil"></i> <strong>Add</strong></a>-->
                         <!--<a href="#" class="btn-sm btn-primary" id="saveRow"><i class="fa fa-save"></i> <strong>Save</strong></a>-->
                         <!--<a href="#" class="btn-sm btn-primary"><i class="fa fa-align-justify"></i> <strong>List</strong></a>-->
@@ -125,6 +125,7 @@
                                             <s:property value="updatedDate" />
                                         </td>
                                         <td class="text-center"><s:property value="id"/>
+                                            <a href="javascript:showReport('<s:property value="123"/>')" id="btnReport" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>D. Report</strong></a>
                                             <a href="<s:url action="drLine" ><s:param name="DrHeaderNo"><s:property value="drHeaderId" /></s:param></s:url>" id="btnView" class="btn-sm btn-info"><i class="fa fa-eye"></i> <strong>View</strong></a>
                                                     <a href="#" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
                                                     <a href="#" id="btnDelete" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>

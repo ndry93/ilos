@@ -26,7 +26,7 @@ public class GetAllDrLinesByDrNoAction extends ActionSupport{
 
     private static final long serialVersionUID = 3L;
     private List<DrLines> DrLineList = null;
-    private int DrHeaderNo;
+    private int DrHeaderId;
     private List<Customers> listCustomer;
     private DrHeaders selectedDrHeader;
     private final DrLineDAO drline_dao = new DrLineDAO();
@@ -43,9 +43,9 @@ public class GetAllDrLinesByDrNoAction extends ActionSupport{
             //this contains multiple action, and thus should only use one transaction
             //first method will call beginTransaction, the rest will use getTransaction
             System.out.println("--- a drLine is executed");
-            setSelectedDrHeader(drheader_dao.getDrHeader(getDrHeaderNo()));
+            setSelectedDrHeader(drheader_dao.getDrHeader(getDrHeaderId()));
             System.out.println("--- b drLine is executed ");
-            setDrLineList(drline_dao.listDrLineByDrHeaderNo(getDrHeaderNo()));
+            setDrLineList(drline_dao.listDrLineByDrHeaderId(getDrHeaderId()));
             System.out.println("--- c drLine is executed");
             setListCustomer(customer_dao.getAllCustomerList()); 
             System.out.println("--- d end drline");
@@ -70,17 +70,17 @@ public class GetAllDrLinesByDrNoAction extends ActionSupport{
     }
 
     /**
-     * @return the DrHeaderNo
+     * @return the DrHeaderId
      */
-    public int getDrHeaderNo() {
-        return DrHeaderNo;
+    public int getDrHeaderId() {
+        return DrHeaderId;
     }
 
     /**
-     * @param DrHeaderNo the DrHeaderNo to set
+     * @param DrHeaderId the DrHeaderId to set
      */
-    public void setDrHeaderNo(int DrHeaderNo) {
-        this.DrHeaderNo = DrHeaderNo;
+    public void setDrHeaderId(int DrHeaderId) {
+        this.DrHeaderId = DrHeaderId;
     }
 
     /**

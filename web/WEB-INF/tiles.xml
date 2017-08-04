@@ -25,6 +25,18 @@
         <put-attribute name="body" value="/jsp/DeliveryRequest/drLineDest.jsp"/>
         <put-attribute name="footer" value="/jsp/footer.jsp"/>
     </definition>
+    <definition name="users.def" extends="index.def">
+        <put-attribute name="title" value="Destination"/>
+        <put-attribute name="header" value="/jsp/header.jsp"/>
+        <put-attribute name="body" value="/jsp/UserManagement/users.jsp"/>
+        <put-attribute name="footer" value="/jsp/footer.jsp"/>
+    </definition>
+    <definition name="roles.def" extends="index.def">
+        <put-attribute name="title" value="Destination"/>
+        <put-attribute name="header" value="/jsp/header.jsp"/>
+        <put-attribute name="body" value="/jsp/UserManagement/roles.jsp"/>
+        <put-attribute name="footer" value="/jsp/footer.jsp"/>
+    </definition>
     
     <!--
     <definition name="contact.def" extends="index.def">

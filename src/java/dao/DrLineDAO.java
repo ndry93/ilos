@@ -92,9 +92,9 @@ public class DrLineDAO {
     /**
      * Used to list a single user by Id.
      */
-    public List<DrLines> listDrLineByDrHeaderNo(int drHeaderNo) {
+    public List<DrLines> listDrLineByDrHeaderId(int drHeaderId) {
         List<DrLines> drLine = null;
-        System.out.println("---selected drHeaderNo "+drHeaderNo);
+        System.out.println("---selected drHeaderId "+drHeaderId);
         
         //we must check whether the transaction is created or not. 
         //in case this method is called directly, it will create transaction
@@ -102,7 +102,7 @@ public class DrLineDAO {
             session.beginTransaction();
         }
         try {
-            drLine = session.createQuery("from DrLines where drHeaders='"+drHeaderNo+"'").list();
+            drLine = session.createQuery("from DrLines where drHeaders.drHeaderId='"+drHeaderId+"'").list();
             System.out.println("---executing commit");
         } catch (Exception e) {
             e.printStackTrace();

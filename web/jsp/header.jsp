@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">ILoS - Integrated Logistics System</a>
+        <a class="navbar-brand" href="index.html">ILoS</a>
     </div>
     <!-- /.navbar-header -->
     <ul class="nav navbar-top-links navbar-right">
@@ -34,9 +34,6 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a>PT. BERDIKARI JASA LOGISTICS</a>
-                </li>
-                <li>
                     <a href="<s:url action="home"/>"><i class="fa fa-home fa-fw"></i> Home</a>
                 </li>
                 <li>
@@ -50,10 +47,6 @@
                 </li>
                 <li>
                     <a href="<s:url action="#"/>"><i class="fa fa-truck fa-fw"></i> Driver Kasbon</a>
-                </li>
-                <li>
-                    <a href="javascript:showReport('<s:property value="123"/>')"><i class="fa fa-truck fa-fw"></i> Generate Delivery Report (dummy btn)</a>
-                    
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-gear fa-fw"></i> System<span class="fa arrow"></span></a>
