@@ -40,13 +40,18 @@
                     <a href="<s:url action="drHeader"/>"><i class="fa fa-truck fa-fw"></i> Delivery Request</a>
                 </li>
                 <li>
-                    <a href="<s:url action="#"/>"><i class="fa fa-map-marker fa-fw"></i> Master Destination</a>
-                </li>
-                <li>
-                    <a href="<s:url action="#"/>"><i class="fa fa-truck fa-fw"></i> Master Driver</a>
-                </li>
-                <li>
                     <a href="<s:url action="#"/>"><i class="fa fa-truck fa-fw"></i> Driver Kasbon</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-gear fa-fw"></i> Master<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="<s:url action="#"/>"><i class="fa fa-map-marker fa-fw"></i> Master Destination</a>
+                        </li>
+                        <li>
+                            <a href="<s:url action="#"/>"><i class="fa fa-truck fa-fw"></i> Master Driver</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-gear fa-fw"></i> System<span class="fa arrow"></span></a>
