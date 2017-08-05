@@ -6,6 +6,7 @@
 package dao;
 
 import com.opensymphony.xwork2.ActionContext;
+import java.util.ArrayList;
 import java.util.Date;
 import utils.HibernateUtil;
 import java.util.List;
@@ -111,7 +112,7 @@ public class DrLineDAO {
     }
     
     public List<DrLines> listDrLineToday(String status) {
-        List<DrLines> drLine = null;
+        List<DrLines> drLine = new ArrayList<DrLines>();
         System.out.println("---selected status "+status);
         
         //we must check whether the transaction is created or not. 

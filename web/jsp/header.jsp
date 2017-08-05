@@ -79,9 +79,3 @@
     </div>
     <!-- /.navbar-static-side -->
 </nav>
-<script>
-function showReport(value){
-  var url="createDeliveryReport?someVariable="+value;
-  window.open(url,"_blank","directories=no, status=no,width=840, height=740,top=0,left=0");
-}
-</script>

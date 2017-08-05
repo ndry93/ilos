@@ -33,10 +33,11 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <div class="row">
+                    <div class="row">  
                         <s:hidden name="actionName" id="actionName" value="%{actionName}" />
                         <s:form id="FormDrHeader" action="" method="post" validate="true" cssClass="form-inline"> 
-                            <div class="col-lg-12">
+                        
+                            <div class="col-md-12">
                                 <s:actionerror cssClass="alert alert-warning"/>
                                 <div class="form-group">
                                     <label class="control-label col-md-4" for="selectedDrHeader.drHeaderId">Transaction ID</label>
@@ -57,11 +58,32 @@
                                         <s:select id="selectCustName" name="selectedDrHeader.customers.customerName" cssClass="form-control" value="%{selectedDrHeader.customers.customerId}" list="listCustomer" listKey="customerId" listValue="customerName" headerKey="-1" headerValue="Select Customer Name"></s:select>
                                     </div>
                                 </div>
-<!--                                <div class="form-group" >
-                                        <label class="control-label" for="selectedDrHeader.drStatus">Status</label>
-                                    <--s:textfield id="drStatus" name="selectedDrHeader.drStatus" cssClass="form-control" value="%{selectedDrHeader.drStatus}" required="true" />
-                                </div>-->
+                                    <div class="form-group" >
+                                    <label class="control-label col-md-4" for="selectedDrHeader.driverName">Driver Name</label>
+                                    <div class="col-md-4">
+                                        <s:textfield id="driverName" name="selectedDrHeader.driverName" cssClass="form-control" value="%{selectedDrHeader.driverName}" required="true"  readonly="true" />
+                                    </div>
+                                </div>
+                                <div class="form-group" >
+                                    <label class="control-label col-md-4" for="selectedDrHeader.policeNo">No. Pol</label>
+                                    <div class="col-md-4">
+                                        <s:textfield id="policeNo" name="selectedDrHeader.policeNo" cssClass="form-control" value="%{selectedDrHeader.policeNo}" required="true"  readonly="true" />
+                                    </div>
+                                </div>
+                                <div class="form-group" >
+                                    <label class="control-label col-md-4" for="selectedDrHeader.rit">Ritase</label>
+                                    <div class="col-md-4">
+                                        <s:textfield id="rit" name="selectedDrHeader.rit" cssClass="form-control" value="%{selectedDrHeader.rit}" required="true"  readonly="true" />
+                                    </div>
+                                </div>
+                                <div class="form-group" >
+                                    <label class="control-label col-md-4" for="selectedDrHeader.drStatus">Status</label>
+                                    <div class="col-md-4">
+                                        <s:textfield id="drStatus" name="selectedDrHeader.drStatus" cssClass="form-control" value="%{selectedDrHeader.drStatus}" required="true"  readonly="true" />
+                                    </div>
+                                </div>
                             </div>
+                        
 <!--                            <div class="col-lg-6" >
                                 <div class="form-group" >
                                     <label class="control-label" for="selectedDrHeader.createdDate">Created Date</label>
@@ -79,7 +101,6 @@
                             </div>-->
                         </s:form>
                     </div>
-
                 </div>
                 <!-- /.panelsummary -->
             </div>
@@ -124,13 +145,13 @@
                                         <td>
                                             <s:property value="updatedDate" />
                                         </td>
-                                        <td class="text-center"><s:property value="id"/>
-                                            <a href="javascript:showReport('<s:property value="123"/>')" id="btnReport" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>D. Report</strong></a>
+                                        <td class="text-center">
+                                            <a href="javascript:showDeliveryReport('<s:property value="drHeaderId"/>')" id="btnReport" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>D. Report</strong></a>
                                             <a href="<s:url action="drLine" ><s:param name="DrHeaderNo"><s:property value="drHeaderId" /></s:param></s:url>" id="btnView" class="btn-sm btn-info"><i class="fa fa-eye"></i> <strong>View</strong></a>
-                                                    <a href="#" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
-                                                    <a href="#" id="btnDelete" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
-                                                </td>
-                                            </tr>
+                                            <a href="#" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
+                                            <a href="#" id="btnDelete" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
+                                        </td>
+                                    </tr>
                                 </s:iterator>
                         </tbody>
                     </table>
@@ -160,7 +181,10 @@
             </div>
     <!--end modal-->
     <script>
-
+        function showDeliveryReport(value){
+            var url="createDeliveryReport?drHeaderId="+value;
+            window.open(url,"_blank","directories=no, status=no,width=840, height=740,top=0,left=0");
+        }
         $(document).ready(function () {
             var table = $('#dataTables-drLine').DataTable({
                 rowReorder: {
@@ -236,6 +260,6 @@
 //                $('#btnDeleteDrHeader').show();
 
             }
+            
         });
-        
     </script>

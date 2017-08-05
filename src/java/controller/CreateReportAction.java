@@ -7,6 +7,8 @@ package controller;
 
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
+import dao.DrHeaderDAO;
+import model.DrHeaders;
 import static utils.ILoSConstants.DELIVERY_REPORT;
 
 /**
@@ -15,7 +17,9 @@ import static utils.ILoSConstants.DELIVERY_REPORT;
  */
 public class CreateReportAction extends ActionSupport {
     
-    private String someVariable;
+    private int drHeaderId;
+    private DrHeaders selectedDrHeader;
+    private final DrHeaderDAO drheader_dao = new DrHeaderDAO();
     
     @Override
     public String execute() throws Exception {
@@ -23,21 +27,39 @@ public class CreateReportAction extends ActionSupport {
         return SUCCESS;
     }
     
-    public static void main(String[] args){
-        
-    }
-    
     public String createDeliveryReport(){
-        System.out.println("---createDeliveryReport "+this.getSomeVariable());
+        System.out.println("---deliveryReport for "+this.getDrHeaderId());
+        this.setSelectedDrHeader(drheader_dao.getDrHeader(this.getDrHeaderId()));
         return DELIVERY_REPORT;
     }
 
-    public String getSomeVariable() {
-        return someVariable;
+    /**
+     * @return the drHeaderId
+     */
+    public int getDrHeaderId() {
+        return drHeaderId;
     }
 
-    public void setSomeVariable(String someVariable) {
-        this.someVariable = someVariable;
+    /**
+     * @param drHeaderId the drHeaderId to set
+     */
+    public void setDrHeaderId(int drHeaderId) {
+        this.drHeaderId = drHeaderId;
     }
+
+    /**
+     * @return the selectedDrHeader
+     */
+    public DrHeaders getSelectedDrHeader() {
+        return selectedDrHeader;
+    }
+
+    /**
+     * @param selectedDrHeader the selectedDrHeader to set
+     */
+    public void setSelectedDrHeader(DrHeaders selectedDrHeader) {
+        this.selectedDrHeader = selectedDrHeader;
+    }
+
     
 }

@@ -40,11 +40,11 @@
                         <div class="form-group">
                             <div class="col-sm-6"> 
                                 <label class="control-label" for="namaSupir">Nama Supir</label>
-                                <s:textfield id="namaSupir" name="namaSupir" cssClass="form-control" readonly="true"/>
+                                <s:textfield id="transactionNum" name="selectedDrHeader.driverName" cssClass="form-control " value="%{selectedDrHeader.driverName}" required="true"  readonly="true"/>
                             </div>
                             <div class="col-sm-6"> 
                                 <label class="control-label" for="noPol">No. Polisi</label>
-                                <s:textfield id="noPol" name="noPol" cssClass="form-control" readonly="true"/>
+                                <s:textfield id="transactionNum" name="selectedDrHeader.policeNo" cssClass="form-control " value="%{selectedDrHeader.policeNo}" required="true"  readonly="true"/>
                             </div>
                         </div>
                         <div class="form-group">
