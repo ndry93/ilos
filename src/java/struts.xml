@@ -43,10 +43,7 @@
             <result name="success" type="tiles">drLine.def</result>
         </action>
         <action name="createDrHeader" class="controller.CreateDrHeaderAction" > 
-            <result name="success" type="redirectAction">
-                <param name="DrHeaderNo">${selectedDrHeader.drHeaderId}</param> 
-                <param name="actionName">drLinesByDrNo</param> 
-            </result>
+           <result name="success" type="redirectAction">drHeader</result>
         </action>
         <action name="deleteDrHeader" class="controller.UpdateDrHeaderAction" method="deleteDrHeader" >  
             <result name="success" type="redirectAction">drHeader</result>

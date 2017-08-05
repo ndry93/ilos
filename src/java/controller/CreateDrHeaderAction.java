@@ -40,6 +40,8 @@ public class CreateDrHeaderAction extends ActionSupport {
             user.setUserName(session.get("username").toString());
 //            DrHeaders dr = new DrHeaders( this.selectedDrHeader, cust, user);
             DrHeaders dr = new DrHeaders();
+            dr = selectedDrHeader;
+            dr.setEnabled("Y");
             dr.setCreatedDate(new Date());
             dr.setDrStatus("Draft");
             drheader_dao.saveOrUpdateDrHeader(dr);
@@ -47,15 +49,36 @@ public class CreateDrHeaderAction extends ActionSupport {
             e.printStackTrace();
         }
         return SUCCESS;
+        
     }
-    
+
     /**
      * @return the users
      */
     public Users getUsers() {
         return users;
     }
-
+    public boolean validateDrHeaderForm(){
+        boolean result= true;
+        if(getSelectedDrHeader().getCustomers().getCustomerId()==-1)
+        {
+            result = false;
+        }
+        if(getSelectedDrHeader().getDriverName()=="")
+        {
+            result = false;
+        }
+        if(getSelectedDrHeader().getPoliceNo()=="")
+        {
+            result = false;
+        }
+        if(getSelectedDrHeader().getRit()== null)
+        {
+           this.selectedDrHeader.setRit(0);
+        }
+        
+        return result;
+    }
     /**
      * @param users the users to set
      */

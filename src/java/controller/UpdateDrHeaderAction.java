@@ -29,6 +29,9 @@ public class UpdateDrHeaderAction extends ActionSupport {
             System.out.println("controller.UpdateDrHeaderAction.execute()");
             DrHeaders drHeader = drheader_dao.getDrHeader(getSelectedDrHeader().getDrHeaderId());
             drHeader.setCustomers(getSelectedDrHeader().getCustomers());
+            drHeader.setDriverName(getSelectedDrHeader().getDriverName());
+            drHeader.setPoliceNo(getSelectedDrHeader().getPoliceNo());
+            drHeader.setRit(getSelectedDrHeader().getRit());
             drheader_dao.saveOrUpdateDrHeader(drHeader);
         } catch (Exception e) {
             e.printStackTrace();

@@ -67,7 +67,7 @@ public class DrHeaderDAO {
             DrHeaders drHeader = (DrHeaders) session.get(DrHeaders.class, drHeaderNo);
 //            drHeader.setUpdatedBy(LoginSession.get("username").toString());
             drHeader.setUpdatedDate(new Date());
-            drHeader.setEnabled("N");
+            drHeader.setIsDeleted("Y");
             session.saveOrUpdate(drHeader);
             transaction.commit();
         } catch (Exception e) {
@@ -85,7 +85,7 @@ public class DrHeaderDAO {
             session.beginTransaction();
          }
         try {
-            drHeaders = session.createQuery("from DrHeaders where enabled = 'Y'").list();
+            drHeaders = session.createQuery("from DrHeaders where enabled = 'Y' and isDeleted is null").list();
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -101,7 +101,7 @@ public class DrHeaderDAO {
             session.beginTransaction();
          }
         try {
-            drHeaders = (DrHeaders) session.createQuery("from DrHeaders where drHeaderId='" + drHeaderId + "' and enabled = 'Y'").uniqueResult();
+            drHeaders = (DrHeaders) session.createQuery("from DrHeaders where drHeaderId='" + drHeaderId + "' and enabled = 'Y' and isDeleted is null").uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
         }
