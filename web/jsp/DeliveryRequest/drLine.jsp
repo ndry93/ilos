@@ -222,8 +222,8 @@
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>-->
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     <script>
-        function createDeliveryReport(drId){
-            var url="createDrReport?drHeaderId=drId";
+        function createDeliveryReport(value){
+            var url="createDrReport?drId="+value;
             window.open(url,"_blank","directories=no, status=no,width=840, height=580,top=0,left=0");
         }
         $(document).ready(function () {

@@ -60,9 +60,8 @@
         <!-- End of Delivery Request Module -->
         
         <!-- Reporting -->
-        <action name="createDrReport" class="controller.CreateReportAction" method="createDeliveryReport" >  
-            <interceptor-ref name="defaultStack"/>
-            <result name="delivery-report" type="redirectAction">DeliveryRequest/deliveryReport.jsp</result>
+        <action name="createDrReport" class="controller.GenerateReportAction" method="generateDRReport">  
+            <result name="delivery-report" type="">DeliveryRequest/deliveryReport.jsp</result>
         </action>
         <!-- End of Reporting -->
     </package>
