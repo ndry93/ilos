@@ -95,10 +95,12 @@
                         <thead>
                             <tr>
                                 <th>Summary ID</th>
-                                <th>Driver Name</th>
-                                <th>No Police</th>
+                                <th>Destination Id</th>
+                                <th>Destination Name</th>
+                                <th>Amount</th>
+                                <th>Delivery Status</th>
                                 <th>Created Date</th>
-                                <th>Last Update</th>
+                                <th>Updated Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -109,10 +111,16 @@
                                         <s:property value="drLineId" />
                                     </td>
                                     <td>
-                                        <s:property value="driverName" />
+                                        <s:property value="destinations.destId" />
                                     </td>
                                     <td>
-                                        <s:property value="policeNo" />
+                                        <s:property value="destinations.destName" />
+                                    </td>
+                                     <td>
+                                        <s:property value="amount" />
+                                    </td>
+                                     <td>
+                                        <s:property value="deliveryStatus" />
                                     </td>
                                     <td>
                                         <s:property value="createdDate" />
@@ -120,11 +128,10 @@
                                     <td>
                                         <s:property value="updatedDate" />
                                     </td>
-                                    <td class="text-center"><s:property value="id"/>
+                                    <td class="text-center" style="min-width: 250px;"><s:property value="id"/>
                                         <a href="javascript:showReport('<s:property value="123"/>')" id="btnReport" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>D. Report</strong></a>
-                                        <a href="<s:url action="drLine" ><s:param name="DrHeaderNo"><s:property value="drHeaderId" /></s:param></s:url>" id="btnView" class="btn-sm btn-info"><i class="fa fa-eye"></i> <strong>View</strong></a>
-                                                <a href="#" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
-                                                <a href="#" id="btnDelete" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
+                                        <a href="#" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
+                                        <a href="#" id="btnDelete" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
                                             </td>
                                         </tr>
                             </s:iterator>
@@ -136,7 +143,7 @@
         <!-- /.row -->
     </div>
     <!-- /#page-wrapper -->
-    <!--modal-->
+    <!--modal delete dr header-->
     <div class="modal fade bs-example-modal-sm" id="DeleteDrHeaderModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
@@ -149,7 +156,48 @@
                 </div>
                 <div class="modal-footer">
                     <a href="<s:url action="deleteDrHeader" ><s:param name="selectedDrHeader.drHeaderId"><s:property value="%{selectedDrHeader.drHeaderId}" /></s:param></s:url>" id="btnYesDelete" class="btn btn-danger">Yes</a>
-                    <a href="#" class="btn btn-default" data-dismiss="modal">No</a>
+                            <a href="#" class="btn btn-default" data-dismiss="modal">No</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end modal-->
+            <!--modal new dr line-->
+            <div class="modal fade" id="NewDrLineModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Add New Destination</h4>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                    <s:form id="FormDrLine" action="" method="post" validate="true" cssClass="form-inline" > 
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-4" for="driverName">Driver Name</label>
+                                <div class="col-md-4">
+                                    <s:hidden name="DrHeaderNo" id="DrHeaderNo" value="%{DrHeaderNo}" />
+                                    <s:hidden id="selectedDrLine.drLineId" name="selectedDrLine.drLineId" cssClass="form-control " value="" />
+                                    <s:textfield id="selectedDrLine.driverName" name="selectedDrLine.driverName" cssClass="form-control " value="" required="true" />
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label class="control-label col-md-4" for="selectedDrLine.policeNo">Police No</label>
+                                <div class="col-md-4">
+                                    <s:textfield id="selectedDrLine.policeNo" name="selectedDrLine.policeNo" cssClass="form-control " value="" required="true"/>
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label class="control-label col-md-4" for="selectedDrLine.area">Area</label>
+                                <div class="col-md-4">
+                                    <%--<s:textfield id="selectedDrLine.area" name="selectedDrLine.area" cssClass="form-control " value="" required="true"/>--%>
+                                </div>
+                            </div>
+                        </div>
+                    </s:form>
                 </div>
             </div>
         </div>
@@ -209,11 +257,11 @@
 
             //onclick save button
             $('#btnSaveDrHeader').on('click', function () {
-                
+
                 if ($("#FormDrHeader").valid()) {   // test for validity
-                   $('#FormDrHeader').submit();
+                    $('#FormDrHeader').submit();
                 } else {
-                  
+
                 }
             });
 
@@ -247,6 +295,11 @@
                 //                $('#btnDeleteDrHeader').show();
 
             }
+            
+            //function for edit dr line
+             $('#btnEdit').on('click', function () {
+                $('#NewDrLineModal').modal('show');
+            });
         });
 
     </script>

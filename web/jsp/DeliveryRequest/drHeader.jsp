@@ -76,9 +76,9 @@
                                     <td>
                                         <s:property value="updatedDate" />
                                     </td>
-                                    <td class="text-center" style="min-width: 100px;"><s:property value="id"/>
-                                            <a href="<s:url action="drLinesByDrNo"><s:param name="DrHeaderId"><s:property value="drHeaderId" /></s:param><s:param name="actionName">viewDrHeader</s:param></s:url>" id="btnView" class="btn-sm btn-info"><strong>View</strong></a>
-                                            <a href="<s:url action="drLinesByDrNo" ><s:param name="DrHeaderId"><s:property value="drHeaderId" /></s:param><s:param name="actionName">editDrHeader</s:param></s:url>" id="btnEdit" class="btn-sm btn-success"><strong>Edit</strong></a>     
+                                    <td class="text-center" style="min-width: 130px;"><s:property value="id"/>
+                                        <a href="<s:url action="drLinesByDrNo"><s:param name="DrHeaderId"><s:property value="drHeaderId" /></s:param><s:param name="actionName">viewDrHeader</s:param></s:url>" id="btnView" class="btn-sm btn-info"><i class="fa fa-eye"></i> <strong>View</strong></a>
+                                        <a href="<s:url action="drLinesByDrNo" ><s:param name="DrHeaderId"><s:property value="drHeaderId" /></s:param><s:param name="actionName">editDrHeader</s:param></s:url>" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>     
                                             </td>
                                         </tr>
                             </s:iterator>

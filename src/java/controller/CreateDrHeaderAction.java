@@ -42,6 +42,7 @@ public class CreateDrHeaderAction extends ActionSupport {
             DrHeaders dr = new DrHeaders();
             dr = selectedDrHeader;
             dr.setEnabled("Y");
+            dr.setIsDeleted("N");
             dr.setCreatedDate(new Date());
             dr.setDrStatus("Draft");
             drheader_dao.saveOrUpdateDrHeader(dr);
