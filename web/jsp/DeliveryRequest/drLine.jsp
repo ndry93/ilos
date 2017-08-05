@@ -51,11 +51,19 @@
                                 <div class="form-group col-lg-12">
                                     <label class="control-label" for="selectedDrHeader.customers.customerName">Customer Name</label>
                                     <s:select id="selectCustName" name="selectedDrHeader.customers.customerName" cssClass="form-control pull-right" value="%{selectedDrHeader.customers.customerId}" list="listCustomer" listKey="customerId" listValue="customerName" headerKey="" headerValue="Select Customer Name" style="min-width:200px;" required="true"></s:select>
-                                    </div>
-                                    <div class="form-group col-lg-12">
-                                        <label class="control-label" for="selectedDrHeader.drStatus">Status</label>
-                                    <s:textfield  id="drStatus" name="selectedDrHeader.drStatus" cssClass="form-control pull-right" value="%{selectedDrHeader.drStatus}" readonly="true" style="min-width:200px;"/>
                                 </div>
+                                <div class="form-group col-lg-12">
+                                    <label class="control-label" for="selectedDrHeader.deliveryDateStart">Delivery Start Date</label>
+                                    <s:textfield  id="deliveryDateStart" name="selectedDrHeader.deliveryDateStart" cssClass="form-control pull-right" value="%{selectedDrHeader.deliveryDateStart}" readonly="true" style="min-width:200px;"/>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label class="control-label" for="totDeliveryAmt">Delivery Start Date</label>
+                                    <s:textfield  id="totDeliveryAmt" name="totDeliveryAmt" cssClass="form-control pull-right" value="%{totDeliveryAmt}" readonly="true" style="min-width:200px;"/>
+                                </div>
+                                
+                                
+                                
+                                
                             </div>
 
                             <div class="col-md-5">
@@ -70,6 +78,14 @@
                                 <div class="form-group col-lg-12">
                                     <label class="control-label" for="selectedDrHeader.drHeaderId">Ritase</label>
                                     <s:textfield type="number" id="rit" name="selectedDrHeader.rit" cssClass="form-control pull-right" value="%{selectedDrHeader.rit}" required="true"  readonly="true" style="min-width:200px;" />
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label class="control-label" for="selectedDrHeader.deliveryDateEnd">Delivery End Date</label>
+                                    <s:textfield  id="deliveryDateEnd" name="selectedDrHeader.deliveryDateEnd" cssClass="form-control pull-right" value="%{selectedDrHeader.deliveryDateEnd}" readonly="true" style="min-width:200px;"/>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label class="control-label" for="selectedDrHeader.drStatus">Status</label>
+                                    <s:textfield  id="drStatus" name="selectedDrHeader.drStatus" cssClass="form-control pull-right" value="%{selectedDrHeader.drStatus}" readonly="true" style="min-width:200px;"/>
                                 </div>
                             </div>
 
@@ -128,8 +144,8 @@
                                     <td>
                                         <s:property value="updatedDate" />
                                     </td>
-                                    <td class="text-center" style="min-width: 250px;"><s:property value="id"/>
-                                        <a href="javascript:showReport('<s:property value="123"/>')" id="btnReport" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>D. Report</strong></a>
+                                    <td class="text-center" style="min-width: 250px;">
+                                        <a href="javascript:createDeliveryReport('<s:property value="drHeaders.drHeaderId"/>')" id="btnReport" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>D. Report</strong></a>
                                         <a href="#" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
                                         <a href="#" id="btnDelete" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
                                             </td>
@@ -206,7 +222,10 @@
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>-->
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     <script>
-
+        function createDeliveryReport(drId){
+            var url="createDrReport?drHeaderId=drId";
+            window.open(url,"_blank","directories=no, status=no,width=840, height=580,top=0,left=0");
+        }
         $(document).ready(function () {
             var table = $('#dataTables-drLine').DataTable({
                 rowReorder: {

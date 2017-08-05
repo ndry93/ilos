@@ -50,23 +50,23 @@ Contributor(s):
     <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <mapping resource="model/Destinations.hbm.xml"/>
-    <mapping resource="model/UserRolesObjects.hbm.xml"/>
-    <mapping resource="model/Roles.hbm.xml"/>
-    <mapping resource="model/AuditUserRolesObjects.hbm.xml"/>
-    <mapping resource="model/Users.hbm.xml"/>
-    <mapping resource="model/AuditDestinations.hbm.xml"/>
-    <mapping resource="model/People.hbm.xml"/>
-    <mapping resource="model/AuditPeople.hbm.xml"/>
-    <mapping resource="model/AuditUsers.hbm.xml"/>
-    <mapping resource="model/Objects.hbm.xml"/>
-    <mapping resource="model/AuditRoles.hbm.xml"/>
-    <mapping resource="model/AuditObjects.hbm.xml"/>
-    <mapping resource="model/DrLines.hbm.xml"/>
     <mapping resource="model/AuditCustomers.hbm.xml"/>
-    <mapping resource="model/AuditDrLines.hbm.xml"/>
+    <mapping resource="model/Objects.hbm.xml"/>
     <mapping resource="model/AuditDrHeaders.hbm.xml"/>
+    <mapping resource="model/AuditRoles.hbm.xml"/>
+    <mapping resource="model/People.hbm.xml"/>
+    <mapping resource="model/Users.hbm.xml"/>
+    <mapping resource="model/AuditUserRolesObjects.hbm.xml"/>
     <mapping resource="model/Customers.hbm.xml"/>
     <mapping resource="model/DrHeaders.hbm.xml"/>
+    <mapping resource="model/AuditObjects.hbm.xml"/>
+    <mapping resource="model/DrLines.hbm.xml"/>
+    <mapping resource="model/AuditPeople.hbm.xml"/>
+    <mapping resource="model/Destinations.hbm.xml"/>
+    <mapping resource="model/Roles.hbm.xml"/>
+    <mapping resource="model/AuditDestinations.hbm.xml"/>
+    <mapping resource="model/AuditUsers.hbm.xml"/>
+    <mapping resource="model/UserRolesObjects.hbm.xml"/>
+    <mapping resource="model/AuditDrLines.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

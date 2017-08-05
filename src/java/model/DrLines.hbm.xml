@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Aug 2, 2017 11:44:37 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Aug 5, 2017 11:03:03 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.DrLines" table="dr_lines" catalog="oneoms" optimistic-lock="version">
         <id name="drLineId" type="java.lang.Integer">
@@ -19,6 +19,12 @@
         </property>
         <property name="amount" type="java.lang.Double">
             <column name="amount" precision="22" scale="0" />
+        </property>
+        <property name="bk24" type="string">
+            <column name="bk24" length="45" />
+        </property>
+        <property name="deliveryDate" type="timestamp">
+            <column name="delivery_date" length="19" />
         </property>
         <property name="createdBy" type="string">
             <column name="created_by" length="50" />

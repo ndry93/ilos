@@ -1,5 +1,5 @@
 package model;
-// Generated Aug 2, 2017 11:44:35 PM by Hibernate Tools 4.3.1
+// Generated Aug 5, 2017 11:03:01 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -19,6 +19,8 @@ public class DrHeaders  implements java.io.Serializable {
      private String driverName;
      private String policeNo;
      private Integer rit;
+     private Date deliveryDateStart;
+     private Date deliveryDateEnd;
      private String createdBy;
      private Date createdDate;
      private String updatedBy;
@@ -35,13 +37,15 @@ public class DrHeaders  implements java.io.Serializable {
         this.customers = customers;
         this.transactionNum = transactionNum;
     }
-    public DrHeaders(Customers customers, String transactionNum, String drStatus, String driverName, String policeNo, Integer rit, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, String isDeleted, Set drLineses) {
+    public DrHeaders(Customers customers, String transactionNum, String drStatus, String driverName, String policeNo, Integer rit, Date deliveryDateStart, Date deliveryDateEnd, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, String isDeleted, Set drLineses) {
        this.customers = customers;
        this.transactionNum = transactionNum;
        this.drStatus = drStatus;
        this.driverName = driverName;
        this.policeNo = policeNo;
        this.rit = rit;
+       this.deliveryDateStart = deliveryDateStart;
+       this.deliveryDateEnd = deliveryDateEnd;
        this.createdBy = createdBy;
        this.createdDate = createdDate;
        this.updatedBy = updatedBy;
@@ -99,6 +103,20 @@ public class DrHeaders  implements java.io.Serializable {
     
     public void setRit(Integer rit) {
         this.rit = rit;
+    }
+    public Date getDeliveryDateStart() {
+        return this.deliveryDateStart;
+    }
+    
+    public void setDeliveryDateStart(Date deliveryDateStart) {
+        this.deliveryDateStart = deliveryDateStart;
+    }
+    public Date getDeliveryDateEnd() {
+        return this.deliveryDateEnd;
+    }
+    
+    public void setDeliveryDateEnd(Date deliveryDateEnd) {
+        this.deliveryDateEnd = deliveryDateEnd;
     }
     public String getCreatedBy() {
         return this.createdBy;

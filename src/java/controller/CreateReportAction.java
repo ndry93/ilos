@@ -30,7 +30,7 @@ public class CreateReportAction extends ActionSupport {
     public String createDeliveryReport(){
         System.out.println("---deliveryReport for "+this.getDrHeaderId());
         this.setSelectedDrHeader(drheader_dao.getDrHeader(this.getDrHeaderId()));
-        return DELIVERY_REPORT;
+        return "A";
     }
 
     /**

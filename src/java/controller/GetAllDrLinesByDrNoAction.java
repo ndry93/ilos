@@ -33,6 +33,7 @@ public class GetAllDrLinesByDrNoAction extends ActionSupport{
     private final CustomerDAO customer_dao = new CustomerDAO();
     private final DrHeaderDAO drheader_dao = new DrHeaderDAO();
     private String actionName;
+    private double totDeliveryAmt;
 
     public GetAllDrLinesByDrNoAction() {
 
@@ -49,6 +50,10 @@ public class GetAllDrLinesByDrNoAction extends ActionSupport{
             System.out.println("--- c drLine is executed");
             setListCustomer(customer_dao.getAllCustomerList()); 
             System.out.println("--- d end drline");
+            
+            for(DrLines line : this.getDrLineList()){
+                this.setTotDeliveryAmt(this.getTotDeliveryAmt() + line.getAmount());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } 
@@ -123,6 +128,20 @@ public class GetAllDrLinesByDrNoAction extends ActionSupport{
      */
     public void setListCustomer(List<Customers> listCustomer) {
         this.listCustomer = listCustomer;
+    }
+
+    /**
+     * @return the totDeliveryAmt
+     */
+    public double getTotDeliveryAmt() {
+        return totDeliveryAmt;
+    }
+
+    /**
+     * @param totDeliveryAmt the totDeliveryAmt to set
+     */
+    public void setTotDeliveryAmt(double totDeliveryAmt) {
+        this.totDeliveryAmt = totDeliveryAmt;
     }
 
 }

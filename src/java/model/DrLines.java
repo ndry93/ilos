@@ -1,5 +1,5 @@
 package model;
-// Generated Aug 2, 2017 11:44:35 PM by Hibernate Tools 4.3.1
+// Generated Aug 5, 2017 11:03:01 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,6 +15,8 @@ public class DrLines  implements java.io.Serializable {
      private DrHeaders drHeaders;
      private String deliveryStatus;
      private Double amount;
+     private String bk24;
+     private Date deliveryDate;
      private String createdBy;
      private Date createdDate;
      private String updatedBy;
@@ -29,11 +31,13 @@ public class DrLines  implements java.io.Serializable {
     public DrLines(DrHeaders drHeaders) {
         this.drHeaders = drHeaders;
     }
-    public DrLines(Destinations destinations, DrHeaders drHeaders, String deliveryStatus, Double amount, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, String isDeleted) {
+    public DrLines(Destinations destinations, DrHeaders drHeaders, String deliveryStatus, Double amount, String bk24, Date deliveryDate, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, String isDeleted) {
        this.destinations = destinations;
        this.drHeaders = drHeaders;
        this.deliveryStatus = deliveryStatus;
        this.amount = amount;
+       this.bk24 = bk24;
+       this.deliveryDate = deliveryDate;
        this.createdBy = createdBy;
        this.createdDate = createdDate;
        this.updatedBy = updatedBy;
@@ -76,6 +80,20 @@ public class DrLines  implements java.io.Serializable {
     
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+    public String getBk24() {
+        return this.bk24;
+    }
+    
+    public void setBk24(String bk24) {
+        this.bk24 = bk24;
+    }
+    public Date getDeliveryDate() {
+        return this.deliveryDate;
+    }
+    
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
     }
     public String getCreatedBy() {
         return this.createdBy;
