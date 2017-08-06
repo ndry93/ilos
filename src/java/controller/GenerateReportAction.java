@@ -7,6 +7,7 @@ package controller;
 
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DrHeaderDAO;
+import dao.DrLineDAO;
 import model.DrHeaders;
 import static utils.ILoSConstants.DELIVERY_REPORT;
 
@@ -20,7 +21,7 @@ public class GenerateReportAction  extends ActionSupport {
     private int drId;
     private DrHeaders selectedDrHeader;
     private final DrHeaderDAO drheader_dao = new DrHeaderDAO();
-    
+    private final DrLineDAO drline_dao = new DrLineDAO();
     
     public String execute() throws Exception {
         System.out.println("---CreateReportAction");

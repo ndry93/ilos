@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Aug 5, 2017 11:03:03 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Aug 6, 2017 11:25:36 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.DrHeaders" table="dr_headers" catalog="oneoms" optimistic-lock="version">
         <id name="drHeaderId" type="java.lang.Integer">
@@ -31,6 +31,18 @@
         </property>
         <property name="deliveryDateEnd" type="timestamp">
             <column name="delivery_date_end" length="19" />
+        </property>
+        <property name="kmStart" type="string">
+            <column name="km_start" length="45" />
+        </property>
+        <property name="kmEnd" type="string">
+            <column name="km_end" length="45" />
+        </property>
+        <property name="kmTotal" type="string">
+            <column name="km_total" length="45" />
+        </property>
+        <property name="areaId" type="java.lang.Integer">
+            <column name="area_id" />
         </property>
         <property name="createdBy" type="string">
             <column name="created_by" length="50" />

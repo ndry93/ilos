@@ -1,5 +1,5 @@
 package model;
-// Generated Aug 5, 2017 11:03:01 PM by Hibernate Tools 4.3.1
+// Generated Aug 6, 2017 11:25:33 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -17,6 +17,10 @@ public class DrLines  implements java.io.Serializable {
      private Double amount;
      private String bk24;
      private Date deliveryDate;
+     private Date arrivalDate;
+     private String arrivalKm;
+     private Date leavingDate;
+     private String description;
      private String createdBy;
      private Date createdDate;
      private String updatedBy;
@@ -31,13 +35,17 @@ public class DrLines  implements java.io.Serializable {
     public DrLines(DrHeaders drHeaders) {
         this.drHeaders = drHeaders;
     }
-    public DrLines(Destinations destinations, DrHeaders drHeaders, String deliveryStatus, Double amount, String bk24, Date deliveryDate, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, String isDeleted) {
+    public DrLines(Destinations destinations, DrHeaders drHeaders, String deliveryStatus, Double amount, String bk24, Date deliveryDate, Date arrivalDate, String arrivalKm, Date leavingDate, String description, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, String isDeleted) {
        this.destinations = destinations;
        this.drHeaders = drHeaders;
        this.deliveryStatus = deliveryStatus;
        this.amount = amount;
        this.bk24 = bk24;
        this.deliveryDate = deliveryDate;
+       this.arrivalDate = arrivalDate;
+       this.arrivalKm = arrivalKm;
+       this.leavingDate = leavingDate;
+       this.description = description;
        this.createdBy = createdBy;
        this.createdDate = createdDate;
        this.updatedBy = updatedBy;
@@ -94,6 +102,34 @@ public class DrLines  implements java.io.Serializable {
     
     public void setDeliveryDate(Date deliveryDate) {
         this.deliveryDate = deliveryDate;
+    }
+    public Date getArrivalDate() {
+        return this.arrivalDate;
+    }
+    
+    public void setArrivalDate(Date arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+    public String getArrivalKm() {
+        return this.arrivalKm;
+    }
+    
+    public void setArrivalKm(String arrivalKm) {
+        this.arrivalKm = arrivalKm;
+    }
+    public Date getLeavingDate() {
+        return this.leavingDate;
+    }
+    
+    public void setLeavingDate(Date leavingDate) {
+        this.leavingDate = leavingDate;
+    }
+    public String getDescription() {
+        return this.description;
+    }
+    
+    public void setDescription(String description) {
+        this.description = description;
     }
     public String getCreatedBy() {
         return this.createdBy;

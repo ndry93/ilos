@@ -1,5 +1,5 @@
 package model;
-// Generated Aug 5, 2017 11:03:01 PM by Hibernate Tools 4.3.1
+// Generated Aug 6, 2017 11:25:33 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -21,6 +21,10 @@ public class DrHeaders  implements java.io.Serializable {
      private Integer rit;
      private Date deliveryDateStart;
      private Date deliveryDateEnd;
+     private String kmStart;
+     private String kmEnd;
+     private String kmTotal;
+     private Integer areaId;
      private String createdBy;
      private Date createdDate;
      private String updatedBy;
@@ -37,7 +41,7 @@ public class DrHeaders  implements java.io.Serializable {
         this.customers = customers;
         this.transactionNum = transactionNum;
     }
-    public DrHeaders(Customers customers, String transactionNum, String drStatus, String driverName, String policeNo, Integer rit, Date deliveryDateStart, Date deliveryDateEnd, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, String isDeleted, Set drLineses) {
+    public DrHeaders(Customers customers, String transactionNum, String drStatus, String driverName, String policeNo, Integer rit, Date deliveryDateStart, Date deliveryDateEnd, String kmStart, String kmEnd, String kmTotal, Integer areaId, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, String isDeleted, Set drLineses) {
        this.customers = customers;
        this.transactionNum = transactionNum;
        this.drStatus = drStatus;
@@ -46,6 +50,10 @@ public class DrHeaders  implements java.io.Serializable {
        this.rit = rit;
        this.deliveryDateStart = deliveryDateStart;
        this.deliveryDateEnd = deliveryDateEnd;
+       this.kmStart = kmStart;
+       this.kmEnd = kmEnd;
+       this.kmTotal = kmTotal;
+       this.areaId = areaId;
        this.createdBy = createdBy;
        this.createdDate = createdDate;
        this.updatedBy = updatedBy;
@@ -117,6 +125,34 @@ public class DrHeaders  implements java.io.Serializable {
     
     public void setDeliveryDateEnd(Date deliveryDateEnd) {
         this.deliveryDateEnd = deliveryDateEnd;
+    }
+    public String getKmStart() {
+        return this.kmStart;
+    }
+    
+    public void setKmStart(String kmStart) {
+        this.kmStart = kmStart;
+    }
+    public String getKmEnd() {
+        return this.kmEnd;
+    }
+    
+    public void setKmEnd(String kmEnd) {
+        this.kmEnd = kmEnd;
+    }
+    public String getKmTotal() {
+        return this.kmTotal;
+    }
+    
+    public void setKmTotal(String kmTotal) {
+        this.kmTotal = kmTotal;
+    }
+    public Integer getAreaId() {
+        return this.areaId;
+    }
+    
+    public void setAreaId(Integer areaId) {
+        this.areaId = areaId;
     }
     public String getCreatedBy() {
         return this.createdBy;

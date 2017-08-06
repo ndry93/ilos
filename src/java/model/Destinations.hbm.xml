@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Aug 5, 2017 11:03:03 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Aug 6, 2017 11:25:36 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.Destinations" table="destinations" catalog="oneoms" optimistic-lock="version">
         <id name="destId" type="java.lang.Integer">
@@ -16,6 +16,9 @@
         </property>
         <property name="destType" type="string">
             <column name="dest_type" length="45" />
+        </property>
+        <property name="destCode" type="string">
+            <column name="dest_code" length="45" />
         </property>
         <property name="areaId" type="java.lang.Integer">
             <column name="area_id" />

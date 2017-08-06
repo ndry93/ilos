@@ -102,9 +102,60 @@
                                     <s:textfield id="noPol" name="noPol" cssClass="form-control" readonly="true"/>
                             </div>
                         </div>
-                    </form>
-                    
+                    </form>  
                 </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table width="100%" class="table table-striped table-bordered table-hover small" id="dataTables-drHeader">
+                        <thead>
+                            <tr>
+                                <th>Inisial Toko</th>
+                                <th>Jam tiba di toko</th>
+                                <th>KM tiba di toko</th>
+                                <th>Jam berangkat dari toko</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <s:iterator value="DrHeaderList">
+                            <tr>
+                                <td id="transactionNum">
+                                    <s:property value="transactionNum" />
+                                </td>
+                                <td>
+                                    <s:property value="customers.customerId" />
+                                </td>
+                                <td>
+                                    <s:property value="customers.customerName" />
+                                </td>
+                                <td>
+                                    <s:property value="driverName" />
+                                </td>
+                                <td>
+                                    <s:property value="policeNo" />
+                                </td>
+                                <td>
+                                    <s:property value="rit" />
+                                </td>
+                                <td>
+                                    <s:property value="drStatus" />
+                                </td>
+                                <td>
+                                    <s:property value="createdDate" />
+                                </td>
+                                <td>
+                                    <s:property value="updatedDate" />
+                                </td>
+                                <td class="text-center" style="min-width: 130px;"><s:property value="id"/>
+                                    <a href="<s:url action="drLinesByDrNo"><s:param name="DrHeaderId"><s:property value="drHeaderId" /></s:param><s:param name="actionName">viewDrHeader</s:param></s:url>" id="btnView" class="btn-sm btn-info"><i class="fa fa-eye"></i> <strong>View</strong></a>
+                                    <a href="<s:url action="drLinesByDrNo" ><s:param name="DrHeaderId"><s:property value="drHeaderId" /></s:param><s:param name="actionName">editDrHeader</s:param></s:url>" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>     
+                                </td>
+                            </tr>
+                        </s:iterator>
+                    </tbody>
+                </table>
             </div>
         </div>
         <!-- jQuery -->

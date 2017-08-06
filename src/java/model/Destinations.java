@@ -1,5 +1,5 @@
 package model;
-// Generated Aug 5, 2017 11:03:01 PM by Hibernate Tools 4.3.1
+// Generated Aug 6, 2017 11:25:33 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,6 +16,7 @@ public class Destinations  implements java.io.Serializable {
      private String destName;
      private String destAddr;
      private String destType;
+     private String destCode;
      private Integer areaId;
      private String createdBy;
      private Date createdDate;
@@ -28,10 +29,11 @@ public class Destinations  implements java.io.Serializable {
     public Destinations() {
     }
 
-    public Destinations(String destName, String destAddr, String destType, Integer areaId, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, String isDeleted, Set drLineses) {
+    public Destinations(String destName, String destAddr, String destType, String destCode, Integer areaId, String createdBy, Date createdDate, String updatedBy, Date updatedDate, String enabled, String isDeleted, Set drLineses) {
        this.destName = destName;
        this.destAddr = destAddr;
        this.destType = destType;
+       this.destCode = destCode;
        this.areaId = areaId;
        this.createdBy = createdBy;
        this.createdDate = createdDate;
@@ -69,6 +71,13 @@ public class Destinations  implements java.io.Serializable {
     
     public void setDestType(String destType) {
         this.destType = destType;
+    }
+    public String getDestCode() {
+        return this.destCode;
+    }
+    
+    public void setDestCode(String destCode) {
+        this.destCode = destCode;
     }
     public Integer getAreaId() {
         return this.areaId;
