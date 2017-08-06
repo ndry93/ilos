@@ -25,15 +25,12 @@ import utils.HibernateUtil;
 public class GetAllDrLinesByDrNoAction extends ActionSupport{
 
     private static final long serialVersionUID = 3L;
-    private List<DrLines> DrLineList = null;
     private int DrHeaderId;
     private List<Customers> listCustomer;
     private DrHeaders selectedDrHeader;
-    private final DrLineDAO drline_dao = new DrLineDAO();
     private final CustomerDAO customer_dao = new CustomerDAO();
     private final DrHeaderDAO drheader_dao = new DrHeaderDAO();
     private String actionName;
-    private double totDeliveryAmt;
 
     public GetAllDrLinesByDrNoAction() {
 
@@ -45,33 +42,15 @@ public class GetAllDrLinesByDrNoAction extends ActionSupport{
             //first method will call beginTransaction, the rest will use getTransaction
             System.out.println("--- a drLine is executed");
             setSelectedDrHeader(drheader_dao.getDrHeader(getDrHeaderId()));
-            System.out.println("--- b drLine is executed ");
-            setDrLineList(drline_dao.listDrLineByDrHeaderId(getDrHeaderId()));
+//            System.out.println("--- b drLine is executed ");
+//            setDrLineList(drline_dao.listDrLineByDrHeaderId(getDrHeaderId()));
             System.out.println("--- c drLine is executed");
             setListCustomer(customer_dao.getAllCustomerList()); 
             System.out.println("--- d end drline");
-            
-            for(DrLines line : this.getDrLineList()){
-                this.setTotDeliveryAmt(this.getTotDeliveryAmt() + line.getAmount());
-            }
         } catch (Exception e) {
             e.printStackTrace();
         } 
         return SUCCESS;
-    }
-
-    /**
-     * @return the DrLineList
-     */
-    public List<DrLines> getDrLineList() {
-        return DrLineList;
-    }
-
-    /**
-     * @param DrLineList the DrLineList to set
-     */
-    public void setDrLineList(List<DrLines> DrLineList) {
-        this.DrLineList = DrLineList;
     }
 
     /**
@@ -128,20 +107,6 @@ public class GetAllDrLinesByDrNoAction extends ActionSupport{
      */
     public void setListCustomer(List<Customers> listCustomer) {
         this.listCustomer = listCustomer;
-    }
-
-    /**
-     * @return the totDeliveryAmt
-     */
-    public double getTotDeliveryAmt() {
-        return totDeliveryAmt;
-    }
-
-    /**
-     * @param totDeliveryAmt the totDeliveryAmt to set
-     */
-    public void setTotDeliveryAmt(double totDeliveryAmt) {
-        this.totDeliveryAmt = totDeliveryAmt;
     }
 
 }

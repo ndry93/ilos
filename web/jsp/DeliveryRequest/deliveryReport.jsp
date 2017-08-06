@@ -50,22 +50,22 @@
                         <div class="form-group">
                             
                             <div class="col-sm-6"> 
-                                <label class="control-label" for="noPol">Rute yang ditentukan</label>
-                                <s:textfield id="noPol" name="noPol" cssClass="form-control" readonly="true"/>
+                                <label class="control-label" for="selectedDrHeader.areaId">Rute yang ditentukan</label>
+                                <s:textfield id="areaId" name="selectedDrHeader.areaId" cssClass="form-control " value="%{selectedDrHeader.areaId}" required="true"  readonly="true"/>
                             </div>
                             <div class="col-sm-6"> 
-                                <label class="control-label" for="noPol">Tanggal Pengiriman</label>
-                                <s:textfield id="noPol" name="noPol" cssClass="form-control" readonly="true"/>
+                                <label class="control-label" for="selectedDrHeader.deliveryDateStart">Tanggal Pengiriman</label>
+                                <s:textfield id="deliveryDateStart" name="selectedDrHeader.deliveryDateStart" cssClass="form-control " value="%{selectedDrHeader.deliveryDateStart}" required="true"  readonly="true"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-6"> 
-                                <label class="control-label" for="noPol">KM Berdasarkan Paket</label>
-                                <s:textfield id="noPol" name="noPol" cssClass="form-control" readonly="true"/>
+                                <label class="control-label" for="kmPkg">KM Berdasarkan Paket</label>
+                                <s:textfield id="kmPkg" name="kmPkg" cssClass="form-control " value="" required="true"  readonly="true"/>
                             </div>
                             <div class="col-sm-6"> 
-                                <label class="control-label" for="ritase">Ritase</label>
-                                <s:textfield id="ritase" name="ritase" cssClass="form-control" readonly="true"/>
+                                <label class="control-label" for="selectedDrHeader.rit">Ritase</label>
+                                <s:textfield id="rit" name="selectedDrHeader.rit" cssClass="form-control " value="%{selectedDrHeader.rit}" required="true"  readonly="true"/>
                             </div>
                         </div>
                     </form>
@@ -74,32 +74,32 @@
                     <form class="form-horizontal">
                         <div class="form-group">
                             <div class="col-sm-6">
-                                <label class="control-label" for="noPol">Jam Berangkat</label>
-                                    <s:textfield id="noPol" name="noPol" cssClass="form-control" readonly="true"/>
+                                <label class="control-label" for="selectedDrHeader.deliveryDateStart">Jam Berangkat</label>
+                                    <s:textfield id="deliveryDateStart" name="selectedDrHeader.deliveryDateStart" cssClass="form-control " value="%{selectedDrHeader.deliveryDateStart}" required="true"  readonly="true"/>
                             </div>
                             <div class="col-sm-6">
-                                <label class="control-label" for="noPol">Jam Tiba di DC</label>
-                                    <s:textfield id="noPol" name="noPol" cssClass="form-control" readonly="true"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-6">
-                                <label class="control-label" for="noPol">KM Awal</label>
-                                    <s:textfield id="noPol" name="noPol" cssClass="form-control" readonly="true"/>
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="control-label" for="noPol">KM Akhir</label>
-                                    <s:textfield id="noPol" name="noPol" cssClass="form-control" readonly="true"/>
+                                <label class="control-label" for="selectedDrHeader.deliveryDateEnd">Jam Tiba di DC</label>
+                                    <s:textfield id="deliveryDateEnd" name="selectedDrHeader.deliveryDateEnd" cssClass="form-control " value="%{selectedDrHeader.deliveryDateEnd}" required="true"  readonly="true"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-6">
-                                <label class="control-label" for="noPol">Total KM Ril</label>
-                                    <s:textfield id="noPol" name="noPol" cssClass="form-control" readonly="true"/>
+                                <label class="control-label" for="selectedDrHeader.kmStart">KM Awal</label>
+                                    <s:textfield id="kmStart" name="selectedDrHeader.kmStart" cssClass="form-control " value="%{selectedDrHeader.kmStart}" required="true"  readonly="true"/>
                             </div>
                             <div class="col-sm-6">
-                                <label class="control-label" for="noPol">Total KM Paket</label>
-                                    <s:textfield id="noPol" name="noPol" cssClass="form-control" readonly="true"/>
+                                <label class="control-label" for="selectedDrHeader.kmEnd">KM Akhir</label>
+                                    <s:textfield id="kmEnd" name="selectedDrHeader.kmEnd" cssClass="form-control " value="%{selectedDrHeader.kmEnd}" required="true"  readonly="true"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label" for="selectedDrHeader.kmTotal">Total KM Ril</label>
+                                    <s:textfield id="kmTotal" name="selectedDrHeader.kmTotal" cssClass="form-control " value="%{selectedDrHeader.kmTotal}" required="true"  readonly="true"/>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label" for="kmPkgTtl">Total KM Paket</label>
+                                    <s:textfield id="kmPkgTtl" name="kmPkgTtl" cssClass="form-control" readonly="true"/>
                             </div>
                         </div>
                     </form>  
@@ -108,7 +108,7 @@
             <br>
             <div class="row">
                 <div class="col-sm-12">
-                    <table width="100%" class="table table-striped table-bordered table-hover small" id="dataTables-drHeader">
+                    <table width="100%" class="table table-striped table-bordered table-hover small" id="report-line-tbl">
                         <thead>
                             <tr>
                                 <th>Inisial Toko</th>
@@ -119,43 +119,45 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <s:iterator value="DrHeaderList">
+                            <s:iterator value="selectedDrHeader.drLineses" >
                             <tr>
-                                <td id="transactionNum">
-                                    <s:property value="transactionNum" />
+                                <td>
+                                    <s:property value="destinations.destCode" />
                                 </td>
                                 <td>
-                                    <s:property value="customers.customerId" />
+                                    <s:property value="arrivalDate" />
                                 </td>
                                 <td>
-                                    <s:property value="customers.customerName" />
+                                    <s:property value="arrivalKm" />
                                 </td>
                                 <td>
-                                    <s:property value="driverName" />
+                                    <s:property value="leavingDate" />
                                 </td>
                                 <td>
-                                    <s:property value="policeNo" />
-                                </td>
-                                <td>
-                                    <s:property value="rit" />
-                                </td>
-                                <td>
-                                    <s:property value="drStatus" />
-                                </td>
-                                <td>
-                                    <s:property value="createdDate" />
-                                </td>
-                                <td>
-                                    <s:property value="updatedDate" />
-                                </td>
-                                <td class="text-center" style="min-width: 130px;"><s:property value="id"/>
-                                    <a href="<s:url action="drLinesByDrNo"><s:param name="DrHeaderId"><s:property value="drHeaderId" /></s:param><s:param name="actionName">viewDrHeader</s:param></s:url>" id="btnView" class="btn-sm btn-info"><i class="fa fa-eye"></i> <strong>View</strong></a>
-                                    <a href="<s:url action="drLinesByDrNo" ><s:param name="DrHeaderId"><s:property value="drHeaderId" /></s:param><s:param name="actionName">editDrHeader</s:param></s:url>" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>     
+                                    <s:property value="description" />
                                 </td>
                             </tr>
                         </s:iterator>
                     </tbody>
                 </table>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label" for="selectedDrHeader.deliveryDateStart">Delivery Start Date</label>
+                        <s:textfield  id="deliveryDateStart" name="selectedDrHeader.deliveryDateStart" cssClass="form-control pull-right" value="%{selectedDrHeader.deliveryDateStart}" readonly="true" style="min-width:200px;"/>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-sm-12">
+                </div>
             </div>
         </div>
         <!-- jQuery -->

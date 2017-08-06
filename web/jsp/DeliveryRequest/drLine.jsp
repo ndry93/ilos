@@ -57,13 +57,13 @@
                                     <s:textfield  id="deliveryDateStart" name="selectedDrHeader.deliveryDateStart" cssClass="form-control pull-right" value="%{selectedDrHeader.deliveryDateStart}" readonly="true" style="min-width:200px;"/>
                                 </div>
                                 <div class="form-group col-lg-12">
+                                    <s:set var="totDeliveryAmt" value="0"/>
+                                    <s:iterator value="selectedDrHeader.drLineses">
+                                        <s:set var="totDeliveryAmt" value="%{#totDeliveryAmt + amount}"/>         
+                                    </s:iterator>
                                     <label class="control-label" for="totDeliveryAmt">Delivery Start Date</label>
                                     <s:textfield  id="totDeliveryAmt" name="totDeliveryAmt" cssClass="form-control pull-right" value="%{totDeliveryAmt}" readonly="true" style="min-width:200px;"/>
                                 </div>
-                                
-                                
-                                
-                                
                             </div>
 
                             <div class="col-md-5">
@@ -121,7 +121,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <s:iterator value="DrLineList">
+                            <s:iterator value="selectedDrHeader.drLineses">
                                 <tr>
                                     <td>
                                         <s:property value="drLineId" />
@@ -145,7 +145,7 @@
                                         <s:property value="updatedDate" />
                                     </td>
                                     <td class="text-center" style="min-width: 250px;">
-                                        <a href="javascript:createDeliveryReport('<s:property value="drHeaders.drHeaderId"/>')" id="btnReport" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>D. Report</strong></a>
+                                        <a href="javascript:createDeliveryReport('<s:property value="drHeaders.drHeaderId"/>')" id="btnReport" class="btn-sm btn-default"><i class="fa fa-book"></i> <strong>DR Report</strong></a>
                                         <a href="#" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
                                         <a href="#" id="btnDelete" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
                                             </td>
@@ -224,7 +224,7 @@
     <script>
         function createDeliveryReport(value){
             var url="createDrReport?drId="+value;
-            window.open(url,"_blank","directories=no, status=no,width=840, height=580,top=0,left=0");
+            window.open(url,"_blank","directories=no, status=no,width=800, height=580,top=0,left=0");
         }
         $(document).ready(function () {
             var table = $('#dataTables-drLine').DataTable({
