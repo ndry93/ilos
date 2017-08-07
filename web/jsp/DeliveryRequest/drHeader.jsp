@@ -35,11 +35,17 @@
                                 <thead>
                                     <tr>
                                         <th>Transaction No</th>
-                                        <th>Customer ID</th>
+                                        <!--<th>Customer ID</th>-->
                                         <th>Customer Name</th>
                                         <th>Driver Name</th>
                                         <th>Police No</th>
                                         <th>Ritase</th>
+                                        <th>Delivery Start Date</th>
+<!--                                        <th>Delivery End Date</th>
+                                        <th>KM Start</th>
+                                        <th>KM End</th>-->
+                                        <!--<th>Total KM</th>-->
+                                        <th>Total Amount</th>
                                         <th>Status</th>
                                         <th>Created Date</th>
                                         <th>Updated Date</th>
@@ -52,9 +58,9 @@
                                     <td id="transactionNum">
                                         <s:property value="transactionNum" />
                                     </td>
-                                    <td>
+<!--                                    <td>
                                         <s:property value="customers.customerId" />
-                                    </td>
+                                    </td>-->
                                     <td>
                                         <s:property value="customers.customerName" />
                                     </td>
@@ -68,6 +74,24 @@
                                         <s:property value="rit" />
                                     </td>
                                     <td>
+                                        <s:property value="deliveryDateStart" />
+                                    </td>
+<!--                                    <td>
+                                        <s:property value="deliveryDateEnd" />
+                                    </td>
+                                    <td>
+                                        <s:property value="kmStart" />
+                                    </td>
+                                    <td>
+                                        <s:property value="kmEnd" />
+                                    </td>-->
+<!--                                    <td>
+                                        <s:property value="kmTotal" />
+                                    </td>-->
+                                    <td>
+                                        <s:property value="kmTotal" />
+                                    </td>
+                                     <td>
                                         <s:property value="drStatus" />
                                     </td>
                                     <td>

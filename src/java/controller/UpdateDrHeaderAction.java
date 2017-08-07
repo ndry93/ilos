@@ -32,6 +32,11 @@ public class UpdateDrHeaderAction extends ActionSupport {
             drHeader.setDriverName(getSelectedDrHeader().getDriverName());
             drHeader.setPoliceNo(getSelectedDrHeader().getPoliceNo());
             drHeader.setRit(getSelectedDrHeader().getRit());
+            drHeader.setDeliveryDateStart(getSelectedDrHeader().getDeliveryDateStart());
+            drHeader.setDeliveryDateEnd(getSelectedDrHeader().getDeliveryDateEnd());
+            drHeader.setKmStart(getSelectedDrHeader().getKmStart());
+            drHeader.setKmEnd(getSelectedDrHeader().getKmEnd());
+            drHeader.setAreaId(getSelectedDrHeader().getAreaId());
             drheader_dao.saveOrUpdateDrHeader(drHeader);
         } catch (Exception e) {
             e.printStackTrace();

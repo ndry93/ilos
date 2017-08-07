@@ -8,6 +8,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
+
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
@@ -37,56 +38,71 @@
 
                         <s:form id="FormDrHeader" action="" method="post" validate="true" cssClass="form-inline"> 
                             <s:hidden name="actionName" id="actionName" value="%{actionName}" />
-                            <div class="col-md-5">
+                            <div class="col-md-5 col-xs-12 col-md-5">
                                 <s:actionerror cssClass="alert alert-warning"/>
-                                <div class="form-group col-lg-12">
+                                <div class="form-group col-lg-12 col-xs-12">
                                     <label class="control-label" for="selectedDrHeader.drHeaderId">Transaction ID</label>
                                     <s:hidden id="drHeaderId" name="selectedDrHeader.drHeaderId" cssClass="form-control " value="%{selectedDrHeader.drHeaderId}"/>
-                                    <s:textfield id="transactionNum" name="selectedDrHeader.transactionNum" cssClass="form-control pull-right" value="%{selectedDrHeader.transactionNum}" required="true"  readonly="true" style="min-width:200px;"/>
+                                    <s:textfield id="transactionNum" name="selectedDrHeader.transactionNum" cssClass="form-control pull-right" value="%{selectedDrHeader.transactionNum}" required="true"  readonly="true" style="width:200px;"/>
                                 </div>
-                                <div class="form-group col-lg-12" >
+                                <div class="form-group col-lg-12 col-xs-12" >
                                     <label class="control-label" for="selectedDrHeader.customers.customerId">Customer ID</label>
-                                    <s:select id="selectCustId" name="selectedDrHeader.customers.customerId" cssClass="form-control pull-right" value="%{selectedDrHeader.customers.customerId}" list="listCustomer" listKey="customerId" listValue="customerId" headerKey="" headerValue="Select Customer Id" style="min-width:200px;" required="true"/>
+                                    <s:select id="selectCustId" name="selectedDrHeader.customers.customerId" cssClass="form-control pull-right" value="%{selectedDrHeader.customers.customerId}" list="listCustomer" listKey="customerId" listValue="customerId" headerKey="" headerValue="Select Customer Id" style="width:200px;" required="true"/>
                                 </div>
-                                <div class="form-group col-lg-12">
+                                <div class="form-group col-lg-12 col-xs-12">
                                     <label class="control-label" for="selectedDrHeader.customers.customerName">Customer Name</label>
-                                    <s:select id="selectCustName" name="selectedDrHeader.customers.customerName" cssClass="form-control pull-right" value="%{selectedDrHeader.customers.customerId}" list="listCustomer" listKey="customerId" listValue="customerName" headerKey="" headerValue="Select Customer Name" style="min-width:200px;" required="true"></s:select>
+                                    <s:select id="selectCustName" name="selectedDrHeader.customers.customerName" cssClass="form-control pull-right" value="%{selectedDrHeader.customers.customerId}" list="listCustomer" listKey="customerId" listValue="customerName" headerKey="" headerValue="Select Customer Name" style="width:200px;" required="true"></s:select>
+                                    </div>
+                                    <div class="form-group col-lg-12 col-xs-12">
+                                        <label class="control-label" for="selectedDrHeader.deliveryDateStart">Delivery Start Date</label>
+                                    <s:textfield type="datetime-local" id="deliveryDateStart" name="deliveryDateStart" cssClass="form-control pull-right" value="%{selectedDrHeader.deliveryDateStart}" readonly="true" style="width:200px;"/>
                                 </div>
-                                <div class="form-group col-lg-12">
-                                    <label class="control-label" for="selectedDrHeader.deliveryDateStart">Delivery Start Date</label>
-                                    <s:textfield  id="deliveryDateStart" name="selectedDrHeader.deliveryDateStart" cssClass="form-control pull-right" value="%{selectedDrHeader.deliveryDateStart}" readonly="true" style="min-width:200px;"/>
+                                <div class="form-group col-lg-12 col-xs-12">
+                                    <label class="control-label" for="selectedDrHeader.deliveryDateEnd">Delivery End Date</label>
+                                    <s:textfield id="deliveryDateEnd" type="datetime-local" name="deliveryDateEnd" cssClass="form-control pull-right" value="%{selectedDrHeader.deliveryDateEnd}" readonly="true" style="width:200px;"/>
                                 </div>
-                                <div class="form-group col-lg-12">
+                                <div class="form-group col-lg-12 col-xs-12" id="DrHeaderAmount">
                                     <s:set var="totDeliveryAmt" value="0"/>
                                     <s:iterator value="selectedDrHeader.drLineses">
                                         <s:set var="totDeliveryAmt" value="%{#totDeliveryAmt + amount}"/>         
                                     </s:iterator>
-                                    <label class="control-label" for="totDeliveryAmt">Delivery Start Date</label>
-                                    <s:textfield  id="totDeliveryAmt" name="totDeliveryAmt" cssClass="form-control pull-right" value="%{totDeliveryAmt}" readonly="true" style="min-width:200px;"/>
+                                    <label class="control-label" for="totDeliveryAmt">Amount</label>
+                                    <s:textfield  id="totDeliveryAmt" name="totDeliveryAmt" cssClass="form-control pull-right" value="%{totDeliveryAmt}" readonly="true" style="width:200px;"/>
+                                </div>
+                                <div class="form-group col-lg-12 col-xs-12">
+                                    <label class="control-label" for="selectedDrHeader.drStatus">Status</label>
+                                    <s:textfield  id="drStatus" name="selectedDrHeader.drStatus" cssClass="form-control pull-right" value="%{selectedDrHeader.drStatus}" readonly="true" style="width:200px;"/>
                                 </div>
                             </div>
 
-                            <div class="col-md-5">
-                                <div class="form-group col-lg-12">
+                            <div class="col-md-5 col-xs-12 col-md-5">
+                                <div class="form-group col-lg-12 col-xs-12">
                                     <label class="control-label" for="selectedDrHeader.driverName">Driver Name</label>
-                                    <s:textfield id="driverName" name="selectedDrHeader.driverName" cssClass="form-control pull-right" value="%{selectedDrHeader.driverName}" required="true"  readonly="true" style="min-width:200px;"/>
+                                    <s:textfield id="driverName" name="selectedDrHeader.driverName" cssClass="form-control pull-right" value="%{selectedDrHeader.driverName}" required="true"  readonly="true" style="width:200px;"/>
                                 </div>
-                                <div class="form-group col-lg-12">
+                                <div class="form-group col-lg-12 col-xs-12">
                                     <label class="control-label" for="selectedDrHeader.policeNo">Police No</label>
-                                    <s:textfield id="policeNo" name="selectedDrHeader.policeNo" cssClass="form-control pull-right" value="%{selectedDrHeader.policeNo}" required="true"  readonly="true" style="min-width:200px;"/>
+                                    <s:textfield id="policeNo" name="selectedDrHeader.policeNo" cssClass="form-control pull-right" value="%{selectedDrHeader.policeNo}" required="true"  readonly="true" style="width:200px;"/>
                                 </div>
-                                <div class="form-group col-lg-12">
+                                <div class="form-group col-lg-12 col-xs-12">
                                     <label class="control-label" for="selectedDrHeader.drHeaderId">Ritase</label>
-                                    <s:textfield type="number" id="rit" name="selectedDrHeader.rit" cssClass="form-control pull-right" value="%{selectedDrHeader.rit}" required="true"  readonly="true" style="min-width:200px;" />
+                                    <s:textfield type="number" id="rit" name="selectedDrHeader.rit" cssClass="form-control pull-right" value="%{selectedDrHeader.rit}" required="true"  readonly="true" style="width:200px;" />
                                 </div>
-                                <div class="form-group col-lg-12">
-                                    <label class="control-label" for="selectedDrHeader.deliveryDateEnd">Delivery End Date</label>
-                                    <s:textfield  id="deliveryDateEnd" name="selectedDrHeader.deliveryDateEnd" cssClass="form-control pull-right" value="%{selectedDrHeader.deliveryDateEnd}" readonly="true" style="min-width:200px;"/>
+                                <div class="form-group col-lg-12 col-xs-12">
+                                    <label class="control-label" for="selectedDrHeader.kmStart">KM Start</label>
+                                    <s:textfield  type="number" id="kmStart" name="selectedDrHeader.kmStart" cssClass="form-control pull-right" value="%{selectedDrHeader.kmStart}" readonly="true" style="width:200px;"/>
                                 </div>
-                                <div class="form-group col-lg-12">
-                                    <label class="control-label" for="selectedDrHeader.drStatus">Status</label>
-                                    <s:textfield  id="drStatus" name="selectedDrHeader.drStatus" cssClass="form-control pull-right" value="%{selectedDrHeader.drStatus}" readonly="true" style="min-width:200px;"/>
+                                <div class="form-group col-lg-12 col-xs-12">
+                                    <label class="control-label" for="selectedDrHeader.kmEnd">KM End</label>
+                                    <s:textfield type="number" id="kmEnd" name="selectedDrHeader.kmEnd" cssClass="form-control pull-right" value="%{selectedDrHeader.kmEnd}" readonly="true" style="width:200px;"/>
+
                                 </div>
+                                <div class="form-group col-lg-12 col-xs-12">
+                                    <label class="control-label" for="selectedDrHeader.areaId">Area</label>
+                                    <s:textfield type="number" id="areaId" name="selectedDrHeader.areaId" cssClass="form-control pull-right" value="%{selectedDrHeader.areaId}" readonly="true" style="width:200px;"/>
+
+                                </div>
+
                             </div>
 
                         </s:form>
@@ -99,7 +115,7 @@
                 <div class="panel-heading">
                     Summary
                     <div class="pull-right">
-                        <a href="#" class="btn-sm btn-primary" ><i class="fa fa-pencil"></i> <strong>Add</strong></a>
+                        <a href="#" id="btnAddDrLine" class="btn-sm btn-primary" ><i class="fa fa-pencil"></i> <strong>Add</strong></a>
                         <!--<a href="#" class="btn-sm btn-primary" id="addRow"><i class="fa fa-pencil"></i> <strong>Add</strong></a>-->
                         <!--<a href="#" class="btn-sm btn-primary" id="saveRow"><i class="fa fa-save"></i> <strong>Save</strong></a>-->
                         <!--<a href="#" class="btn-sm btn-primary"><i class="fa fa-align-justify"></i> <strong>List</strong></a>-->
@@ -115,8 +131,9 @@
                                 <th>Destination Name</th>
                                 <th>Amount</th>
                                 <th>Delivery Status</th>
+                                <th>Delivery Date</th>
                                 <th>Created Date</th>
-                                <th>Updated Date</th>
+                                
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -132,24 +149,25 @@
                                     <td>
                                         <s:property value="destinations.destName" />
                                     </td>
-                                     <td>
+                                    <td>
                                         <s:property value="amount" />
                                     </td>
-                                     <td>
+                                    <td>
                                         <s:property value="deliveryStatus" />
+                                    </td>
+                                     <td>
+                                        <s:property value="deliveryDate" />
                                     </td>
                                     <td>
                                         <s:property value="createdDate" />
                                     </td>
-                                    <td>
-                                        <s:property value="updatedDate" />
-                                    </td>
+                                   
                                     <td class="text-center" style="min-width: 250px;">
                                         <a href="javascript:createDeliveryReport('<s:property value="drHeaders.drHeaderId"/>')" id="btnReport" class="btn-sm btn-default"><i class="fa fa-book"></i> <strong>DR Report</strong></a>
                                         <a href="#" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
-                                        <a href="#" id="btnDelete" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
-                                            </td>
-                                        </tr>
+                                        <a href="#" id="btnDeleteDrLine" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
+                                    </td>
+                                </tr>
                             </s:iterator>
                         </tbody>
                     </table>
@@ -178,147 +196,245 @@
                 </div>
             </div>
             <!--end modal-->
+
             <!--modal new dr line-->
-            <div class="modal fade" id="NewDrLineModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal fade" id="NewDrLineModal" tabindex="-1" role="dialog" 
+                 aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <button type="button" class="close" 
+                                    data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                New Summary
+                            </h4>
+                        </div>
+
+                        <!-- Modal Body -->
+                        <div class="modal-body">
+
+                    <s:form id="FormNewDrLine" action="createDrLine" method="post" validate="true"> 
+                        <div class="col-md-6 col-lg-6 col-xs-12">
+                        <div class="form-group" >
+                            <label class="control-label" for="selectedDrLine.destinations.destId">Destination ID</label>
+                            <s:select id="selectDestId" name="selectedDrLine.destinations.destId" cssClass="form-control pull-right" value="" list="listDestination" listKey="destId" listValue="destId" headerKey="" headerValue="Select Destination Id" style="min-width:200px;" required="true"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="selectedDrLine.destinations.destName">Destination Name</label>
+                            <s:select id="selectDestName" name="selectedDrLine.destinations.destName" cssClass="form-control pull-right" value="" list="listDestination" listKey="destId" listValue="destName" headerKey="" headerValue="Select Destination" style="min-width:200px;" required="true"></s:select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="amount">Amount</label>
+                            <s:hidden name="selectedDrLine.drHeaders.drHeaderId" id="selectedDrLine.drHeaders.drHeaderId" value="%{selectedDrHeader.drHeaderId}" />
+                            <s:textfield type="number" id="amount" name="selectedDrLine.amount" cssClass="form-control" value="" required="true" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="amount">bk24</label>
+                            <s:textfield type="text" id="bk24" name="selectedDrLine.bk24" cssClass="form-control" value="" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="deliveryDate">Delivery Date</label>
+                            <s:textfield id="deliveryDate" name="selectedDrLine.deliveryDate" cssClass="form-control" value="" />
+                        </div>
+                        </div>
+                         <div class="col-md-6 col-lg-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label" for="arrivalDate">Arrival Date</label>
+                            <s:textfield id="arrivalDate" name="selectedDrLine.arrivalDate" cssClass="form-control" value="" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="arrivalKm">KM Arrival</label>
+                            <s:textfield type="number" id="arrivalKm" name="selectedDrLine.arrivalKm" cssClass="form-control" value="" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="leavingDate">Leaving Date</label>
+                            <s:textfield  id="leavingDate" name="selectedDrLine.leavingDate" cssClass="form-control" value="" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="amount">Description</label>
+                            <s:textfield type="textarea" id="description" name="selectedDrLine.description" cssClass="form-control" value="" />
+                        </div>
+                      
+                         </div>
+                    </s:form>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="row col-lg-12 col-xs-12 col-md-12 pull-right">
+                      <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        Close
+                    </button>
+                    <button id="btnSaveNewDrLine" type="submit" class="btn btn-primary">
+                        Save
+                    </button>
+                </div>
+                
+                <div class="row" ></div>
+                <br/>
+            </div>
+            <!--end modal-->
+            <!--delete drline modal-->
+            <div class="modal fade bs-example-modal-sm" id="DeleteDrLine" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                 <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Add New Destination</h4>
+                            <h4 class="modal-title" id="myModalLabel">Delete Destination in Summary</h4>
                         </div>
                         <div class="modal-body">
-
+                            Are you sure you want to delete it?
                         </div>
                         <div class="modal-footer">
-                    <s:form id="FormDrLine" action="" method="post" validate="true" cssClass="form-inline" > 
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label class="control-label col-md-4" for="driverName">Driver Name</label>
-                                <div class="col-md-4">
-                                    <s:hidden name="DrHeaderNo" id="DrHeaderNo" value="%{DrHeaderNo}" />
-                                    <s:hidden id="selectedDrLine.drLineId" name="selectedDrLine.drLineId" cssClass="form-control " value="" />
-                                    <s:textfield id="selectedDrLine.driverName" name="selectedDrLine.driverName" cssClass="form-control " value="" required="true" />
-                                </div>
-                            </div>
-                            <div class="form-group" >
-                                <label class="control-label col-md-4" for="selectedDrLine.policeNo">Police No</label>
-                                <div class="col-md-4">
-                                    <s:textfield id="selectedDrLine.policeNo" name="selectedDrLine.policeNo" cssClass="form-control " value="" required="true"/>
-                                </div>
-                            </div>
-                            <div class="form-group" >
-                                <label class="control-label col-md-4" for="selectedDrLine.area">Area</label>
-                                <div class="col-md-4">
-                                    <%--<s:textfield id="selectedDrLine.area" name="selectedDrLine.area" cssClass="form-control " value="" required="true"/>--%>
-                                </div>
-                            </div>
+                            <a href="<s:url action="deleteDrHeader" ><s:param name="selectedDrHeader.drHeaderId"><s:property value="%{selectedDrHeader.drHeaderId}" /></s:param></s:url>" id="btnYesDelete" class="btn btn-danger">Yes</a>
+                            <a href="#" class="btn btn-default" data-dismiss="modal">No</a>
                         </div>
-                    </s:form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!--end modal-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>-->
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-    <script>
-        function createDeliveryReport(value){
-            var url="createDrReport?drId="+value;
-            window.open(url,"_blank","directories=no, status=no,width=800, height=580,top=0,left=0");
-        }
-        $(document).ready(function () {
-            var table = $('#dataTables-drLine').DataTable({
-                rowReorder: {
-                    selector: 'td:nth-child(5)'
-                },
-                responsive: true
-            });
-
-            //initial state for create / edit drheader. actionName is parameter from drHeader.jsp
-            $('#drStatus').show();
-            if ($('#actionName').val() === "createDrHeader")
-            {
-                $('#actionTitle').text("New Delivery Request");
-                $('#Summary').hide();
-//                $('#drStatus').hide();
-                var today = new Date();
-                var uid = ("0" + today.getDate()).slice(-2) + ("0" + (today.getMonth() + 1)).slice(-2) + today.getFullYear().toString() + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5).toUpperCase();
-                $('#transactionNum').val(uid);
-                $('#FormDrHeader').attr('action', 'createDrHeader');
-                //                $('#drHeaderCreatedDate').val(new Date().toISOString().slice(0, 19).replace('T', ' '));
-                enableDrHeaderForm();
-            } else if ($('#actionName').val() === "editDrHeader")
-            {
-                $('#FormDrHeader').attr('action', 'editDrHeader');
-                enableDrHeaderForm();
-            } else
-            {
-                disableDrHeaderForm();
-            }
-
-            //Event Handler
-
-            //select customer
-            $('#selectCustId').on('change', function () {
-                var a = $('#selectCustId').val();
-                $('#selectCustName').val(a);
-            });
-            $('#selectCustName').on('change', function () {
-                var a = $('#selectCustName').val();
-                $('#selectCustId').val(a);
-            });
-
-            //enable form for editing
-            $('#btnEditDrHeader').on('click', function () {
-                enableDrHeaderForm();
-                $('#FormDrHeader').attr('action', 'editDrHeader');
-            });
-
-            //onclick save button
-            $('#btnSaveDrHeader').on('click', function () {
-
-                if ($("#FormDrHeader").valid()) {   // test for validity
-                    $('#FormDrHeader').submit();
-                } else {
-
+            <!--end modal-->
+            <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>-->
+            <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+            <script>
+                function createDeliveryReport(value) {
+                    var url = "createDrReport?drId=" + value;
+                    window.open(url, "_blank", "directories=no, status=no,width=800, height=580,top=0,left=0");
                 }
-            });
+                $(document).ready(function () {
+                    var table = $('#dataTables-drLine').DataTable({
+                        rowReorder: {
+                            selector: 'td:nth-child(5)'
+                        },
+                        responsive: true
+                    });
+                    $('#DrHeaderAmount').show();
+                    //initial state for create / edit drheader. actionName is parameter from drHeader.jsp
+                    $('#drStatus').show();
+                    if ($('#actionName').val() === "createDrHeader")
+                    {
+                        $('#actionTitle').text("New Delivery Request");
+                        $('#Summary').hide();
+                        $('#DrHeaderAmount').hide();
+                        //                $('#drStatus').hide();
+                        var today = new Date();
+                        var uid = ("0" + today.getDate()).slice(-2) + ("0" + (today.getMonth() + 1)).slice(-2) + today.getFullYear().toString() + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5).toUpperCase();
+                        $('#transactionNum').val(uid);
+                        $('#FormDrHeader').attr('action', 'createDrHeader');
+                        //                $('#drHeaderCreatedDate').val(new Date().toISOString().slice(0, 19).replace('T', ' '));
+                        enableDrHeaderForm();
+                    } else if ($('#actionName').val() === "editDrHeader")
+                    {
+                        $('#FormDrHeader').attr('action', 'editDrHeader');
+                        enableDrHeaderForm();
+                    } else
+                    {
+                        disableDrHeaderForm();
+                    }
 
-            $('#btnDeleteDrHeader').on('click', function () {
-                $('#DeleteDrHeaderModal').modal('show');
-            });
+                    //Event Handler
 
-            //function
-            function enableDrHeaderForm() {
+                    //select customer
+                    $('#selectCustId').on('change', function () {
+                        var a = $('#selectCustId').val();
+                        $('#selectCustName').val(a);
+                    });
+                    $('#selectCustName').on('change', function () {
+                        var a = $('#selectCustName').val();
+                        $('#selectCustId').val(a);
+                    });
+                    //select destination
+                    $('#selectDestId').on('change', function () {
+                        var a = $('#selectDestId').val();
+                        $('#selectDestName').val(a);
+                    });
+                    $('#selectDestName').on('change', function () {
+                        var a = $('#selectDestName').val();
+                        $('#selectDestId').val(a);
+                    });
 
-                $('#selectCustId').removeAttr('readonly');
-                $('#selectCustName').removeAttr('disabled');
-                $('#rit').removeAttr('readonly');
-                $('#driverName').removeAttr('readonly');
-//                $('#drStatus').removeAttr('readonly');
-                $('#policeNo').removeAttr('readonly');
-                $('#btnEditDrHeader').hide();
-                $('#btnSaveDrHeader').show();
-                //                $('#btnDeleteDrHeader').hide();
+                    //enable form for editing
+                    $('#btnEditDrHeader').on('click', function () {
+                        enableDrHeaderForm();
+                        $('#FormDrHeader').attr('action', 'editDrHeader');
+                    });
 
-            }
-            function disableDrHeaderForm() {
+                    //onclick save button
+                    $('#btnSaveDrHeader').on('click', function () {
 
-                $('#selectCustId').attr('readonly', 'true');
-                $('#selectCustName').attr('disabled', 'true');
-                $('#rit').attr('readonly', 'true');
-                $('#driverName').attr('readonly', 'true');
-                $('#policeNo').attr('readonly', 'true');
-                $('#btnSaveDrHeader').hide();
-                $('#btnEditDrHeader').show();
-                //                $('#btnDeleteDrHeader').show();
+                        if ($("#FormDrHeader").valid()) {   // test for validity
+                            $('#FormDrHeader').submit();
+                        } else {
 
-            }
-            
-            //function for edit dr line
-             $('#btnEdit').on('click', function () {
-                $('#NewDrLineModal').modal('show');
-            });
-        });
+                        }
+                    });
 
-    </script>
+                    $('#btnDeleteDrHeader').on('click', function () {
+                        $('#DeleteDrHeaderModal').modal('show');
+                    });
+
+                    //function
+                    function enableDrHeaderForm() {
+
+                        $('#selectCustId').removeAttr('readonly');
+                        $('#selectCustName').removeAttr('disabled');
+                        $('#rit').removeAttr('readonly');
+                        $('#driverName').removeAttr('readonly');
+                        $('#kmStart').removeAttr('readonly');
+                        $('#kmEnd').removeAttr('readonly');
+                        $('#deliveryDateEnd').removeAttr('readonly');
+                        $('#deliveryDateStart').removeAttr('readonly');
+
+                        //                $('#drStatus').removeAttr('readonly');
+                        $('#policeNo').removeAttr('readonly');
+                        $('#btnEditDrHeader').hide();
+                        $('#btnSaveDrHeader').show();
+                        //                $('#btnDeleteDrHeader').hide();
+
+                    }
+                    function disableDrHeaderForm() {
+
+                        $('#selectCustId').attr('readonly', 'true');
+                        $('#selectCustName').attr('disabled', 'true');
+                        $('#rit').attr('readonly', 'true');
+                        $('#driverName').attr('readonly', 'true');
+                        $('#policeNo').attr('readonly', 'true');
+                        $('#kmStart').attr('readonly', 'true');
+                        $('#kmEnd').attr('readonly', 'true');
+                        $('#deliveryDateEnd').attr('readonly', 'true');
+                        $('#deliveryDateStart').attr('readonly', 'true');
+
+                        $('#btnSaveDrHeader').hide();
+                        $('#btnEditDrHeader').show();
+                        //                $('#btnDeleteDrHeader').show();
+
+                    }
+
+                    //function for edit dr line
+                    $('#btnEdit').on('click', function () {
+                        $('#NewDrLineModal').modal('show');
+                    });
+                    //function for new dr line
+                    $('#btnAddDrLine').on('click', function () {
+                        $('#NewDrLineModal').modal('show');
+                    });
+                    $('#btnSaveNewDrLine').on('click', function () {
+
+                        if ($("#FormNewDrLine").valid()) {   // test for validity
+                            $('#FormNewDrLine').submit();
+                        } else {
+
+                        }
+                    });
+                    //delete drline
+                    $('#btnDeleteDrLine').on('click', function () {
+                        $('#DeleteDrLine').modal('show');
+                    });
+
+                });
+
+            </script>
+

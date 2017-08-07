@@ -57,6 +57,9 @@
          <action name="createDrLine" class="controller.CreateDrLineAction" > 
           <result name="success" type="redirectAction">drHeader</result>
         </action>
+         <action name="deleteDrLine" class="controller.UpdateDrLineAction" > 
+          <result name="success" type="redirectAction">drHeader</result>
+        </action>
         <!-- End of Delivery Request Module -->
         
         <!-- Reporting -->

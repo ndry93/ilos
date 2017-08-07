@@ -5,6 +5,7 @@
  */
 package controller;
 
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DrHeaderDAO;
 import dao.DrLineDAO;
@@ -32,9 +33,10 @@ public class CreateDrLineAction extends ActionSupport {
     public String execute() throws Exception {
         System.out.println("controller.CreateDrLineAction.execute()");
         try {
-            System.out.println("---"+DrHeaderNo);
-            selectedDrLine.setDrHeaders(drheader_dao.getDrHeader(getDrHeaderNo()));
+            System.out.println("---"+selectedDrLine.getDrHeaders().getDrHeaderId());
+            selectedDrLine.setDrHeaders(drheader_dao.getDrHeader(selectedDrLine.getDrHeaders().getDrHeaderId()));
             System.out.println("---DrHeader for new line "+selectedDrLine.getDrHeaders().getDrHeaderId());
+            selectedDrLine.setDeliveryStatus("Draft");
             drline_dao.addDrLine(getSelectedDrLine());
         } catch (Exception e) {
             e.printStackTrace();

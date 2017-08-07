@@ -10,13 +10,16 @@ import com.opensymphony.xwork2.ActionSupport;
 import model.DrLines;
 import dao.DrLineDAO;
 import dao.CustomerDAO;
+import dao.DestinationDAO;
 import dao.DrHeaderDAO;
 import java.util.List;
 import model.DrHeaders;
 import model.Customers;
+import model.Destinations;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
+
 
 /**
  *
@@ -27,9 +30,11 @@ public class GetAllDrLinesByDrNoAction extends ActionSupport{
     private static final long serialVersionUID = 3L;
     private int DrHeaderId;
     private List<Customers> listCustomer;
+    private List<Destinations> listDestination;
     private DrHeaders selectedDrHeader;
     private final CustomerDAO customer_dao = new CustomerDAO();
     private final DrHeaderDAO drheader_dao = new DrHeaderDAO();
+    private final DestinationDAO destination_dao = new DestinationDAO();
     private String actionName;
 
     public GetAllDrLinesByDrNoAction() {
@@ -46,6 +51,7 @@ public class GetAllDrLinesByDrNoAction extends ActionSupport{
 //            setDrLineList(drline_dao.listDrLineByDrHeaderId(getDrHeaderId()));
             System.out.println("--- c drLine is executed");
             setListCustomer(customer_dao.getAllCustomerList()); 
+            setListDestination(destination_dao.getAllDestinationList());
             System.out.println("--- d end drline");
         } catch (Exception e) {
             e.printStackTrace();
@@ -107,6 +113,20 @@ public class GetAllDrLinesByDrNoAction extends ActionSupport{
      */
     public void setListCustomer(List<Customers> listCustomer) {
         this.listCustomer = listCustomer;
+    }
+
+    /**
+     * @return the listDestination
+     */
+    public List<Destinations> getListDestination() {
+        return listDestination;
+    }
+
+    /**
+     * @param listDestination the listDestination to set
+     */
+    public void setListDestination(List<Destinations> listDestination) {
+        this.listDestination = listDestination;
     }
 
 }
