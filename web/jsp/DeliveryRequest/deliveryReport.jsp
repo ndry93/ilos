@@ -27,10 +27,15 @@
             <br>
             <div class="row">
                 <div class="col-sm-11"></div>
-                <div class="col-sm-1"><button>Print</button></div>
+                <div class="col-sm-1"><button onclick="window.print();">Print</button></div>
             </div>
             <div class="row">
-                <div class="col-sm-8"><h3>Laporan Pengiriman</h3><b>27 Juli 2017</b></div>
+                <div class="col-sm-8">
+                    <h3><u>Laporan Pengiriman</u></h3>
+                    <b>
+                       <s:property value="%{selectedDrHeader.deliveryDateStart}" />
+                    </b>
+                </div>
                 <div class="col-sm-4"></div>
             </div>
             <br>
@@ -46,58 +51,51 @@
                                 <label class="control-label" for="noPol">No. Polisi</label>
                                 <s:textfield id="transactionNum" name="selectedDrHeader.policeNo" cssClass="form-control " value="%{selectedDrHeader.policeNo}" required="true"  readonly="true"/>
                             </div>
+                            
                         </div>
                         <div class="form-group">
-                            
                             <div class="col-sm-6"> 
-                                <label class="control-label" for="selectedDrHeader.areaId">Rute yang ditentukan</label>
+                                <label class="control-label" for="selectedDrHeader.areaId"><br>Rute yang ditentukan</label>
                                 <s:textfield id="areaId" name="selectedDrHeader.areaId" cssClass="form-control " value="%{selectedDrHeader.areaId}" required="true"  readonly="true"/>
                             </div>
                             <div class="col-sm-6"> 
-                                <label class="control-label" for="selectedDrHeader.deliveryDateStart">Tanggal Pengiriman</label>
-                                <s:textfield id="deliveryDateStart" name="selectedDrHeader.deliveryDateStart" cssClass="form-control " value="%{selectedDrHeader.deliveryDateStart}" required="true"  readonly="true"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-6"> 
-                                <label class="control-label" for="kmPkg">KM Berdasarkan Paket</label>
+                                <label class="control-label" for="kmPkg"><br>KM Berdasarkan Paket</label>
                                 <s:textfield id="kmPkg" name="kmPkg" cssClass="form-control " value="" required="true"  readonly="true"/>
-                            </div>
-                            <div class="col-sm-6"> 
-                                <label class="control-label" for="selectedDrHeader.rit">Ritase</label>
-                                <s:textfield id="rit" name="selectedDrHeader.rit" cssClass="form-control " value="%{selectedDrHeader.rit}" required="true"  readonly="true"/>
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class="col-sm-5 col-sm-offset-1">
+                <div class="col-sm-6">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <div class="col-sm-6">
-                                <label class="control-label" for="selectedDrHeader.deliveryDateStart">Jam Berangkat</label>
-                                    <s:textfield id="deliveryDateStart" name="selectedDrHeader.deliveryDateStart" cssClass="form-control " value="%{selectedDrHeader.deliveryDateStart}" required="true"  readonly="true"/>
+                            <div class="col-sm-6"> 
+                                <label class="control-label" for="selectedDrHeader.rit">Ritase</label>
+                                <s:textfield id="rit" name="selectedDrHeader.rit" cssClass="form-control " value="%{selectedDrHeader.rit}" required="true"  readonly="true"/>
                             </div>
-                            <div class="col-sm-6">
-                                <label class="control-label" for="selectedDrHeader.deliveryDateEnd">Jam Tiba di DC</label>
-                                    <s:textfield id="deliveryDateEnd" name="selectedDrHeader.deliveryDateEnd" cssClass="form-control " value="%{selectedDrHeader.deliveryDateEnd}" required="true"  readonly="true"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
                                 <label class="control-label" for="selectedDrHeader.kmStart">KM Awal</label>
                                     <s:textfield id="kmStart" name="selectedDrHeader.kmStart" cssClass="form-control " value="%{selectedDrHeader.kmStart}" required="true"  readonly="true"/>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
                                 <label class="control-label" for="selectedDrHeader.kmEnd">KM Akhir</label>
                                     <s:textfield id="kmEnd" name="selectedDrHeader.kmEnd" cssClass="form-control " value="%{selectedDrHeader.kmEnd}" required="true"  readonly="true"/>
                             </div>
+                            
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
+                                <label class="control-label" for="selectedDrHeader.deliveryDateStart">Jam Berangkat</label>
+                                    <s:textfield id="deliveryDateStart" name="selectedDrHeader.deliveryDateStart" cssClass="form-control " value="%{selectedDrHeader.deliveryDateStart}" required="true"  readonly="true"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" for="selectedDrHeader.deliveryDateEnd">Jam Tiba di DC</label>
+                                    <s:textfield id="deliveryDateEnd" name="selectedDrHeader.deliveryDateEnd" cssClass="form-control " value="%{selectedDrHeader.deliveryDateEnd}" required="true"  readonly="true"/>
+                            </div>
+                            <div class="col-sm-3">
                                 <label class="control-label" for="selectedDrHeader.kmTotal">Total KM Ril</label>
                                     <s:textfield id="kmTotal" name="selectedDrHeader.kmTotal" cssClass="form-control " value="%{selectedDrHeader.kmTotal}" required="true"  readonly="true"/>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
                                 <label class="control-label" for="kmPkgTtl">Total KM Paket</label>
                                     <s:textfield id="kmPkgTtl" name="kmPkgTtl" cssClass="form-control" readonly="true"/>
                             </div>
@@ -137,26 +135,121 @@
                                     <s:property value="description" />
                                 </td>
                             </tr>
-                        </s:iterator>
-                    </tbody>
-                </table>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label class="control-label" for="selectedDrHeader.deliveryDateStart">Delivery Start Date</label>
-                        <s:textfield  id="deliveryDateStart" name="selectedDrHeader.deliveryDateStart" cssClass="form-control pull-right" value="%{selectedDrHeader.deliveryDateStart}" readonly="true" style="min-width:200px;"/>
-                    </div>
+                            </s:iterator>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-6">Uang yang diberikan</label>
+                            <div class="col-xs-6">
+                                <s:textfield id="uangDiberikanTotal"  cssClass="form-control " value="" required="true"  readonly="true"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <form class="form-horizontal">
+                        <b><u>Rincian Pemakaian</u></b>
+                        <br>
+                        <div class="form-group">
+                            <label class="control-label col-xs-6">Uang solar</label>
+                            <div class="col-xs-6">
+                                <s:textfield id="uangSolar"  cssClass="form-control " value="" required="true"  readonly="true"/>
+                            </div>
+                            <label class="control-label col-xs-6">Tol</label>
+                            <div class="col-xs-6">
+                                <s:textfield id="uangTol"  cssClass="form-control " value="" required="true"  readonly="true"/>
+                            </div>
+                            <label class="control-label col-xs-6">Parkir</label>
+                            <div class="col-xs-6">
+                                <s:textfield id="uangParkir"  cssClass="form-control " value="" required="true"  readonly="true"/>
+                            </div>
+                            <label class="control-label col-xs-6">Pak Ogah</label>
+                            <div class="col-xs-6">
+                                <s:textfield id="uangPakOgah"  cssClass="form-control " value="" required="true"  readonly="true"/>
+                            </div>
+                            <label class="control-label col-xs-6">Retribusi</label>
+                            <div class="col-xs-6">
+                                <s:textfield id="uangRetribusi"  cssClass="form-control " value="" required="true"  readonly="true"/>
+                            </div>
+                            <label class="control-label col-xs-6">Uang Makan</label>
+                            <div class="col-xs-6">
+                                <s:textfield id="uangMakan"  cssClass="form-control " value="" required="true"  readonly="true"/>
+                            </div>
+                            <label class="control-label col-xs-6">Insentif Rit-3</label>
+                            <div class="col-xs-6">
+                                <s:textfield id="uangInsentifRit3"  cssClass="form-control " value="" required="true"  readonly="true"/>
+                            </div>
+                            <label class="control-label col-xs-6">Insentif Pagi</label>
+                            <div class="col-xs-6">
+                                <s:textfield id="uangInsentifPagi"  cssClass="form-control " value="" required="true"  readonly="true"/>
+                            </div>
+                            <label class="control-label col-xs-6">Lain-lain</label>
+                            <div class="col-xs-6">
+                                <s:textfield id="uangLainLain"  cssClass="form-control " value="" required="true"  readonly="true"/>
+                            </div>
+                        </div>
+                        <br>
+                        
+                    </form>
+                </div> 
+                <div class="col-sm-6">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-6">Total Pemakaian</label>
+                            <div class="col-xs-6">
+                                <s:textfield id="uangTerpakaiTotal"  cssClass="form-control " value="" required="true"  readonly="true"/>
+                            </div>
+                            <label class="control-label col-xs-6">Sisa</label>
+                            <div class="col-xs-6">
+                                <s:textfield id="uangSisa"  cssClass="form-control " value="" required="true"  readonly="true"/>
+                            </div>
+                            <label class="control-label col-xs-6">Kasbon</label>
+                            <div class="col-xs-6">
+                                <s:textfield id="uangKasbon"  cssClass="form-control " value="" required="true"  readonly="true"/>
+                            </div>
+                        </div>
+                    </form>
+                            <br>
+                    <b><u>Catatan:</u></b>
+                </div>
+            </div>     
+            <div class="row">
+                <div class="col-sm-4">
+                    <table width="100%" class="table table-striped table-bordered table-hover small" id="report-line-tbl">
+                        <thead>
+                            <tr>
+                                <th>Kasir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><br><br><br><br></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                    <table width="100%" class="table table-striped table-bordered table-hover small" id="report-line-tbl">
+                        <thead>
+                            <tr>
+                                <th>Supir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><br><br><br><br></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
