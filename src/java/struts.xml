@@ -49,16 +49,16 @@
             <result name="success" type="redirectAction">drHeader</result>
         </action>
         <action name="editDrHeader" class="controller.UpdateDrHeaderAction">
-            <result name="success" type="redirectAction">drHeader</result>
+            <result name="success" type="redirect">${url}</result>
         </action>
 <!--        <action name="drLineDestByNo" class="controller.GetAllDrLineDestByNoAction">
             <result name="success" type="tiles">drLineDest.def</result>
         </action>-->
          <action name="createDrLine" class="controller.CreateDrLineAction" > 
-          <result name="success" type="redirectAction">drHeader</result>
+          <result name="success" type="redirect">${url}</result>
         </action>
-         <action name="deleteDrLine" class="controller.UpdateDrLineAction" > 
-          <result name="success" type="redirectAction">drHeader</result>
+         <action name="deleteDrLine" class="controller.UpdateDrLineAction" method="deleteDrLine" > 
+          <result name="success" type="redirect">${url}</result>
         </action>
         <!-- End of Delivery Request Module -->
         

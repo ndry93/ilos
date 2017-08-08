@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import dao.DrHeaderDAO;
 import model.DrHeaders;
 import model.Users;
+import org.apache.struts2.ServletActionContext;
 
 /**
  *
@@ -20,12 +21,15 @@ public class UpdateDrHeaderAction extends ActionSupport {
     private final DrHeaderDAO drheader_dao = new DrHeaderDAO();
     private Users users;
     private DrHeaders selectedDrHeader;
+    private String url;
 
     public UpdateDrHeaderAction() {
     }
 
     public String execute() throws Exception {
+        setUrl();
         try {
+            
             System.out.println("controller.UpdateDrHeaderAction.execute()");
             DrHeaders drHeader = drheader_dao.getDrHeader(getSelectedDrHeader().getDrHeaderId());
             drHeader.setCustomers(getSelectedDrHeader().getCustomers());
@@ -44,6 +48,7 @@ public class UpdateDrHeaderAction extends ActionSupport {
         return SUCCESS;
     }
     public String deleteDrHeader() {
+        setUrl();
        try {
            System.out.println("controller.UpdateDrHeaderAction.deleteDrHeader()");
            System.out.println("sdds"+getSelectedDrHeader().getDrHeaderId());
@@ -80,5 +85,19 @@ public class UpdateDrHeaderAction extends ActionSupport {
     public void setSelectedDrHeader(DrHeaders selectedDrHeader) {
         this.selectedDrHeader = selectedDrHeader;
     }
-    
+
+    /**
+     * @return the url
+     */
+    public String getUrl() {
+        return url;
+    }
+
+    /**
+     * @param url the url to set
+     */
+    public void setUrl() {
+         this.url = ServletActionContext.getRequest().getHeader("Referer");
+    }
+
 }

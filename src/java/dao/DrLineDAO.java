@@ -29,7 +29,7 @@ public class DrLineDAO {
      */
     public void saveOrUpdateDrLines(DrLines drLines) {
         Transaction transaction = null;
-        //Map LoginSession = ActionContext.getContext().getSession();
+        Map LoginSession = ActionContext.getContext().getSession();
         try {
              if (!session.getTransaction().isActive()) {
                 System.out.println("---new trans ");
@@ -37,8 +37,9 @@ public class DrLineDAO {
             } else {
                 transaction = session.getTransaction();
             }
-           // drLines.setUpdatedDate(new Date());
-          //  drLines.setUpdatedBy(LoginSession.get("username").toString());
+            drLines.setUpdatedDate(new Date());
+            drLines.setUpdatedBy(LoginSession.get("username").toString());
+            System.out.println("--- Save "+drLines.getDrLineId()+" "+drLines.getBk24());
             session.saveOrUpdate(drLines);
             transaction.commit();
         } catch (Exception e) {
@@ -50,7 +51,7 @@ public class DrLineDAO {
     /**
      * Used to delete a DrLine.
      */
-    public void deleteDrLine(String drLineNo) {
+    public void deleteDrLine(Integer drLineNo) {
         Transaction transaction = null;
         //Map LoginSession = ActionContext.getContext().getSession();
         try {
@@ -60,8 +61,11 @@ public class DrLineDAO {
             } else {
                 transaction = session.getTransaction();
             }
+             
             DrLines drLine = (DrLines) session.get(DrLines.class, drLineNo);
-            session.delete(drLine);
+            System.out.println("Dr line DAO, delete "+drLine.getDrLineId()+" "+drLine.getBk24());
+            drLine.setIsDeleted("Y");
+            session.saveOrUpdate(drLine);
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
@@ -103,7 +107,7 @@ public class DrLineDAO {
             session.beginTransaction();
         }
         try {
-            drLine = session.createQuery("from DrLines where drHeaders.drHeaderId='"+drHeaderId+"'").list();
+            drLine = session.createQuery("from DrLines where drHeaders.drHeaderId='"+drHeaderId+"' and isDeleted = 'N' or isDeleted is null").list();
             System.out.println("---executing commit");
         } catch (Exception e) {
             e.printStackTrace();
@@ -122,7 +126,7 @@ public class DrLineDAO {
         }
         try {
             //where deliveryStatus = 
-            drLine = session.createQuery("from DrLines").list();
+            drLine = session.createQuery("from DrLines isDeleted = 'N' or isDeleted is null").list();
             System.out.println("---executing commit");
         } catch (Exception e) {
             e.printStackTrace();

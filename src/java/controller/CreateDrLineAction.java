@@ -11,6 +11,7 @@ import dao.DrHeaderDAO;
 import dao.DrLineDAO;
 import model.DrLines;
 import model.Users;
+import org.apache.struts2.ServletActionContext;
 
 /**
  *
@@ -22,6 +23,7 @@ public class CreateDrLineAction extends ActionSupport {
     private final DrLineDAO drline_dao = new DrLineDAO();
     private final DrHeaderDAO drheader_dao = new DrHeaderDAO();
     private Users users;
+    private String url;
     private DrLines selectedDrLine;
     private int DrHeaderNo;
     
@@ -31,6 +33,7 @@ public class CreateDrLineAction extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
+        setUrl();
         System.out.println("controller.CreateDrLineAction.execute()");
         try {
             System.out.println("---"+selectedDrLine.getDrHeaders().getDrHeaderId());
@@ -84,6 +87,20 @@ public class CreateDrLineAction extends ActionSupport {
      */
     public void setDrHeaderNo(int DrHeaderNo) {
         this.DrHeaderNo = DrHeaderNo;
+    }
+
+    /**
+     * @return the url
+     */
+    public String getUrl() {
+        return url;
+    }
+
+    /**
+     * @param url the url to set
+     */
+    public void setUrl() {
+        this.url = this.url = ServletActionContext.getRequest().getHeader("Referer");
     }
 
   

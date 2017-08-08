@@ -133,12 +133,13 @@
                                 <th>Delivery Status</th>
                                 <th>Delivery Date</th>
                                 <th>Created Date</th>
-                                
+
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <s:iterator value="selectedDrHeader.drLineses">
+                            <s:iterator value="selectedDrHeader.drLineses" var="drLine">
+                                 <s:if test="#drLine.isDeleted != 'Y'">
                                 <tr>
                                     <td>
                                         <s:property value="drLineId" />
@@ -155,19 +156,21 @@
                                     <td>
                                         <s:property value="deliveryStatus" />
                                     </td>
-                                     <td>
+                                    <td>
                                         <s:property value="deliveryDate" />
                                     </td>
                                     <td>
                                         <s:property value="createdDate" />
                                     </td>
-                                   
+
                                     <td class="text-center" style="min-width: 250px;">
                                         <a href="javascript:createDeliveryReport('<s:property value="drHeaders.drHeaderId"/>')" id="btnReport" class="btn-sm btn-default"><i class="fa fa-book"></i> <strong>DR Report</strong></a>
                                         <a href="#" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
-                                        <a href="#" id="btnDeleteDrLine" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
+                                        <a href="#" onclick="DeleteDrLine('<s:url action="deleteDrLine" ><s:param name="DrLineNo"><s:property value="%{drLineId}" /></s:param></s:url>');" id="btnDeleteDrLine" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
                                     </td>
+                                    
                                 </tr>
+                                </s:if>
                             </s:iterator>
                         </tbody>
                     </table>
@@ -176,49 +179,50 @@
         </div> <!-- /.col-lg-12 -->
         <!-- /.row -->
     </div>
-    <!-- /#page-wrapper -->
-    <!--modal delete dr header-->
-    <div class="modal fade bs-example-modal-sm" id="DeleteDrHeaderModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Delete Delivery Request</h4>
-                </div>
-                <div class="modal-body">
-                    Deleting transaction will also delete all of its data. Are you sure you want to delete it?
-                </div>
-                <div class="modal-footer">
-                    <a href="<s:url action="deleteDrHeader" ><s:param name="selectedDrHeader.drHeaderId"><s:property value="%{selectedDrHeader.drHeaderId}" /></s:param></s:url>" id="btnYesDelete" class="btn btn-danger">Yes</a>
-                            <a href="#" class="btn btn-default" data-dismiss="modal">No</a>
-                        </div>
+</div>
+<!-- /#page-wrapper -->
+<!--modal delete dr header-->
+<div class="modal fade bs-example-modal-sm" id="DeleteDrHeaderModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Delete Delivery Request</h4>
+            </div>
+            <div class="modal-body">
+                Deleting transaction will also delete all of its data. Are you sure you want to delete it?
+            </div>
+            <div class="modal-footer">
+                <a href="<s:url action="deleteDrHeader" ><s:param name="selectedDrHeader.drHeaderId"><s:property value="%{selectedDrHeader.drHeaderId}" /></s:param></s:url>" id="btnYesDelete" class="btn btn-danger">Yes</a>
+                        <a href="#" class="btn btn-default" data-dismiss="modal">No</a>
                     </div>
                 </div>
             </div>
-            <!--end modal-->
+        </div>
+        <!--end modal-->
 
-            <!--modal new dr line-->
-            <div class="modal fade" id="NewDrLineModal" tabindex="-1" role="dialog" 
-                 aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <button type="button" class="close" 
-                                    data-dismiss="modal">
-                                <span aria-hidden="true">&times;</span>
-                                <span class="sr-only">Close</span>
-                            </button>
-                            <h4 class="modal-title" id="myModalLabel">
-                                New Summary
-                            </h4>
-                        </div>
+        <!--modal new dr line-->
+        <div class="modal fade" id="NewDrLineModal" tabindex="-1" role="dialog" 
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <button type="button" class="close" 
+                                data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            New Summary
+                        </h4>
+                    </div>
 
-                        <!-- Modal Body -->
-                        <div class="modal-body">
+                    <!-- Modal Body -->
+                    <div class="modal-body">
 
-                    <s:form id="FormNewDrLine" action="createDrLine" method="post" validate="true"> 
-                        <div class="col-md-6 col-lg-6 col-xs-12">
+                <s:form id="FormNewDrLine" action="createDrLine" method="post" validate="true"> 
+                    <div class="col-md-6 col-lg-6 col-xs-12">
                         <div class="form-group" >
                             <label class="control-label" for="selectedDrLine.destinations.destId">Destination ID</label>
                             <s:select id="selectDestId" name="selectedDrLine.destinations.destId" cssClass="form-control pull-right" value="" list="listDestination" listKey="destId" listValue="destId" headerKey="" headerValue="Select Destination Id" style="min-width:200px;" required="true"/>
@@ -240,8 +244,8 @@
                             <label class="control-label" for="deliveryDate">Delivery Date</label>
                             <s:textfield id="deliveryDate" name="selectedDrLine.deliveryDate" cssClass="form-control" value="" />
                         </div>
-                        </div>
-                         <div class="col-md-6 col-lg-6 col-xs-12">
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xs-12">
                         <div class="form-group">
                             <label class="control-label" for="arrivalDate">Arrival Date</label>
                             <s:textfield id="arrivalDate" name="selectedDrLine.arrivalDate" cssClass="form-control" value="" />
@@ -258,183 +262,188 @@
                             <label class="control-label" for="amount">Description</label>
                             <s:textfield type="textarea" id="description" name="selectedDrLine.description" cssClass="form-control" value="" />
                         </div>
-                      
-                         </div>
-                    </s:form>
-                </div>
 
-                <!-- Modal Footer -->
-                <div class="row col-lg-12 col-xs-12 col-md-12 pull-right">
-                      <button type="button" class="btn btn-default"
-                            data-dismiss="modal">
-                        Close
-                    </button>
-                    <button id="btnSaveNewDrLine" type="submit" class="btn btn-primary">
-                        Save
-                    </button>
-                </div>
-                
-                <div class="row" ></div>
-                <br/>
+                    </div>
+                </s:form>
             </div>
-            <!--end modal-->
-            <!--delete drline modal-->
-            <div class="modal fade bs-example-modal-sm" id="DeleteDrLine" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                <div class="modal-dialog modal-sm" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Delete Destination in Summary</h4>
-                        </div>
-                        <div class="modal-body">
-                            Are you sure you want to delete it?
-                        </div>
-                        <div class="modal-footer">
-                            <a href="<s:url action="deleteDrHeader" ><s:param name="selectedDrHeader.drHeaderId"><s:property value="%{selectedDrHeader.drHeaderId}" /></s:param></s:url>" id="btnYesDelete" class="btn btn-danger">Yes</a>
-                            <a href="#" class="btn btn-default" data-dismiss="modal">No</a>
-                        </div>
+
+            <!-- Modal Footer -->
+            <div class="row col-lg-12 col-xs-12 col-md-12 pull-right">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                    Close
+                </button>
+                <button id="btnSaveNewDrLine" type="submit" class="btn btn-primary">
+                    Save
+                </button>
+            </div>
+
+            <div class="row" ></div>
+            <br/>
+        </div>
+            </div>
+        </div>
+        <!--end modal-->
+
+        <!--modal delete dr header-->
+<div class="modal fade bs-example-modal-sm" id="DeleteDrLineModal" tabindex="0" role="dialog" aria-labelledby="DeleteDrLineModalLabel">
+    <div class="modal-dialog modal-sm" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="DeleteDrLineLabel">Delete Destination in Summary</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete it?
+            </div>
+            <div class="modal-footer">
+                <a href="" id="btnYesDeleteDrLine" class="btn btn-danger">Yes</a>
+                        <a href="#" class="btn btn-default" data-dismiss="modal">No</a>
                     </div>
                 </div>
             </div>
-            <!--end modal-->
-            <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>-->
-            <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-            <script>
-                function createDeliveryReport(value) {
-                    var url = "createDrReport?drId=" + value;
-                    window.open(url, "_blank", "directories=no, status=no,width=800, height=580,top=0,left=0");
+        </div>
+        <!--end modal-->
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>-->
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+        <script>
+        function createDeliveryReport(value) {
+            var url = "createDrReport?drId=" + value;
+            window.open(url, "_blank", "directories=no, status=no,width=800, height=580,top=0,left=0");
+        }
+        $(document).ready(function () {
+            var table = $('#dataTables-drLine').DataTable({
+                rowReorder: {
+                    selector: 'td:nth-child(5)'
+                },
+                responsive: true
+            });
+            $('#DrHeaderAmount').show();
+            //initial state for create / edit drheader. actionName is parameter from drHeader.jsp
+            $('#drStatus').show();
+            if ($('#actionName').val() === "createDrHeader")
+            {
+                $('#actionTitle').text("New Delivery Request");
+                $('#Summary').hide();
+                $('#DrHeaderAmount').hide();
+                //                $('#drStatus').hide();
+                var today = new Date();
+                var uid = ("0" + today.getDate()).slice(-2) + ("0" + (today.getMonth() + 1)).slice(-2) + today.getFullYear().toString() + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5).toUpperCase();
+                $('#transactionNum').val(uid);
+                $('#FormDrHeader').attr('action', 'createDrHeader');
+                //                $('#drHeaderCreatedDate').val(new Date().toISOString().slice(0, 19).replace('T', ' '));
+                enableDrHeaderForm();
+            } else if ($('#actionName').val() === "editDrHeader")
+            {
+                $('#FormDrHeader').attr('action', 'editDrHeader');
+                enableDrHeaderForm();
+            } else
+            {
+                disableDrHeaderForm();
+            }
+
+            //Event Handler
+
+            //select customer
+            $('#selectCustId').on('change', function () {
+                var a = $('#selectCustId').val();
+                $('#selectCustName').val(a);
+            });
+            $('#selectCustName').on('change', function () {
+                var a = $('#selectCustName').val();
+                $('#selectCustId').val(a);
+            });
+            //select destination
+            $('#selectDestId').on('change', function () {
+                var a = $('#selectDestId').val();
+                $('#selectDestName').val(a);
+            });
+            $('#selectDestName').on('change', function () {
+                var a = $('#selectDestName').val();
+                $('#selectDestId').val(a);
+            });
+
+            //enable form for editing
+            $('#btnEditDrHeader').on('click', function () {
+                enableDrHeaderForm();
+                $('#FormDrHeader').attr('action', 'editDrHeader');
+            });
+
+            //onclick save button
+            $('#btnSaveDrHeader').on('click', function () {
+
+                if ($("#FormDrHeader").valid()) {   // test for validity
+                    $('#FormDrHeader').submit();
+                } else {
+
                 }
-                $(document).ready(function () {
-                    var table = $('#dataTables-drLine').DataTable({
-                        rowReorder: {
-                            selector: 'td:nth-child(5)'
-                        },
-                        responsive: true
-                    });
-                    $('#DrHeaderAmount').show();
-                    //initial state for create / edit drheader. actionName is parameter from drHeader.jsp
-                    $('#drStatus').show();
-                    if ($('#actionName').val() === "createDrHeader")
-                    {
-                        $('#actionTitle').text("New Delivery Request");
-                        $('#Summary').hide();
-                        $('#DrHeaderAmount').hide();
-                        //                $('#drStatus').hide();
-                        var today = new Date();
-                        var uid = ("0" + today.getDate()).slice(-2) + ("0" + (today.getMonth() + 1)).slice(-2) + today.getFullYear().toString() + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5).toUpperCase();
-                        $('#transactionNum').val(uid);
-                        $('#FormDrHeader').attr('action', 'createDrHeader');
-                        //                $('#drHeaderCreatedDate').val(new Date().toISOString().slice(0, 19).replace('T', ' '));
-                        enableDrHeaderForm();
-                    } else if ($('#actionName').val() === "editDrHeader")
-                    {
-                        $('#FormDrHeader').attr('action', 'editDrHeader');
-                        enableDrHeaderForm();
-                    } else
-                    {
-                        disableDrHeaderForm();
-                    }
+            });
 
-                    //Event Handler
+            $('#btnDeleteDrHeader').on('click', function () {
+                $('#DeleteDrHeaderModal').modal('show');
+            });
 
-                    //select customer
-                    $('#selectCustId').on('change', function () {
-                        var a = $('#selectCustId').val();
-                        $('#selectCustName').val(a);
-                    });
-                    $('#selectCustName').on('change', function () {
-                        var a = $('#selectCustName').val();
-                        $('#selectCustId').val(a);
-                    });
-                    //select destination
-                    $('#selectDestId').on('change', function () {
-                        var a = $('#selectDestId').val();
-                        $('#selectDestName').val(a);
-                    });
-                    $('#selectDestName').on('change', function () {
-                        var a = $('#selectDestName').val();
-                        $('#selectDestId').val(a);
-                    });
+            //function
+            function enableDrHeaderForm() {
 
-                    //enable form for editing
-                    $('#btnEditDrHeader').on('click', function () {
-                        enableDrHeaderForm();
-                        $('#FormDrHeader').attr('action', 'editDrHeader');
-                    });
+                $('#selectCustId').removeAttr('readonly');
+                $('#selectCustName').removeAttr('disabled');
+                $('#rit').removeAttr('readonly');
+                $('#driverName').removeAttr('readonly');
+                $('#kmStart').removeAttr('readonly');
+                $('#kmEnd').removeAttr('readonly');
+                $('#deliveryDateEnd').removeAttr('readonly');
+                $('#deliveryDateStart').removeAttr('readonly');
 
-                    //onclick save button
-                    $('#btnSaveDrHeader').on('click', function () {
+                //                $('#drStatus').removeAttr('readonly');
+                $('#policeNo').removeAttr('readonly');
+                $('#btnEditDrHeader').hide();
+                $('#btnSaveDrHeader').show();
+                //                $('#btnDeleteDrHeader').hide();
 
-                        if ($("#FormDrHeader").valid()) {   // test for validity
-                            $('#FormDrHeader').submit();
-                        } else {
+            }
+            function disableDrHeaderForm() {
 
-                        }
-                    });
+                $('#selectCustId').attr('readonly', 'true');
+                $('#selectCustName').attr('disabled', 'true');
+                $('#rit').attr('readonly', 'true');
+                $('#driverName').attr('readonly', 'true');
+                $('#policeNo').attr('readonly', 'true');
+                $('#kmStart').attr('readonly', 'true');
+                $('#kmEnd').attr('readonly', 'true');
+                $('#deliveryDateEnd').attr('readonly', 'true');
+                $('#deliveryDateStart').attr('readonly', 'true');
 
-                    $('#btnDeleteDrHeader').on('click', function () {
-                        $('#DeleteDrHeaderModal').modal('show');
-                    });
+                $('#btnSaveDrHeader').hide();
+                $('#btnEditDrHeader').show();
+                //                $('#btnDeleteDrHeader').show();
 
-                    //function
-                    function enableDrHeaderForm() {
+            }
 
-                        $('#selectCustId').removeAttr('readonly');
-                        $('#selectCustName').removeAttr('disabled');
-                        $('#rit').removeAttr('readonly');
-                        $('#driverName').removeAttr('readonly');
-                        $('#kmStart').removeAttr('readonly');
-                        $('#kmEnd').removeAttr('readonly');
-                        $('#deliveryDateEnd').removeAttr('readonly');
-                        $('#deliveryDateStart').removeAttr('readonly');
+            //function for edit dr line
+            $('#btnEdit').on('click', function () {
+                $('#NewDrLineModal').modal('show');
+            });
+            //function for new dr line
+            $('#btnAddDrLine').on('click', function () {
+                $('#NewDrLineModal').modal('show');
+            });
+            $('#btnSaveNewDrLine').on('click', function () {
 
-                        //                $('#drStatus').removeAttr('readonly');
-                        $('#policeNo').removeAttr('readonly');
-                        $('#btnEditDrHeader').hide();
-                        $('#btnSaveDrHeader').show();
-                        //                $('#btnDeleteDrHeader').hide();
+                if ($("#FormNewDrLine").valid()) {   // test for validity
+                    $('#FormNewDrLine').submit();
+                } else {
 
-                    }
-                    function disableDrHeaderForm() {
+                }
+            });
+         
 
-                        $('#selectCustId').attr('readonly', 'true');
-                        $('#selectCustName').attr('disabled', 'true');
-                        $('#rit').attr('readonly', 'true');
-                        $('#driverName').attr('readonly', 'true');
-                        $('#policeNo').attr('readonly', 'true');
-                        $('#kmStart').attr('readonly', 'true');
-                        $('#kmEnd').attr('readonly', 'true');
-                        $('#deliveryDateEnd').attr('readonly', 'true');
-                        $('#deliveryDateStart').attr('readonly', 'true');
+        });
+        function DeleteDrLine(LinkDelete){
+            
+            $('#btnYesDeleteDrLine').attr('href',LinkDelete);
+            $('#DeleteDrLineModal').modal('show');
+        }
 
-                        $('#btnSaveDrHeader').hide();
-                        $('#btnEditDrHeader').show();
-                        //                $('#btnDeleteDrHeader').show();
-
-                    }
-
-                    //function for edit dr line
-                    $('#btnEdit').on('click', function () {
-                        $('#NewDrLineModal').modal('show');
-                    });
-                    //function for new dr line
-                    $('#btnAddDrLine').on('click', function () {
-                        $('#NewDrLineModal').modal('show');
-                    });
-                    $('#btnSaveNewDrLine').on('click', function () {
-
-                        if ($("#FormNewDrLine").valid()) {   // test for validity
-                            $('#FormNewDrLine').submit();
-                        } else {
-
-                        }
-                    });
-                    //delete drline
-                    $('#btnDeleteDrLine').on('click', function () {
-                        $('#DeleteDrLine').modal('show');
-                    });
-
-                });
-
-            </script>
+        </script>
 
