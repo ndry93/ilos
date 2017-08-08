@@ -9,7 +9,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <!DOCTYPE html>
-<html>
+<html moznomarginboxes mozdisallowselectionprint>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,11 +21,22 @@
         <link href="${pageContext.request.contextPath}/theme/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom Fonts -->
         <link href="${pageContext.request.contextPath}/theme/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <style>
+            @media print
+            {
+                .noPrint{
+                    display:none;
+                }
+                @page {
+                    size:auto;
+                    margin:0;
+                }
+            }
+        </style>
     </head>
     <body>
         <div class="container">
-            <br>
-            <div class="row">
+            <div class="row noPrint">
                 <div class="col-sm-11"></div>
                 <div class="col-sm-1"><button onclick="window.print();">Print</button></div>
             </div>
@@ -103,7 +114,6 @@
                     </form>  
                 </div>
             </div>
-            <br>
             <div class="row">
                 <div class="col-sm-12">
                     <table width="100%" class="table table-striped table-bordered table-hover small" id="report-line-tbl">
@@ -151,12 +161,20 @@
                         </div>
                     </form>
                 </div>
+                <div class="col-sm-6">
+                    <b><u>Catatan:</u></b>
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <form class="form-horizontal">
                         <b><u>Rincian Pemakaian</u></b>
-                        <br>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <form class="form-horizontal">
                         <div class="form-group">
                             <label class="control-label col-xs-6">Uang solar</label>
                             <div class="col-xs-6">
@@ -178,6 +196,13 @@
                             <div class="col-xs-6">
                                 <s:textfield id="uangRetribusi"  cssClass="form-control " value="" required="true"  readonly="true"/>
                             </div>
+                            
+                        </div>
+                    </form>
+                </div> 
+                <div class="col-sm-6">
+                    <form class="form-horizontal">
+                        <div class="form-group">
                             <label class="control-label col-xs-6">Uang Makan</label>
                             <div class="col-xs-6">
                                 <s:textfield id="uangMakan"  cssClass="form-control " value="" required="true"  readonly="true"/>
@@ -195,10 +220,10 @@
                                 <s:textfield id="uangLainLain"  cssClass="form-control " value="" required="true"  readonly="true"/>
                             </div>
                         </div>
-                        <br>
-                        
                     </form>
-                </div> 
+                </div>
+            </div>     
+            <div class="row">
                 <div class="col-sm-6">
                     <form class="form-horizontal">
                         <div class="form-group">
@@ -216,12 +241,11 @@
                             </div>
                         </div>
                     </form>
-                            <br>
-                    <b><u>Catatan:</u></b>
                 </div>
-            </div>     
+            </div>
             <div class="row">
                 <div class="col-sm-4">
+                    <form class="form-horizontal">
                     <table width="100%" class="table table-striped table-bordered table-hover small" id="report-line-tbl">
                         <thead>
                             <tr>
@@ -234,10 +258,12 @@
                             </tr>
                         </tbody>
                     </table>
+                    </form>
                 </div>
                 <div class="col-sm-4">
                 </div>
                 <div class="col-sm-4">
+                    <form class="form-horizontal">
                     <table width="100%" class="table table-striped table-bordered table-hover small" id="report-line-tbl">
                         <thead>
                             <tr>
@@ -250,6 +276,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    </form>
                 </div>
             </div>
         </div>
@@ -258,6 +285,6 @@
 
         <!-- Bootstrap Core JavaScript -->
         <script src="${pageContext.request.contextPath}/theme/vendor/bootstrap/js/bootstrap.min.js"></script>
-
+        
     </body>
 </html>
