@@ -133,12 +133,26 @@ public class DrLineDAO {
         }
         return drLine;
     }
-     
+     public DrLines getDrLine(int drLineId) {
+        DrLines drL = null;
+        //we must check whether the transaction is created or not. 
+        //in case this method is called directly, it will create transaction
+        if(!session.getTransaction().isActive()){
+            session.beginTransaction();
+         }
+        try {
+            drL = (DrLines) session.createQuery("from DrLines where drLineId=" + drLineId).uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return drL;
+    }
     /**
      * Excample for SaveOrUpdate
      * User and Customer must exist in database
      * @param args 
      */
+    
     public static void main(String[] args){
         DrLineDAO d = new DrLineDAO();
         DrHeaderDAO dhdao = new DrHeaderDAO();

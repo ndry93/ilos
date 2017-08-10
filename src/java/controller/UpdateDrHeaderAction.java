@@ -97,7 +97,7 @@ public class UpdateDrHeaderAction extends ActionSupport {
      * @param url the url to set
      */
     public void setUrl() {
-         this.url = ServletActionContext.getRequest().getHeader("Referer");
+         this.url = ServletActionContext.getRequest().getHeader("Referer").replace("editDrHeader", "viewDrHeader");
     }
 
 }

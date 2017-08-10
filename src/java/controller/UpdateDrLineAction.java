@@ -8,6 +8,7 @@ package controller;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.DrLineDAO;
+import model.Destinations;
 import model.DrHeaders;
 import model.DrLines;
 import model.Users;
@@ -25,19 +26,34 @@ public class UpdateDrLineAction extends ActionSupport {
     private Users users;
    private Integer DrLineNo;
    private String url;
+       private DrLines edDrLine;
     public UpdateDrLineAction() {
     }
     
     public String execute() throws Exception {
           try {
               setUrl();
-            System.out.println("controller.UpdateDrHeaderAction.execute()");
-//            DrLines DrLine = drline_dao
+              System.out.println("controller.UpdateDrLineAction.execute()");
+              DrLines li = new DrLines();
+              System.out.println("controller.UpdateDrLineAction.execute()");
+              System.out.println("----------edit--------"+edDrLine.getDrLineId());
+              li = drline_dao.getDrLine(edDrLine.getDrLineId());
+              Destinations dest = edDrLine.getDestinations();
+            
+              System.out.println("----dest "+dest.getDestId());
+              li.setDestinations(dest);
+//              li.setAmount(edDrLine.getAmount());
+              li.setBk24(edDrLine.getBk24());
+              li.setDeliveryDate(edDrLine.getDeliveryDate());
+              li.setArrivalDate(edDrLine.getArrivalDate());
+              li.setArrivalKm(edDrLine.getArrivalKm());
+              li.setLeavingDate(edDrLine.getLeavingDate());
+              li.setDescription(edDrLine.getDescription());
 //            drHeader.setCustomers(getSelectedDrHeader().getCustomers());
 //            drHeader.setDriverName(getSelectedDrHeader().getDriverName());
 //            drHeader.setPoliceNo(getSelectedDrHeader().getPoliceNo());
 //            drHeader.setRit(getSelectedDrHeader().getRit());
-//            drheader_dao.saveOrUpdateDrHeader(drHeader);
+            drline_dao.saveOrUpdateDrLines(li);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,5 +96,19 @@ public class UpdateDrLineAction extends ActionSupport {
      */
     public void setUrl() {
         this.url = ServletActionContext.getRequest().getHeader("Referer");
+    }
+
+    /**
+     * @return the edDrLine
+     */
+    public DrLines getEdDrLine() {
+        return edDrLine;
+    }
+
+    /**
+     * @param edDrLine the edDrLine to set
+     */
+    public void setEdDrLine(DrLines edDrLine) {
+        this.edDrLine = edDrLine;
     }
 }

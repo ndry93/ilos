@@ -139,37 +139,42 @@
                         </thead>
                         <tbody>
                             <s:iterator value="selectedDrHeader.drLineses" var="drLine">
-                                 <s:if test="#drLine.isDeleted != 'Y'">
-                                <tr>
-                                    <td>
-                                        <s:property value="drLineId" />
-                                    </td>
-                                    <td>
-                                        <s:property value="destinations.destId" />
-                                    </td>
-                                    <td>
-                                        <s:property value="destinations.destName" />
-                                    </td>
-                                    <td>
-                                        <s:property value="amount" />
-                                    </td>
-                                    <td>
-                                        <s:property value="deliveryStatus" />
-                                    </td>
-                                    <td>
-                                        <s:property value="deliveryDate" />
-                                    </td>
-                                    <td>
-                                        <s:property value="createdDate" />
-                                    </td>
+                                <s:if test="#drLine.isDeleted != 'Y'">
+                                    <tr>
+                                        <td id="td_drLineId_<s:property value="drLineId"/>">
+                                            <s:property value="drLineId" />
+                                        </td>
+                                        <td id="td_destId_<s:property value="drLineId"/>">
+                                            <s:property value="destinations.destId" />
+                                        </td>
+                                        <td id="td_destName_<s:property value="drLineId"/>">
+                                            <s:property value="destinations.destName" />
+                                        </td>
+                                        <td id="td_amount_<s:property value="drLineId"/>">
+                                            <s:property value="amount" />
+                                        </td>
+                                        <td id="td_deliveryStatus_<s:property value="drLineId"/>">
+                                            <s:property value="deliveryStatus" />
+                                        </td>
+                                        <td id="td_deliveryDate_<s:property value="drLineId"/>">
+                                            <s:property value="deliveryDate" />
+                                        </td>
+                                        <td id="td_createdDate_<s:property value="drLineId"/>">
+                                            <s:property value="createdDate" />
+                                        </td>
+                                        <s:hidden id="td_bk24_%{drLineId}" value="%{bk24}" />
+                                        <s:hidden id="td_arrivalDate_%{drLineId}" value="%{arrivalDate}" />
+                                        <s:hidden id="td_arrivalKm_%{drLineId}" value="%{arrivalKm}" />
+                                        <s:hidden id="td_leavingDate_%{drLineId}" value="%{leavingDate}" />
+                                        <s:hidden id="td_description_%{drLineId}" value="%{description}" />
 
-                                    <td class="text-center" style="min-width: 250px;">
-                                        <a href="javascript:createDeliveryReport('<s:property value="drHeaders.drHeaderId"/>')" id="btnReport" class="btn-sm btn-default"><i class="fa fa-book"></i> <strong>DR Report</strong></a>
-                                        <a href="#" id="btnEdit" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
-                                        <a href="#" onclick="DeleteDrLine('<s:url action="deleteDrLine" ><s:param name="DrLineNo"><s:property value="%{drLineId}" /></s:param></s:url>');" id="btnDeleteDrLine" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
-                                    </td>
-                                    
-                                </tr>
+                                        <td class="text-center" style="min-width: 250px;">
+                                            <a href="javascript:createDeliveryReport('<s:property value="drHeaders.drHeaderId"/>')" id="btnReport" class="btn-sm btn-default"><i class="fa fa-book"></i> <strong>DR Report</strong></a>
+                                            <a href="#" id="EditDrLine" onclick="EditDrLineForm('<s:property value="%{drLineId}"/>');" class="btn-sm btn-success"><i class="fa fa-edit"></i> <strong>Edit</strong></a>
+                                            <a href="#" onclick="DeleteDrLine('<s:url action="deleteDrLine" ><s:param name="DrLineNo"><s:property value="%{drLineId}" /></s:param></s:url>');" id="btnDeleteDrLine" class="btn-sm btn-danger"><i class="fa fa-trash"></i> <strong>Delete</strong></a>
+                                                </td>
+
+                                            </tr>
                                 </s:if>
                             </s:iterator>
                         </tbody>
@@ -181,6 +186,7 @@
     </div>
 </div>
 <!-- /#page-wrapper -->
+
 <!--modal delete dr header-->
 <div class="modal fade bs-example-modal-sm" id="DeleteDrHeaderModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
     <div class="modal-dialog modal-sm" role="document">
@@ -281,11 +287,11 @@
             <div class="row" ></div>
             <br/>
         </div>
-            </div>
-        </div>
-        <!--end modal-->
+    </div>
+</div>
+<!--end modal-->
 
-        <!--modal delete dr header-->
+<!--modal delete dr header-->
 <div class="modal fade bs-example-modal-sm" id="DeleteDrLineModal" tabindex="0" role="dialog" aria-labelledby="DeleteDrLineModalLabel">
     <div class="modal-dialog modal-sm" >
         <div class="modal-content">
@@ -298,152 +304,269 @@
             </div>
             <div class="modal-footer">
                 <a href="" id="btnYesDeleteDrLine" class="btn btn-danger">Yes</a>
-                        <a href="#" class="btn btn-default" data-dismiss="modal">No</a>
-                    </div>
-                </div>
+                <a href="#" class="btn btn-default" data-dismiss="modal">No</a>
             </div>
         </div>
-        <!--end modal-->
-        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>-->
-        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-        <script>
-        function createDeliveryReport(value) {
-            var url = "createDrReport?drId=" + value;
-            window.open(url, "_blank", "directories=no, status=no,width=800, height=580,top=0,left=0");
-        }
-        $(document).ready(function () {
-            var table = $('#dataTables-drLine').DataTable({
-                rowReorder: {
-                    selector: 'td:nth-child(5)'
-                },
-                responsive: true
-            });
-            $('#DrHeaderAmount').show();
-            //initial state for create / edit drheader. actionName is parameter from drHeader.jsp
-            $('#drStatus').show();
-            if ($('#actionName').val() === "createDrHeader")
-            {
-                $('#actionTitle').text("New Delivery Request");
-                $('#Summary').hide();
-                $('#DrHeaderAmount').hide();
-                //                $('#drStatus').hide();
-                var today = new Date();
-                var uid = ("0" + today.getDate()).slice(-2) + ("0" + (today.getMonth() + 1)).slice(-2) + today.getFullYear().toString() + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5).toUpperCase();
-                $('#transactionNum').val(uid);
-                $('#FormDrHeader').attr('action', 'createDrHeader');
-                //                $('#drHeaderCreatedDate').val(new Date().toISOString().slice(0, 19).replace('T', ' '));
-                enableDrHeaderForm();
-            } else if ($('#actionName').val() === "editDrHeader")
-            {
-                $('#FormDrHeader').attr('action', 'editDrHeader');
-                enableDrHeaderForm();
-            } else
-            {
-                disableDrHeaderForm();
-            }
+    </div>
+</div>
+<!--end modal-->
 
-            //Event Handler
+<!--modal edit dr line-->
+<div class="modal fade" id="EditDrLineModal" tabindex="-1" role="dialog" 
+     aria-labelledby="edModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                        data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Edit Summary
+                </h4>
+            </div>
 
-            //select customer
-            $('#selectCustId').on('change', function () {
-                var a = $('#selectCustId').val();
-                $('#selectCustName').val(a);
-            });
-            $('#selectCustName').on('change', function () {
-                var a = $('#selectCustName').val();
-                $('#selectCustId').val(a);
-            });
-            //select destination
-            $('#selectDestId').on('change', function () {
-                var a = $('#selectDestId').val();
-                $('#selectDestName').val(a);
-            });
-            $('#selectDestName').on('change', function () {
-                var a = $('#selectDestName').val();
-                $('#selectDestId').val(a);
-            });
+            <!-- Modal Body -->
+            <div class="modal-body">
 
-            //enable form for editing
-            $('#btnEditDrHeader').on('click', function () {
-                enableDrHeaderForm();
-                $('#FormDrHeader').attr('action', 'editDrHeader');
-            });
+                <s:form id="FormEditDrLine" action="editDrLine" method="post" validate="true"> 
+                    <div class="col-md-6 col-lg-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label" for="amount">Id</label>
+                            <s:textfield type="number" id="ed_drLineId" name="edDrLine.drLineId" cssClass="form-control" value="" readonly="true" required="true" />
+                        </div>
+                        <div class="form-group" >
+                            <label class="control-label" for="edDrLine.destinations.destId">Destination ID</label>
+                            <s:select id="ed_selectDestId" name="edDrLine.destinations.destId" cssClass="form-control pull-right" value="" list="listDestination" listKey="destId" listValue="destId" headerKey="" headerValue="Select Destination Id" style="min-width:200px;" required="true"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="edDrLine.destinations.destName">Destination Name</label>
+                            <s:select id="ed_selectDestName" name="edDrLine.destinations.destName" cssClass="form-control pull-right" value="" list="listDestination" listKey="destId" listValue="destName" headerKey="" headerValue="Select Destination" style="min-width:200px;" required="true"></s:select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="amount">Amount</label>
+                            <s:hidden name="edDrLine.drHeaders.drHeaderId" id="edDrLine.drHeaders.drHeaderId" value="%{selectedDrHeader.drHeaderId}" />
+                            <s:textfield type="number" id="ed_amount" name="edDrLine.amount" cssClass="form-control" value="" required="true" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="bk24">bk24</label>
+                            <s:textfield type="text" id="ed_bk24" name="edDrLine.bk24" cssClass="form-control" value="" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="deliveryDate">Delivery Date</label>
+                            <s:textfield id="ed_deliveryDate" name="edDrLine.deliveryDate" cssClass="form-control" value="" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label" for="arrivalDate">Arrival Date</label>
+                            <s:textfield id="ed_arrivalDate" name="edDrLine.arrivalDate" cssClass="form-control" value="" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="arrivalKm">KM Arrival</label>
+                            <s:textfield type="number" id="ed_arrivalKm" name="edDrLine.arrivalKm" cssClass="form-control" value="" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="leavingDate">Leaving Date</label>
+                            <s:textfield  id="ed_leavingDate" name="edDrLine.leavingDate" cssClass="form-control" value="" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="amount">Description</label>
+                            <s:textfield type="textarea" id="ed_description" name="edDrLine.description" cssClass="form-control" value="" />
+                        </div>
 
-            //onclick save button
-            $('#btnSaveDrHeader').on('click', function () {
+                    </div>
+                </s:form>
+            </div>
 
-                if ($("#FormDrHeader").valid()) {   // test for validity
-                    $('#FormDrHeader').submit();
-                } else {
+            <!-- Modal Footer -->
+            <div class="row col-lg-12 col-xs-12 col-md-12 pull-right">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                    Close
+                </button>
+                <button id="btnSaveEdDrLine" type="submit" class="btn btn-primary">
+                    Save
+                </button>
+            </div>
 
-                }
-            });
+            <div class="row" ></div>
+            <br/>
+        </div>
+    </div>
+</div>
 
-            $('#btnDeleteDrHeader').on('click', function () {
-                $('#DeleteDrHeaderModal').modal('show');
-            });
+<!--end modal-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>-->
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script>
+                                                function createDeliveryReport(value) {
+                                                    var url = "createDrReport?drId=" + value;
+                                                    window.open(url, "_blank", "directories=no, status=no,width=800, height=580,top=0,left=0");
+                                                }
+                                                $(document).ready(function () {
+                                                    var table = $('#dataTables-drLine').DataTable({
+                                                        rowReorder: {
+                                                            selector: 'td:nth-child(5)'
+                                                        },
+                                                        responsive: true
+                                                    });
+                                                    $('#DrHeaderAmount').show();
+                                                    //initial state for create / edit drheader. actionName is parameter from drHeader.jsp
+                                                    $('#drStatus').show();
+                                                    if ($('#actionName').val() === "createDrHeader")
+                                                    {
+                                                        $('#actionTitle').text("New Delivery Request");
+                                                        $('#Summary').hide();
+                                                        $('#DrHeaderAmount').hide();
+                                                        //                $('#drStatus').hide();
+                                                        var today = new Date();
+                                                        var uid = ("0" + today.getDate()).slice(-2) + ("0" + (today.getMonth() + 1)).slice(-2) + today.getFullYear().toString() + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5).toUpperCase();
+                                                        $('#transactionNum').val(uid);
+                                                        $('#FormDrHeader').attr('action', 'createDrHeader');
+                                                        //                $('#drHeaderCreatedDate').val(new Date().toISOString().slice(0, 19).replace('T', ' '));
+                                                        enableDrHeaderForm();
+                                                    } else if ($('#actionName').val() === "editDrHeader")
+                                                    {
+                                                        $('#FormDrHeader').attr('action', 'editDrHeader');
+                                                        enableDrHeaderForm();
+                                                    } else
+                                                    {
+                                                        disableDrHeaderForm();
+                                                    }
 
-            //function
-            function enableDrHeaderForm() {
+                                                    //Event Handler
 
-                $('#selectCustId').removeAttr('readonly');
-                $('#selectCustName').removeAttr('disabled');
-                $('#rit').removeAttr('readonly');
-                $('#driverName').removeAttr('readonly');
-                $('#kmStart').removeAttr('readonly');
-                $('#kmEnd').removeAttr('readonly');
-                $('#deliveryDateEnd').removeAttr('readonly');
-                $('#deliveryDateStart').removeAttr('readonly');
+                                                    //select customer
+                                                    $('#selectCustId').on('change', function () {
+                                                        var a = $('#selectCustId').val();
+                                                        $('#selectCustName').val(a);
+                                                    });
+                                                    $('#selectCustName').on('change', function () {
+                                                        var a = $('#selectCustName').val();
+                                                        $('#selectCustId').val(a);
+                                                    });
+                                                    //select destination
+                                                    $('#selectDestId').on('change', function () {
+                                                        var a = $('#selectDestId').val();
+                                                        $('#selectDestName').val(a);
+                                                    });
+                                                    $('#selectDestName').on('change', function () {
+                                                        var a = $('#selectDestName').val();
+                                                        $('#selectDestId').val(a);
+                                                    });
+                                                    //select destination
+                                                    $('#ed_selectDestId').on('change', function () {
+                                                        var a = $('#ed_selectDestId').val();
+                                                        $('#ed_selectDestName').val(a);
+                                                    });
+                                                    $('#ed_selectDestName').on('change', function () {
+                                                        var a = $('#ed_selectDestName').val();
+                                                        $('#selectDestId').val(a);
+                                                    });
 
-                //                $('#drStatus').removeAttr('readonly');
-                $('#policeNo').removeAttr('readonly');
-                $('#btnEditDrHeader').hide();
-                $('#btnSaveDrHeader').show();
-                //                $('#btnDeleteDrHeader').hide();
+                                                    //enable form for editing
+                                                    $('#btnEditDrHeader').on('click', function () {
+                                                        enableDrHeaderForm();
+                                                        $('#FormDrHeader').attr('action', 'editDrHeader');
+                                                    });
 
-            }
-            function disableDrHeaderForm() {
+                                                    //onclick save button
+                                                    $('#btnSaveDrHeader').on('click', function () {
 
-                $('#selectCustId').attr('readonly', 'true');
-                $('#selectCustName').attr('disabled', 'true');
-                $('#rit').attr('readonly', 'true');
-                $('#driverName').attr('readonly', 'true');
-                $('#policeNo').attr('readonly', 'true');
-                $('#kmStart').attr('readonly', 'true');
-                $('#kmEnd').attr('readonly', 'true');
-                $('#deliveryDateEnd').attr('readonly', 'true');
-                $('#deliveryDateStart').attr('readonly', 'true');
+                                                        if ($("#FormDrHeader").valid()) {   // test for validity
+                                                            $('#FormDrHeader').submit();
+                                                        } else {
 
-                $('#btnSaveDrHeader').hide();
-                $('#btnEditDrHeader').show();
-                //                $('#btnDeleteDrHeader').show();
+                                                        }
+                                                        $('#actionName').val("viewDrHeader");
+                                                    });
 
-            }
+                                                    $('#btnDeleteDrHeader').on('click', function () {
+                                                        $('#DeleteDrHeaderModal').modal('show');
+                                                    });
 
-            //function for edit dr line
-            $('#btnEdit').on('click', function () {
-                $('#NewDrLineModal').modal('show');
-            });
-            //function for new dr line
-            $('#btnAddDrLine').on('click', function () {
-                $('#NewDrLineModal').modal('show');
-            });
-            $('#btnSaveNewDrLine').on('click', function () {
+                                                    //function
+                                                    function enableDrHeaderForm() {
 
-                if ($("#FormNewDrLine").valid()) {   // test for validity
-                    $('#FormNewDrLine').submit();
-                } else {
+                                                        $('#selectCustId').removeAttr('disabled');
+                                                        $('#selectCustName').removeAttr('disabled');
+                                                        $('#rit').removeAttr('readonly');
+                                                        $('#driverName').removeAttr('readonly');
+                                                        $('#kmStart').removeAttr('readonly');
+                                                        $('#kmEnd').removeAttr('readonly');
+                                                        $('#deliveryDateEnd').removeAttr('readonly');
+                                                        $('#deliveryDateStart').removeAttr('readonly');
+                                                        //                $('#drStatus').removeAttr('readonly');
+                                                        $('#policeNo').removeAttr('readonly');
+                                                        $('#btnEditDrHeader').hide();
+                                                        $('#btnSaveDrHeader').show();
+                                                        //                $('#btnDeleteDrHeader').hide();
+                                                    }
+                                                    function disableDrHeaderForm() {
 
-                }
-            });
-         
+                                                        $('#selectCustId').attr('disabled', 'true');
+                                                        $('#selectCustName').attr('disabled', 'true');
+                                                        $('#rit').attr('readonly', 'true');
+                                                        $('#driverName').attr('readonly', 'true');
+                                                        $('#policeNo').attr('readonly', 'true');
+                                                        $('#kmStart').attr('readonly', 'true');
+                                                        $('#kmEnd').attr('readonly', 'true');
+                                                        $('#deliveryDateEnd').attr('readonly', 'true');
+                                                        $('#deliveryDateStart').attr('readonly', 'true');
+                                                        $('#btnSaveDrHeader').hide();
+                                                        $('#btnEditDrHeader').show();
+                                                        //                $('#btnDeleteDrHeader').show();
 
-        });
-        function DeleteDrLine(LinkDelete){
-            
-            $('#btnYesDeleteDrLine').attr('href',LinkDelete);
-            $('#DeleteDrLineModal').modal('show');
-        }
+                                                    }
 
-        </script>
+                                                    //function for edit dr line
+//            $('#btnEdit').on('click', function () {
+//                $('#NewDrLineModal').modal('show');
+//            });
+                                                    //function for new dr line
+                                                    $('#btnAddDrLine').on('click', function () {
+                                                        $('#NewDrLineModal').modal('show');
+                                                    });
+                                                    $('#btnSaveNewDrLine').on('click', function () {
+
+                                                        if ($("#FormNewDrLine").valid()) {   // test for validity
+                                                            $('#FormNewDrLine').submit();
+                                                        } else {
+
+                                                        }
+                                                    });
+                                                    $('#btnSaveEdDrLine').on('click', function () {
+
+                                                        if ($("#FormEditDrLine").valid()) {   // test for validity
+                                                            $('#FormEditDrLine').submit();
+                                                        } else {
+
+                                                        }
+                                                    });
+                                                    
+
+                                                });
+                                                function DeleteDrLine(LinkDelete) {
+
+                                                    $('#btnYesDeleteDrLine').attr('href', LinkDelete);
+                                                    $('#DeleteDrLineModal').modal('show');
+                                                }
+                                                function EditDrLineForm(drLineId) {
+                                                    $('#ed_selectDestId').val($('#td_destId_' + drLineId).html().trim());
+                                                    $('#ed_selectDestName').val($('#td_destId_' + drLineId).html().trim());
+                                                    $('#ed_amount').val($('#td_amount_' + drLineId).html().trim());
+                                                    $('#ed_deliveryDate').val($('#td_deliveryDate_' + drLineId).html().trim());
+                                                    $('#ed_bk24').val($('#td_bk24_' + drLineId).html().trim());
+                                                    $('#ed_arrivalDate').val($('#td_arrivalDate_' + drLineId).html().trim());
+                                                    $('#ed_arrivalKm').val($('#td_arrivalKm_' + drLineId).html().trim());
+                                                    $('#ed_leavingDate').val($('#td_leavingDate_' + drLineId).html().trim());
+                                                    $('#ed_description').val($('#td_description_' + drLineId).html().trim());
+                                                     $('#ed_drLineId').val(drLineId);
+
+                                                    $('#EditDrLineModal').modal('show');
+                                                }
+</script>
 

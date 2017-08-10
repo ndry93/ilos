@@ -60,6 +60,9 @@
          <action name="deleteDrLine" class="controller.UpdateDrLineAction" method="deleteDrLine" > 
           <result name="success" type="redirect">${url}</result>
         </action>
+         <action name="editDrLine" class="controller.UpdateDrLineAction"  > 
+          <result name="success" type="redirect">${url}</result>
+        </action>
         <!-- End of Delivery Request Module -->
         
         <!-- Reporting -->
