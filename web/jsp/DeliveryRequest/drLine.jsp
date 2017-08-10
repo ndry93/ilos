@@ -248,13 +248,13 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="deliveryDate">Delivery Date</label>
-                            <s:textfield id="deliveryDate" name="selectedDrLine.deliveryDate" cssClass="form-control" value="" />
+                            <s:textfield id="deliveryDate" type="datetime-local" name="selectedDrLine.deliveryDate" cssClass="form-control" value="" />
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xs-12">
                         <div class="form-group">
                             <label class="control-label" for="arrivalDate">Arrival Date</label>
-                            <s:textfield id="arrivalDate" name="selectedDrLine.arrivalDate" cssClass="form-control" value="" />
+                            <s:textfield id="arrivalDate" type="datetime-local" name="selectedDrLine.arrivalDate" cssClass="form-control" value="" />
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="arrivalKm">KM Arrival</label>
@@ -262,7 +262,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="leavingDate">Leaving Date</label>
-                            <s:textfield  id="leavingDate" name="selectedDrLine.leavingDate" cssClass="form-control" value="" />
+                            <s:textfield  id="leavingDate" type="datetime-local" name="selectedDrLine.leavingDate" cssClass="form-control" value="" />
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="amount">Description</label>
@@ -356,13 +356,13 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="deliveryDate">Delivery Date</label>
-                            <s:textfield id="ed_deliveryDate" name="edDrLine.deliveryDate" cssClass="form-control" value="" />
+                            <s:textfield id="ed_deliveryDate" type="datetime-local" name="edDrLine.deliveryDate" cssClass="form-control" value="" />
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xs-12">
                         <div class="form-group">
                             <label class="control-label" for="arrivalDate">Arrival Date</label>
-                            <s:textfield id="ed_arrivalDate" name="edDrLine.arrivalDate" cssClass="form-control" value="" />
+                            <s:textfield id="ed_arrivalDate" type="datetime-local" name="edDrLine.arrivalDate" cssClass="form-control" value="" />
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="arrivalKm">KM Arrival</label>
@@ -370,7 +370,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="leavingDate">Leaving Date</label>
-                            <s:textfield  id="ed_leavingDate" name="edDrLine.leavingDate" cssClass="form-control" value="" />
+                            <s:textfield  id="ed_leavingDate" type="datetime-local" name="edDrLine.leavingDate" cssClass="form-control" value="" />
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="amount">Description</label>
@@ -559,11 +559,11 @@
                                                     $('#ed_selectDestName').val($('#td_destId_' + drLineId).html().trim());
                                                     $('#ed_amount').val($('#td_amount_' + drLineId).html().trim());
                                                     $('#ed_deliveryDate').val($('#td_deliveryDate_' + drLineId).html().trim());
-                                                    $('#ed_bk24').val($('#td_bk24_' + drLineId).html().trim());
-                                                    $('#ed_arrivalDate').val($('#td_arrivalDate_' + drLineId).html().trim());
-                                                    $('#ed_arrivalKm').val($('#td_arrivalKm_' + drLineId).html().trim());
-                                                    $('#ed_leavingDate').val($('#td_leavingDate_' + drLineId).html().trim());
-                                                    $('#ed_description').val($('#td_description_' + drLineId).html().trim());
+                                                    $('#ed_bk24').val($('#td_bk24_' + drLineId).val());
+                                                    $('#ed_arrivalDate').val($('#td_arrivalDate_' + drLineId).val());
+                                                    $('#ed_arrivalKm').val($('#td_arrivalKm_' + drLineId).val());
+                                                    $('#ed_leavingDate').val($('#td_leavingDate_' + drLineId).val());
+                                                    $('#ed_description').val($('#td_description_' + drLineId).val());
                                                      $('#ed_drLineId').val(drLineId);
 
                                                     $('#EditDrLineModal').modal('show');
