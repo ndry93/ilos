@@ -7,16 +7,16 @@
         <put-attribute name="body" value="/jsp/home.jsp"/>
         <put-attribute name="footer" value="/jsp/footer.jsp"/>
     </definition>
-    <definition name="drHeader.def" extends="index.def">
+    <definition name="TrxDeliveryRequest.def" extends="index.def">
         <put-attribute name="title" value="Delivery Request Transactions"/>
         <put-attribute name="header" value="/jsp/header.jsp"/>
-        <put-attribute name="body" value="/jsp/DeliveryRequest/drHeader.jsp"/>
+        <put-attribute name="body" value="/jsp/DeliveryRequest/TrxDeliveryRequest.jsp"/>
         <put-attribute name="footer" value="/jsp/footer.jsp"/>
     </definition>
-     <definition name="drLine.def" extends="index.def">
+     <definition name="CreateDeliveryRequest.def" extends="index.def">
         <put-attribute name="title" value="Delivery Request Summary"/>
         <put-attribute name="header" value="/jsp/header.jsp"/>
-        <put-attribute name="body" value="/jsp/DeliveryRequest/drLine.jsp"/>
+        <put-attribute name="body" value="/jsp/DeliveryRequest/CreateDeliveryRequest.jsp"/>
         <put-attribute name="footer" value="/jsp/footer.jsp"/>
     </definition>
     <definition name="drLineDest.def" extends="index.def">

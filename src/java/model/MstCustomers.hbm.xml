@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 20, 2017 3:58:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.MstCustomers" table="mst_customers" catalog="oneoms" optimistic-lock="version">
+        <id name="custId" type="string">
+            <column name="cust_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="legalName" type="string">
+            <column name="legal_name" unique="true" />
+        </property>
+        <property name="shortName" type="string">
+            <column name="short_name" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" />
+        </property>
+        <property name="address2" type="string">
+            <column name="address_2" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" />
+        </property>
+        <property name="province" type="string">
+            <column name="province" />
+        </property>
+        <property name="country" type="string">
+            <column name="country" />
+        </property>
+        <property name="contactPerson" type="string">
+            <column name="contact_person" />
+        </property>
+        <property name="contactNumber" type="string">
+            <column name="contact_number" />
+        </property>
+        <property name="contactEmail" type="string">
+            <column name="contact_email" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="created_by" />
+        </property>
+        <property name="createdTime" type="timestamp">
+            <column name="created_time" length="19" />
+        </property>
+        <property name="updatedBy" type="string">
+            <column name="updated_by" />
+        </property>
+        <property name="updatedTime" type="timestamp">
+            <column name="updated_time" length="19" />
+        </property>
+        <property name="modificationNum" type="java.lang.Integer">
+            <column name="modification_num" />
+        </property>
+        <property name="isEnabled" type="string">
+            <column name="is_enabled" length="1" />
+        </property>
+        <property name="isDeleted" type="string">
+            <column name="is_deleted" length="1" />
+        </property>
+        <set name="trxBillingses" table="trx_billings" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cust_id" />
+            </key>
+            <one-to-many class="model.TrxBillings" />
+        </set>
+        <set name="trxDeliveryRequestses" table="trx_delivery_requests" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cust_id" />
+            </key>
+            <one-to-many class="model.TrxDeliveryRequests" />
+        </set>
+    </class>
+</hibernate-mapping>

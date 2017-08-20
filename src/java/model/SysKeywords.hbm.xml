@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 20, 2017 3:58:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.SysKeywords" table="sys_keywords" catalog="oneoms" optimistic-lock="version">
+        <id name="rowId" type="java.lang.Integer">
+            <column name="row_id" />
+            <generator class="identity" />
+        </id>
+        <property name="keywordId" type="string">
+            <column name="keyword_id" />
+        </property>
+        <property name="keyOrder" type="java.lang.Integer">
+            <column name="key_order" />
+        </property>
+        <property name="keyLabel" type="string">
+            <column name="key_label" />
+        </property>
+        <property name="keyValue" type="string">
+            <column name="key_value" />
+        </property>
+        <property name="keyDescription" type="string">
+            <column name="key_description" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="created_by" />
+        </property>
+        <property name="createdTime" type="timestamp">
+            <column name="created_time" length="19" />
+        </property>
+        <property name="updatedBy" type="string">
+            <column name="updated_by" />
+        </property>
+        <property name="updatedTime" type="timestamp">
+            <column name="updated_time" length="19" />
+        </property>
+        <property name="modificationNum" type="java.lang.Integer">
+            <column name="modification_num" />
+        </property>
+        <property name="isEnabled" type="string">
+            <column name="is_enabled" length="1" />
+        </property>
+        <property name="isDeleted" type="string">
+            <column name="is_deleted" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

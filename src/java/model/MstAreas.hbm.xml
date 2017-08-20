@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 20, 2017 3:58:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.MstAreas" table="mst_areas" catalog="oneoms" optimistic-lock="version">
+        <id name="areaId" type="int">
+            <column name="area_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="areaName" type="string">
+            <column name="area_name" not-null="true" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="created_by" />
+        </property>
+        <property name="createdTime" type="timestamp">
+            <column name="created_time" length="19" />
+        </property>
+        <property name="updatedBy" type="string">
+            <column name="updated_by" />
+        </property>
+        <property name="updatedTime" type="timestamp">
+            <column name="updated_time" length="19" />
+        </property>
+        <property name="modificationNum" type="java.lang.Integer">
+            <column name="modification_num" />
+        </property>
+        <property name="isEnabled" type="string">
+            <column name="is_enabled" length="1" />
+        </property>
+        <property name="isDeleted" type="string">
+            <column name="is_deleted" length="1" />
+        </property>
+        <set name="mstDropPointses" table="mst_drop_points" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="area_id" />
+            </key>
+            <one-to-many class="model.MstDropPoints" />
+        </set>
+    </class>
+</hibernate-mapping>

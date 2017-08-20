@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 20, 2017 3:58:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.TrxDeliveryRequestsPods" table="trx_delivery_requests_pods" catalog="oneoms" optimistic-lock="version">
+        <composite-id name="id" class="model.TrxDeliveryRequestsPodsId">
+            <key-property name="dreqNum" type="string">
+                <column name="dreq_num" />
+            </key-property>
+            <key-property name="toPodId" type="string">
+                <column name="to_pod_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="mstDropPoints" class="model.MstDropPoints" update="false" insert="false" fetch="select">
+            <column name="to_pod_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="trxDeliveryRequests" class="model.TrxDeliveryRequests" update="false" insert="false" fetch="select">
+            <column name="dreq_num" not-null="true" />
+        </many-to-one>
+        <property name="podSeq" type="int">
+            <column name="pod_seq" not-null="true" />
+        </property>
+        <property name="fromPodId" type="string">
+            <column name="from_pod_id" not-null="true" />
+        </property>
+        <property name="fromPodShortname" type="string">
+            <column name="from_pod_shortname" />
+        </property>
+        <property name="fromPodFullname" type="string">
+            <column name="from_pod_fullname" />
+        </property>
+        <property name="toPodShortname" type="string">
+            <column name="to_pod_shortname" />
+        </property>
+        <property name="toPodFullname" type="string">
+            <column name="to_pod_fullname" />
+        </property>
+        <property name="onpackageP2pdistance" type="int">
+            <column name="onpackage_p2pdistance" not-null="true" />
+        </property>
+        <property name="actualP2pdistance" type="int">
+            <column name="actual_p2pdistance" not-null="true" />
+        </property>
+        <property name="is24hrsOpened" type="string">
+            <column name="is_24hrs_opened" length="1" />
+        </property>
+        <property name="checkinTime" type="timestamp">
+            <column name="checkin_time" length="19" />
+        </property>
+        <property name="checkoutTime" type="timestamp">
+            <column name="checkout_time" length="19" />
+        </property>
+        <property name="checkinOdoValue" type="int">
+            <column name="checkin_odo_value" not-null="true" />
+        </property>
+        <property name="checkinOdoPict" type="binary">
+            <column name="checkin_odo_pict" />
+        </property>
+        <property name="cargoValueAmount" type="int">
+            <column name="cargo_value_amount" not-null="true" />
+        </property>
+        <property name="receivedBy" type="string">
+            <column name="received_by" />
+        </property>
+        <property name="receiverSignature" type="binary">
+            <column name="receiver_signature" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

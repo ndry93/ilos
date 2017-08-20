@@ -8,37 +8,34 @@ package dao;
 import java.util.ArrayList;
 import utils.HibernateUtil;
 import java.util.List;
-import model.People;
-import model.Users;
+import model.SysUsers;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.*;
+import utils.DataAccessLayerException;
 
-public class usersDAO {
+public class usersDAO extends AbstractDAO{
 
-    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-    public boolean find(String name, String password) {
-        Transaction transaction = session.beginTransaction();
-        List<Users> list = new ArrayList<Users>();
-        try {
-            String sql = "Select userName, enabled from Users u where u.userName=:name and u.password=:pass and enabled is null";
-            Query query = session.createQuery(sql);
-            query.setParameter("name", name);
-            query.setParameter("pass", password);
-            list = query.list();
-        } catch (Exception e) {
-            transaction.rollback();
-            e.printStackTrace();
-        }
-        
-        if (list.size() > 0) {
+     public usersDAO() {
+        super();
+    }
+    public Boolean find(String userid, String password) throws DataAccessLayerException{
+        Session session = super.session;
+        Criteria criteria = session.createCriteria(SysUsers.class);
+        criteria.add(Expression.eq( "isDeleted", "N" ));
+        criteria.add(Expression.eq( "isEnabled", "Y" ));
+        criteria.add(Restrictions.eq("userId",userid));
+        criteria.add(Restrictions.eq("password",password));
+        List a = super.findListWithCriteria(criteria);
+        if(a.size()>0)
             return true;
-        }
-        return false;
+        else
+            return false;
     }
     
-    public void saveOrUpdateUser(Users user) {
+    public void saveOrUpdateUser(SysUsers user) {
         Transaction transaction = null;
         try {
             if(!session.getTransaction().isActive()){
@@ -57,12 +54,8 @@ public class usersDAO {
 
     public static void main(String[] args) {
         usersDAO d = new usersDAO();
-        Users user= new Users();
-        user.setUserName("ndry93");
-        People people = new People();
-        people.setEmail("ndry93@yahoo.co.id");
-        user.setPeople(people);
-        user.setPassword("welcome1");
-        d.saveOrUpdateUser(user);
+       Boolean a = d.find("oyeni@yahoo.com", "password");
+        System.out.println("sasas"+a);
+       
     }
 }

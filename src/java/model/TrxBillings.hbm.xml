@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 20, 2017 3:58:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.TrxBillings" table="trx_billings" catalog="oneoms" optimistic-lock="version">
+        <id name="billingId" type="string">
+            <column name="billing_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="mstCustomers" class="model.MstCustomers" fetch="select">
+            <column name="cust_id" />
+        </many-to-one>
+        <property name="billingStatus" type="string">
+            <column name="billing_status" />
+        </property>
+        <property name="periodStart" type="date">
+            <column name="period_start" length="10" />
+        </property>
+        <property name="periodEnd" type="date">
+            <column name="period_end" length="10" />
+        </property>
+        <property name="custLegalName" type="string">
+            <column name="cust_legal_name" />
+        </property>
+        <property name="invoicedStoreTotal" type="int">
+            <column name="invoiced_store_total" not-null="true" />
+        </property>
+        <property name="invoicedRitaseTotal" type="int">
+            <column name="invoiced_ritase_total" not-null="true" />
+        </property>
+        <property name="invoicedDistanceTotal" type="int">
+            <column name="invoiced_distance_total" not-null="true" />
+        </property>
+        <property name="invoicedAmountTotal" type="int">
+            <column name="invoiced_amount_total" not-null="true" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="created_by" />
+        </property>
+        <property name="createdTime" type="timestamp">
+            <column name="created_time" length="19" />
+        </property>
+        <property name="updatedBy" type="string">
+            <column name="updated_by" />
+        </property>
+        <property name="updatedTime" type="timestamp">
+            <column name="updated_time" length="19" />
+        </property>
+        <property name="modificationNum" type="java.lang.Integer">
+            <column name="modification_num" />
+        </property>
+        <property name="isEnabled" type="string">
+            <column name="is_enabled" length="1" />
+        </property>
+        <property name="isDeleted" type="string">
+            <column name="is_deleted" length="1" />
+        </property>
+        <set name="trxDeliveryRequestses" table="trx_delivery_requests" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="billing_id" />
+            </key>
+            <one-to-many class="model.TrxDeliveryRequests" />
+        </set>
+    </class>
+</hibernate-mapping>

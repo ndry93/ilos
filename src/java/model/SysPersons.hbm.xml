@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 20, 2017 3:58:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.SysPersons" table="sys_persons" catalog="oneoms" optimistic-lock="version">
+        <id name="personId" type="string">
+            <column name="person_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="first_name" />
+        </property>
+        <property name="middleName" type="string">
+            <column name="middle_name" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" />
+        </property>
+        <property name="contactNo1" type="string">
+            <column name="contact_no_1" />
+        </property>
+        <property name="contactNo2" type="string">
+            <column name="contact_no_2" />
+        </property>
+        <property name="faxNo" type="string">
+            <column name="fax_no" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="1" />
+        </property>
+        <property name="birthday" type="date">
+            <column name="birthday" length="10" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" />
+        </property>
+        <property name="zipCode" type="string">
+            <column name="zip_code" />
+        </property>
+        <property name="countryId" type="string">
+            <column name="country_id" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="created_by" />
+        </property>
+        <property name="createdTime" type="timestamp">
+            <column name="created_time" length="19" />
+        </property>
+        <property name="updatedBy" type="string">
+            <column name="updated_by" />
+        </property>
+        <property name="updatedTime" type="timestamp">
+            <column name="updated_time" length="19" />
+        </property>
+        <property name="modificationNum" type="java.lang.Integer">
+            <column name="modification_num" />
+        </property>
+        <property name="isEnabled" type="string">
+            <column name="is_enabled" length="1" />
+        </property>
+        <property name="isDeleted" type="string">
+            <column name="is_deleted" length="1" />
+        </property>
+        <set name="sysUserses" table="sys_users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="person_id" />
+            </key>
+            <one-to-many class="model.SysUsers" />
+        </set>
+    </class>
+</hibernate-mapping>

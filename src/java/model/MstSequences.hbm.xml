@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 20, 2017 3:58:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.MstSequences" table="mst_sequences" catalog="oneoms" optimistic-lock="version">
+        <id name="seqId" type="string">
+            <column name="seq_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="format" type="string">
+            <column name="format" />
+        </property>
+        <property name="nextCounter" type="int">
+            <column name="next_counter" not-null="true" />
+        </property>
+        <property name="maxCounter" type="int">
+            <column name="max_counter" not-null="true" />
+        </property>
+        <property name="currentYear" type="java.lang.Integer">
+            <column name="current_year" />
+        </property>
+        <property name="isAutoReset" type="string">
+            <column name="is_auto_reset" length="1" not-null="true" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="created_by" />
+        </property>
+        <property name="createdTime" type="timestamp">
+            <column name="created_time" length="19" />
+        </property>
+        <property name="updatedBy" type="string">
+            <column name="updated_by" />
+        </property>
+        <property name="updatedTime" type="timestamp">
+            <column name="updated_time" length="19" />
+        </property>
+        <property name="modificationNum" type="java.lang.Integer">
+            <column name="modification_num" />
+        </property>
+        <property name="isEnabled" type="string">
+            <column name="is_enabled" length="1" />
+        </property>
+        <property name="isDeleted" type="string">
+            <column name="is_deleted" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

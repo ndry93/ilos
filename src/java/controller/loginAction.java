@@ -5,7 +5,7 @@
  */
 package controller;
 
-import model.Users;
+import model.SysUsers;
 import dao.usersDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import static com.opensymphony.xwork2.Action.INPUT;
@@ -19,49 +19,18 @@ public class loginAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 1L;
     SessionMap<String, String> sessionmap;
     private final usersDAO dao = new usersDAO();
-    private Users users;
+    private SysUsers users;
 
-    @Override
-    public void setSession(Map<String, Object> map) {
-        sessionmap = (SessionMap) map;
-    }
-
-    /**
-     * @return the users
-     */
-    public Users getUsers() {
-        return users;
-    }
-
-    /**
-     * @param users the users to set
-     */
-    public void setUsers(Users users) {
-        this.users = users;
-    }
-
-    @Override
-    public void validate() {
-//        if (getUsers().getUserName() == null || getUsers().getUserName().length() == 0) {
-//            this.addFieldError("users.userName", "Name is required");
-//         System.out.println("masuk username err ");
-//        }
-//        if (getUsers().getPassword() == null || getUsers().getPassword().length() == 0) 
-//        {
-//            this.addFieldError("users.password", "Password is required");
-//         System.out.println("masuk pass err ");
-//        }   
-    }
-
+   
     @Override
     public String execute() {
         if(getUsers()!=null){
-            System.out.println("---getUsers().getUserName() "+getUsers().getUserName());
+            System.out.println("---getUsers().getUserName() "+getUsers().getUserId());
             System.out.println("---getUsers().getPassword() "+getUsers().getPassword());
-            if (dao.find(getUsers().getUserName(), getUsers().getPassword())) {
+            if (dao.find(getUsers().getUserId(), getUsers().getPassword())) {
                 System.out.println("---masuk login execute");
                 sessionmap.put("login", "true");
-                sessionmap.put("username",getUsers().getUserName());
+                sessionmap.put("username",getUsers().getUserId());
                 return SUCCESS;
             } else {
                 this.addActionError("Invalid username and password");
@@ -75,5 +44,24 @@ public class loginAction extends ActionSupport implements SessionAware {
         if(sessionmap!=null) sessionmap.invalidate();
         return SUCCESS;
     }
+     @Override
+    public void setSession(Map<String, Object> map) {
+        sessionmap = (SessionMap) map;
+    }
+
+    /**
+     * @return the users
+     */
+    public SysUsers getUsers() {
+        return users;
+    }
+
+    /**
+     * @param users the users to set
+     */
+    public void setUsers(SysUsers users) {
+        this.users = users;
+    }
+
 
 }

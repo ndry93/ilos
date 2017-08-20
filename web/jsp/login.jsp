@@ -45,7 +45,7 @@
                                 <div class="form-group input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i>
                                     </span>
-                                    <s:textfield name="users.userName" label="Enter User Name" cssClass="form-control" placeholder="Username" required="true" />
+                                    <s:textfield type="email" name="users.userId" label="Enter Email" cssClass="form-control" placeholder="Username" required="true" />
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="input-group-addon"><i class="fa fa-lock"></i>

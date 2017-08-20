@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 20, 2017 3:58:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.MstFleetMaintenance" table="mst_fleet_maintenance" catalog="oneoms" optimistic-lock="version">
+        <id name="rowId" type="java.lang.Integer">
+            <column name="row_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="mstFleet" class="model.MstFleet" fetch="select">
+            <column name="fleet_id" />
+        </many-to-one>
+        <property name="serviceDate" type="date">
+            <column name="service_date" length="10" />
+        </property>
+        <property name="serviceKms" type="int">
+            <column name="service_kms" not-null="true" />
+        </property>
+        <property name="descriptionOfService" type="string">
+            <column name="description_of_service" length="65535" />
+        </property>
+        <property name="workshopName" type="string">
+            <column name="workshop_name" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="created_by" />
+        </property>
+        <property name="createdTime" type="timestamp">
+            <column name="created_time" length="19" />
+        </property>
+        <property name="updatedBy" type="string">
+            <column name="updated_by" />
+        </property>
+        <property name="updatedTime" type="timestamp">
+            <column name="updated_time" length="19" />
+        </property>
+        <property name="modificationNum" type="java.lang.Integer">
+            <column name="modification_num" />
+        </property>
+        <property name="isEnabled" type="string">
+            <column name="is_enabled" length="1" />
+        </property>
+        <property name="isDeleted" type="string">
+            <column name="is_deleted" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

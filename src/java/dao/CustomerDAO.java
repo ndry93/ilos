@@ -7,65 +7,68 @@ package dao;
 
 import utils.HibernateUtil;
 import java.util.List;
-import model.Customers;
+import model.MstCustomers;
+import model.SysUsers;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.LogicalExpression;
+import utils.DataAccessLayerException;
 
 /**
  *
  * @author user
  */
-public class CustomerDAO {
-    
-    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-    
-    /**
-     * To get list of customers
-     * @return List<Customers>
-     */
-    public List<Customers> getAllCustomerList() {
-        List<Customers> listCustomer = null;
-        //we must check whether the transaction is created or not. 
-        //in case this method is called directly, it will create transaction
-        if(!session.getTransaction().isActive()){
-            session.beginTransaction();
-        }
-        try {
-            listCustomer = session.createQuery("from Customers where isDeleted = 'N' or isDeleted is null").list();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listCustomer;
-    }
-    
-    public void saveOrUpdateCustomers(Customers customers) {
-        Transaction transaction = null;
-        try {
-            if(!session.getTransaction().isActive()){
-                System.out.println("---new trans ");
-                transaction = session.beginTransaction();
-            }else{
-                transaction = session.getTransaction();
-            }
-            session.saveOrUpdate(customers);
-            transaction.commit();
-        } catch (Exception e) {
-            if(transaction!=null) transaction.rollback();
-            e.printStackTrace();
-        }
+public class CustomerDAO extends AbstractDAO {
+    public CustomerDAO() {
+        super();
     }
 
-    public static void main(String[] args) {
-        CustomerDAO c = new CustomerDAO();
-        Customers customers = new Customers();
-        customers.setCustomerName("PT. ALFA MIDI");
-        c.saveOrUpdateCustomers(customers);
-//        List<Customers> LC = null;
-//        CustomerDAO d = new CustomerDAO();
-//        LC = d.getAllCustomerList();
-//        for (Customers c : LC) {
-//            System.out.println(c.getCustomerName());
-//        }
+    /**
+     * Insert a new Event into the database.
+     * @param event
+     */
+    public void create(MstCustomers event) throws DataAccessLayerException {
+        super.saveOrUpdate(event);
+    }
+
+
+    /**
+     * Delete a detached Event from the database.
+     * @param event
+     */
+    public void delete(MstCustomers event) throws DataAccessLayerException {
+        super.delete(event);
+    }
+
+    
+    /**
+     * Updates the state of a detached Event.
+     *
+     * @param event
+     */
+    public void update(MstCustomers event) throws DataAccessLayerException {
+        super.saveOrUpdate(event);
+    }
+
+    /**
+     * Finds all Events in the database.
+     * @return
+     */
+    public List findAll() throws DataAccessLayerException{
+        return super.findAll(MstCustomers.class);
+    }
+    
+     public List getAvailableList() throws DataAccessLayerException {
+        Session session = super.session;
+        Criteria criteria = session.createCriteria(MstCustomers.class);
+        Criterion isDeleted = Expression.eq( "isDeleted", "N" );
+        Criterion isEnable = Expression.eq( "isEnabled", "Y" );
+        LogicalExpression andExp = Expression.and(isEnable, isEnable);
+        criteria.add(andExp);
+        return super.findListWithCriteria(criteria);
     }
   
 }

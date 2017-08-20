@@ -8,14 +8,13 @@ package controller;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import dao.DrLineDAO;
+import dao.TrxDRPodsDAO;
+import dao.TrxDeliveryRequestsDAO;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import model.Customers;
-import model.DrHeaders;
-import model.DrLines;
-import model.Users;
+import model.*;
+
 
 /**
  *
@@ -28,12 +27,12 @@ public class GetDashboardAction extends ActionSupport {
     private int totalDrSuccessToday = 0;
     private int totalDrPendingToday = 0;
     private int totalDrAmtToday = 0;
-    private DrLineDAO drLineDao = new DrLineDAO();
+    private TrxDeliveryRequestsDAO dao = new TrxDeliveryRequestsDAO();
     
     @Override
     public String execute() throws Exception {
         System.out.println("--masuk sini");
-        List<DrLines> drLines = drLineDao.listDrLineToday("Complete");
+        List<TrxDeliveryRequests> drLines = dao.getTrxDeliveryRequestList();
         this.setTotalDrToday(drLines.size());
         this.setTotalDrAmtToday(drLines.size());
         this.setTotalDrSuccessToday(drLines.size());
@@ -97,18 +96,6 @@ public class GetDashboardAction extends ActionSupport {
         this.totalDrAmtToday = totalDrAmtToday;
     }
 
-    /**
-     * @return the drLineDao
-     */
-    public DrLineDAO getDrLineDao() {
-        return drLineDao;
-    }
-
-    /**
-     * @param drLineDao the drLineDao to set
-     */
-    public void setDrLineDao(DrLineDAO drLineDao) {
-        this.drLineDao = drLineDao;
-    }
+   
     
 }

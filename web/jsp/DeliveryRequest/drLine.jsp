@@ -55,8 +55,9 @@
                                     </div>
                                     <div class="form-group col-lg-12 col-xs-12">
                                         <label class="control-label" for="selectedDrHeader.deliveryDateStart">Delivery Start Date</label>
-                                    <s:textfield type="datetime-local" id="deliveryDateStart" name="deliveryDateStart" cssClass="form-control pull-right" value="%{selectedDrHeader.deliveryDateStart}" readonly="true" style="width:200px;"/>
-                                </div>
+                                    <s:textfield type="text" id="deliveryDateStart" name="selectedDrHeader.deliveryDateStart" cssClass="form-control datepicker pull-right" value="%{selectedDrHeader.deliveryDateStart}" readonly="true" style="width:200px;"/>
+                                <p>Date: <input type="text" class="datepicker form-control"></p>
+                                    </div>
                                 <div class="form-group col-lg-12 col-xs-12">
                                     <label class="control-label" for="selectedDrHeader.deliveryDateEnd">Delivery End Date</label>
                                     <s:textfield id="deliveryDateEnd" type="datetime-local" name="deliveryDateEnd" cssClass="form-control pull-right" value="%{selectedDrHeader.deliveryDateEnd}" readonly="true" style="width:200px;"/>
@@ -546,7 +547,13 @@
 
                                                         }
                                                     });
-                                                    
+                                                    $(function () {
+                                                        $(".datepicker").datepicker({
+                                                            dateFormat : 'dd/mm/yy'
+                                                        });
+                                                    });
+                                                   // input text using datepicker
+                                                    <!--<p>Date: <input type="text" class="datepicker form-control"></p>-->
 
                                                 });
                                                 function DeleteDrLine(LinkDelete) {
@@ -564,7 +571,7 @@
                                                     $('#ed_arrivalKm').val($('#td_arrivalKm_' + drLineId).val());
                                                     $('#ed_leavingDate').val($('#td_leavingDate_' + drLineId).val());
                                                     $('#ed_description').val($('#td_description_' + drLineId).val());
-                                                     $('#ed_drLineId').val(drLineId);
+                                                    $('#ed_drLineId').val(drLineId);
 
                                                     $('#EditDrLineModal').modal('show');
                                                 }

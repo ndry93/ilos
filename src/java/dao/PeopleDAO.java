@@ -5,8 +5,8 @@
  */
 package dao;
 
-import model.People;
-import model.Users;
+import model.SysPersons;
+import model.SysUsers;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
@@ -19,7 +19,7 @@ public class PeopleDAO {
     
     Session session = HibernateUtil.getSessionFactory().getCurrentSession();
     
-    public void saveOrUpdatePeople(People people) {
+    public void saveOrUpdatePeople(SysPersons people) {
         Transaction transaction = null;
         try {
             if(!session.getTransaction().isActive()){
@@ -38,7 +38,7 @@ public class PeopleDAO {
 
     public static void main(String[] args) {
         PeopleDAO d = new PeopleDAO();
-        People people= new People();
+        SysPersons people= new SysPersons();
         people.setFirstName("Hendry");
         people.setLastName("Yuwono");
         people.setEmail("ndry93@yahoo.co.id");

@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 20, 2017 3:58:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.TrxDeliveryRequests" table="trx_delivery_requests" catalog="oneoms" optimistic-lock="version">
+        <id name="dreqNum" type="string">
+            <column name="dreq_num" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="mstCustomers" class="model.MstCustomers" fetch="select">
+            <column name="cust_id" />
+        </many-to-one>
+        <many-to-one name="mstDrivers" class="model.MstDrivers" fetch="select">
+            <column name="driver_id" />
+        </many-to-one>
+        <many-to-one name="mstFleet" class="model.MstFleet" fetch="select">
+            <column name="fleet_id" />
+        </many-to-one>
+        <many-to-one name="trxBillings" class="model.TrxBillings" fetch="select">
+            <column name="billing_id" />
+        </many-to-one>
+        <property name="plannedDreqDate" type="date">
+            <column name="planned_dreq_date" length="10" />
+        </property>
+        <property name="actualDreqDate" type="date">
+            <column name="actual_dreq_date" length="10" />
+        </property>
+        <property name="dreqStatus" type="string">
+            <column name="dreq_status" />
+        </property>
+        <property name="cargoType" type="string">
+            <column name="cargo_type" />
+        </property>
+        <property name="custLegalName" type="string">
+            <column name="cust_legal_name" />
+        </property>
+        <property name="custAddress" type="string">
+            <column name="cust_address" />
+        </property>
+        <property name="custAddress2" type="string">
+            <column name="cust_address_2" />
+        </property>
+        <property name="custCity" type="string">
+            <column name="cust_city" />
+        </property>
+        <property name="custProvince" type="string">
+            <column name="cust_province" />
+        </property>
+        <property name="custCountry" type="string">
+            <column name="cust_country" />
+        </property>
+        <property name="driverName" type="string">
+            <column name="driver_name" />
+        </property>
+        <property name="ritaseSeq" type="java.lang.Integer">
+            <column name="ritase_seq" />
+        </property>
+        <property name="plateNum" type="string">
+            <column name="plate_num" />
+        </property>
+        <property name="actualDepTime" type="timestamp">
+            <column name="actual_dep_time" length="19" />
+        </property>
+        <property name="actualArrTime" type="timestamp">
+            <column name="actual_arr_time" length="19" />
+        </property>
+        <property name="actualOdoStart" type="int">
+            <column name="actual_odo_start" not-null="true" />
+        </property>
+        <property name="actualOdoEnd" type="int">
+            <column name="actual_odo_end" not-null="true" />
+        </property>
+        <property name="actualDistanceTotal" type="int">
+            <column name="actual_distance_total" not-null="true" />
+        </property>
+        <property name="onpackageDistanceTotal" type="int">
+            <column name="onpackage_distance_total" not-null="true" />
+        </property>
+        <property name="billedDistanceTotal" type="int">
+            <column name="billed_distance_total" not-null="true" />
+        </property>
+        <property name="billedAmountTotal" type="int">
+            <column name="billed_amount_total" not-null="true" />
+        </property>
+        <property name="advanceExpTotal" type="int">
+            <column name="advance_exp_total" not-null="true" />
+        </property>
+        <property name="actualExpTotal" type="int">
+            <column name="actual_exp_total" not-null="true" />
+        </property>
+        <property name="remainingExpAmount" type="int">
+            <column name="remaining_exp_amount" not-null="true" />
+        </property>
+        <property name="borrowedAmount" type="int">
+            <column name="borrowed_amount" not-null="true" />
+        </property>
+        <property name="cargoValueTotal" type="int">
+            <column name="cargo_value_total" not-null="true" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="65535" />
+        </property>
+        <property name="odoStartPict" type="binary">
+            <column name="odo_start_pict" />
+        </property>
+        <property name="odoEndPict" type="binary">
+            <column name="odo_end_pict" />
+        </property>
+        <property name="toplannedDate" type="timestamp">
+            <column name="toplanned_date" length="19" />
+        </property>
+        <property name="topreparedDate" type="timestamp">
+            <column name="toprepared_date" length="19" />
+        </property>
+        <property name="toondeliveryDate" type="timestamp">
+            <column name="toondelivery_date" length="19" />
+        </property>
+        <property name="toincompleteDate" type="timestamp">
+            <column name="toincomplete_date" length="19" />
+        </property>
+        <property name="tocompleteDate" type="timestamp">
+            <column name="tocomplete_date" length="19" />
+        </property>
+        <property name="tobillassignedDate" type="timestamp">
+            <column name="tobillassigned_date" length="19" />
+        </property>
+        <property name="topaidDate" type="timestamp">
+            <column name="topaid_date" length="19" />
+        </property>
+        <property name="tocancelledDate" type="timestamp">
+            <column name="tocancelled_date" length="19" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="created_by" />
+        </property>
+        <property name="createdTime" type="timestamp">
+            <column name="created_time" length="19" />
+        </property>
+        <property name="updatedBy" type="string">
+            <column name="updated_by" />
+        </property>
+        <property name="updatedTime" type="timestamp">
+            <column name="updated_time" length="19" />
+        </property>
+        <property name="modificationNum" type="java.lang.Integer">
+            <column name="modification_num" />
+        </property>
+        <property name="isEnabled" type="string">
+            <column name="is_enabled" length="1" />
+        </property>
+        <property name="isDeleted" type="string">
+            <column name="is_deleted" length="1" />
+        </property>
+        <set name="trxDeliveryRequestsPodses" table="trx_delivery_requests_pods" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dreq_num" not-null="true" />
+            </key>
+            <one-to-many class="model.TrxDeliveryRequestsPods" />
+        </set>
+        <set name="trxDeliveryRequestsExpenseses" table="trx_delivery_requests_expenses" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dreq_num" not-null="true" />
+            </key>
+            <one-to-many class="model.TrxDeliveryRequestsExpenses" />
+        </set>
+    </class>
+</hibernate-mapping>

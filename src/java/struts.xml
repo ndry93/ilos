@@ -21,8 +21,8 @@
         </global-results>-->
         
         <!-- Authentication -->
-        <action name="login" class="controller.loginAction">
-            <result name="success" type="tiles">index.def</result>
+        <action name="login" class="controller.loginAction" >
+            <result name="success" type="redirectAction">home</result>
             <result name="input">login.jsp</result>
         </action>   
         <action name="logout" class="controller.loginAction" method="logout">  
@@ -36,13 +36,21 @@
         <!-- End of Authentication -->
         
         <!-- Delivery Request Module -->
-        <action name="drHeader" class="controller.GetAllDrHeaderAction" >  
-            <result name="success" type="tiles">drHeader.def</result>
+        
+        <action name="DeliveryRequestMaster" class="controller.TrxDeliveryRequestsAction" method="listAvailableDRRequest">  
+            <result name="success" type="tiles">TrxDeliveryRequest.def</result>
         </action>
-        <action name="drLinesByDrNo" class="controller.GetAllDrLinesByDrNoAction" >  
-            <result name="success" type="tiles">drLine.def</result>
+        <action name="createTrxDeliveryRequest"> 
+           <result name="success" type="tiles">CreateDeliveryRequest.def</result>
         </action>
-        <action name="createDrHeader" class="controller.CreateDrHeaderAction" > 
+        <action name="doCreateTrxDeliveryRequest" class="controller.TrxDeliveryRequestsAction" method="addAction" > 
+           <result name="success" type="redirectAction">drHeader</result>
+        </action>
+        
+        <action name="DeliveryRequestPod" class="controller.TrxDeliveryRequestsAction" method="find">  
+            <result name="success" type="tiles">TrxDeliveryRequestPods.def</result>
+        </action>
+      <!--  <action name="createDrHeader" class="controller.CreateDrHeaderAction" > 
            <result name="success" type="redirectAction">drHeader</result>
         </action>
         <action name="deleteDrHeader" class="controller.UpdateDrHeaderAction" method="deleteDrHeader" >  
@@ -50,11 +58,10 @@
         </action>
         <action name="editDrHeader" class="controller.UpdateDrHeaderAction">
             <result name="success" type="redirect">${url}</result>
-        </action>
-<!--        <action name="drLineDestByNo" class="controller.GetAllDrLineDestByNoAction">
-            <result name="success" type="tiles">drLineDest.def</result>
-        </action>-->
-         <action name="createDrLine" class="controller.CreateDrLineAction" > 
+        </action> !-->
+        
+
+<!--         <action name="createDrLine" class="controller.CreateDrLineAction" > 
           <result name="success" type="redirect">${url}</result>
         </action>
          <action name="deleteDrLine" class="controller.UpdateDrLineAction" method="deleteDrLine" > 
@@ -62,13 +69,15 @@
         </action>
          <action name="editDrLine" class="controller.UpdateDrLineAction"  > 
           <result name="success" type="redirect">${url}</result>
-        </action>
+        </action>-->
+        
+        
         <!-- End of Delivery Request Module -->
         
         <!-- Reporting -->
-        <action name="createDrReport" class="controller.GenerateReportAction" method="generateDRReport">  
+<!--        <action name="createDrReport" class="controller.GenerateReportAction" method="generateDRReport">  
             <result name="delivery-report" type="">DeliveryRequest/deliveryReport.jsp</result>
-        </action>
+        </action>-->
         <!-- End of Reporting -->
     </package>
     

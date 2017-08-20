@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 20, 2017 3:58:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.MstFleet" table="mst_fleet" catalog="oneoms" optimistic-lock="version">
+        <id name="fleetId" type="string">
+            <column name="fleet_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="plateNum" type="string">
+            <column name="plate_num" />
+        </property>
+        <property name="fleetType" type="string">
+            <column name="fleet_type" />
+        </property>
+        <property name="fleetOwnership" type="string">
+            <column name="fleet_ownership" />
+        </property>
+        <property name="yearOfAcquisition" type="string">
+            <column name="year_of_acquisition" />
+        </property>
+        <property name="yearOfAssembly" type="string">
+            <column name="year_of_assembly" />
+        </property>
+        <property name="assetNum" type="string">
+            <column name="asset_num" />
+        </property>
+        <property name="fleetBrand" type="string">
+            <column name="fleet_brand" />
+        </property>
+        <property name="fleetModel" type="string">
+            <column name="fleet_model" />
+        </property>
+        <property name="fleetColor" type="string">
+            <column name="fleet_color" />
+        </property>
+        <property name="fleetEngineNum" type="string">
+            <column name="fleet_engine_num" />
+        </property>
+        <property name="fleetCylinderVol" type="int">
+            <column name="fleet_cylinder_vol" not-null="true" />
+        </property>
+        <property name="fleetHousePower" type="int">
+            <column name="fleet_house_power" not-null="true" />
+        </property>
+        <property name="fleetFuelCap" type="int">
+            <column name="fleet_fuel_cap" not-null="true" />
+        </property>
+        <property name="fleetOilCap" type="int">
+            <column name="fleet_oil_cap" not-null="true" />
+        </property>
+        <property name="gpsNum" type="string">
+            <column name="gps_num" />
+        </property>
+        <property name="radioNum" type="string">
+            <column name="radio_num" />
+        </property>
+        <property name="vinNum" type="string">
+            <column name="vin_num" />
+        </property>
+        <property name="fleetFuelConsumption" type="int">
+            <column name="fleet_fuel_consumption" not-null="true" />
+        </property>
+        <property name="fleetNumOfTire" type="int">
+            <column name="fleet_num_of_tire" not-null="true" />
+        </property>
+        <property name="fleetSizeOfTire" type="int">
+            <column name="fleet_size_of_tire" not-null="true" />
+        </property>
+        <property name="fleetKeurNum" type="string">
+            <column name="fleet_keur_num" />
+        </property>
+        <property name="fleetKeurExpiry" type="date">
+            <column name="fleet_keur_expiry" length="10" />
+        </property>
+        <property name="fleetBpkbId" type="string">
+            <column name="fleet_bpkb_id" />
+        </property>
+        <property name="fleetStnkId" type="string">
+            <column name="fleet_stnk_id" />
+        </property>
+        <property name="fleetStnkExpiry" type="date">
+            <column name="fleet_stnk_expiry" length="10" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="created_by" />
+        </property>
+        <property name="createdTime" type="timestamp">
+            <column name="created_time" length="19" />
+        </property>
+        <property name="updatedBy" type="string">
+            <column name="updated_by" />
+        </property>
+        <property name="updatedTime" type="timestamp">
+            <column name="updated_time" length="19" />
+        </property>
+        <property name="modificationNum" type="java.lang.Integer">
+            <column name="modification_num" />
+        </property>
+        <property name="isEnabled" type="string">
+            <column name="is_enabled" length="1" />
+        </property>
+        <property name="isDeleted" type="string">
+            <column name="is_deleted" length="1" />
+        </property>
+        <set name="mstFleetMaintenances" table="mst_fleet_maintenance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fleet_id" />
+            </key>
+            <one-to-many class="model.MstFleetMaintenance" />
+        </set>
+        <set name="mstFleetInsurances" table="mst_fleet_insurance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fleet_id" not-null="true" />
+            </key>
+            <one-to-many class="model.MstFleetInsurance" />
+        </set>
+        <set name="trxDeliveryRequestses" table="trx_delivery_requests" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fleet_id" />
+            </key>
+            <one-to-many class="model.TrxDeliveryRequests" />
+        </set>
+    </class>
+</hibernate-mapping>

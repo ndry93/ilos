@@ -54,6 +54,11 @@
         <script src="${pageContext.request.contextPath}/theme/vendor/datatables/js/jquery.dataTables.min.js"></script>
         <script src="${pageContext.request.contextPath}/theme/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
         <script src="${pageContext.request.contextPath}/theme/vendor/datatables-responsive/dataTables.responsive.js"></script>
+        
+         <!-- Custom Theme JavaScript -->
+        <script src="${pageContext.request.contextPath}/theme/vendor/datepicker/jquery-ui.js"></script>
+        <link href="${pageContext.request.contextPath}/theme/vendor/datepicker/jquery-ui.css" rel="stylesheet">
+        
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -71,6 +76,7 @@
             <!-- Header -->
             <t:insertAttribute name="header"/>
             <!-- Body -->
+            <br/>
             <t:insertAttribute name="body"/>
             <!-- Footer -->
             <%--<t:insertAttribute name="footer"/>--%>

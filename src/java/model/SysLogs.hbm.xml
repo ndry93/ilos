@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 20, 2017 3:58:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.SysLogs" table="sys_logs" catalog="oneoms" optimistic-lock="version">
+        <id name="rowId" type="string">
+            <column name="row_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="logTime" type="timestamp">
+            <column name="log_time" length="19" />
+        </property>
+        <property name="loginId" type="string">
+            <column name="login_id" />
+        </property>
+        <property name="entityName" type="string">
+            <column name="entity_name" />
+        </property>
+        <property name="entityKey" type="string">
+            <column name="entity_key" />
+        </property>
+        <property name="logAction" type="string">
+            <column name="log_action" />
+        </property>
+        <property name="logType" type="string">
+            <column name="log_type" />
+        </property>
+        <property name="logDescription" type="string">
+            <column name="log_description" />
+        </property>
+        <property name="logDescription2" type="string">
+            <column name="log_description_2" />
+        </property>
+    </class>
+</hibernate-mapping>

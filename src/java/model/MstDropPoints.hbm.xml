@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 20, 2017 3:58:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.MstDropPoints" table="mst_drop_points" catalog="oneoms" optimistic-lock="version">
+        <id name="podId" type="string">
+            <column name="pod_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="mstAreas" class="model.MstAreas" fetch="select">
+            <column name="area_id" />
+        </many-to-one>
+        <property name="podShortname" type="string">
+            <column name="pod_shortname" />
+        </property>
+        <property name="podFullname" type="string">
+            <column name="pod_fullname" />
+        </property>
+        <property name="is24hrOpened" type="string">
+            <column name="is_24hr_opened" length="1" />
+        </property>
+        <property name="contactNum" type="string">
+            <column name="contact_num" />
+        </property>
+        <property name="contactPerson" type="string">
+            <column name="contact_person" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" />
+        </property>
+        <property name="address2" type="string">
+            <column name="address_2" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" />
+        </property>
+        <property name="province" type="string">
+            <column name="province" />
+        </property>
+        <property name="country" type="string">
+            <column name="country" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="created_by" />
+        </property>
+        <property name="createdTime" type="timestamp">
+            <column name="created_time" length="19" />
+        </property>
+        <property name="updatedBy" type="string">
+            <column name="updated_by" />
+        </property>
+        <property name="updatedTime" type="timestamp">
+            <column name="updated_time" length="19" />
+        </property>
+        <property name="modificationNum" type="java.lang.Integer">
+            <column name="modification_num" />
+        </property>
+        <property name="isEnabled" type="string">
+            <column name="is_enabled" length="1" />
+        </property>
+        <property name="isDeleted" type="string">
+            <column name="is_deleted" length="1" />
+        </property>
+        <set name="trxDeliveryRequestsPodses" table="trx_delivery_requests_pods" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="to_pod_id" not-null="true" />
+            </key>
+            <one-to-many class="model.TrxDeliveryRequestsPods" />
+        </set>
+        <set name="mstP2pdistancesesForToPodId" table="mst_p2pdistances" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="to_pod_id" not-null="true" />
+            </key>
+            <one-to-many class="model.MstP2pdistances" />
+        </set>
+        <set name="mstP2pdistancesesForFromPodId" table="mst_p2pdistances" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="from_pod_id" not-null="true" />
+            </key>
+            <one-to-many class="model.MstP2pdistances" />
+        </set>
+    </class>
+</hibernate-mapping>

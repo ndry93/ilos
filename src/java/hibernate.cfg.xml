@@ -51,23 +51,27 @@ Contributor(s):
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.connection.zeroDateTimeBehavior">convertToNull</property>
-    <mapping resource="model/AuditCustomers.hbm.xml"/>
-    <mapping resource="model/Objects.hbm.xml"/>
-    <mapping resource="model/AuditDrHeaders.hbm.xml"/>
-    <mapping resource="model/AuditRoles.hbm.xml"/>
-    <mapping resource="model/People.hbm.xml"/>
-    <mapping resource="model/Users.hbm.xml"/>
-    <mapping resource="model/AuditUserRolesObjects.hbm.xml"/>
-    <mapping resource="model/Customers.hbm.xml"/>
-    <mapping resource="model/DrHeaders.hbm.xml"/>
-    <mapping resource="model/AuditObjects.hbm.xml"/>
-    <mapping resource="model/DrLines.hbm.xml"/>
-    <mapping resource="model/AuditPeople.hbm.xml"/>
-    <mapping resource="model/Destinations.hbm.xml"/>
-    <mapping resource="model/Roles.hbm.xml"/>
-    <mapping resource="model/AuditDestinations.hbm.xml"/>
-    <mapping resource="model/AuditUsers.hbm.xml"/>
-    <mapping resource="model/UserRolesObjects.hbm.xml"/>
-    <mapping resource="model/AuditDrLines.hbm.xml"/>
+    <mapping resource="model/MstFleet.hbm.xml"/>
+    <mapping resource="model/TrxDeliveryRequestsExpenses.hbm.xml"/>
+    <mapping resource="model/TrxDriverAvailibilty.hbm.xml"/>
+    <mapping resource="model/TrxDeliveryRequests.hbm.xml"/>
+    <mapping resource="model/SysRolesObjects.hbm.xml"/>
+    <mapping resource="model/MstDrivers.hbm.xml"/>
+    <mapping resource="model/MstAreas.hbm.xml"/>
+    <mapping resource="model/SysUsersRoles.hbm.xml"/>
+    <mapping resource="model/MstCustomers.hbm.xml"/>
+    <mapping resource="model/SysLogs.hbm.xml"/>
+    <mapping resource="model/TrxDeliveryRequestsPods.hbm.xml"/>
+    <mapping resource="model/SysPersons.hbm.xml"/>
+    <mapping resource="model/SysKeywords.hbm.xml"/>
+    <mapping resource="model/MstSequences.hbm.xml"/>
+    <mapping resource="model/MstFleetInsurance.hbm.xml"/>
+    <mapping resource="model/SysObjects.hbm.xml"/>
+    <mapping resource="model/MstP2pdistances.hbm.xml"/>
+    <mapping resource="model/SysRoles.hbm.xml"/>
+    <mapping resource="model/TrxBillings.hbm.xml"/>
+    <mapping resource="model/MstDropPoints.hbm.xml"/>
+    <mapping resource="model/MstFleetMaintenance.hbm.xml"/>
+    <mapping resource="model/SysUsers.hbm.xml"/>
   </session-factory>
-</hibernate-configuration>
+ </hibernate-configuration>
